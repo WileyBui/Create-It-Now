@@ -42,6 +42,7 @@ Which (if any) progressive web app feature(s) does your app support?
 The "Welcome" Page introduces our site's visitors to the web site they have entered. Users must either login
 or sign up to create their accounts in order to use the site.
 
+### Dashboard Page
 ![Dashboard page](images/mock-up/DashboardPage.png "Dashboard page")
 
 Once the user is logged in, the dashboard displays all of the user's lists/to-do's and journals/notes that they've made.
@@ -50,12 +51,14 @@ to delete their contents, they may also click the **Trash** icon. However, if th
 existing property, they need to click the title (ie: Programming Bucket List, Woodworking Bucket List, or
 04/01/2021 Journal Entry) to redirect to its own specific page.
 
+### Menu Bar
 ![Menu bar](images/mock-up/MenubarPage.png "Menubar")
 
 The menu bar only appears when the user is logged in. If the user clicks on the "hamburger" icon, this page displays
 the options that the user is allowed to do, they can go to the dashboard, list/to-do, upload photo, journal/notes,
 profile, settings, and log out.
 
+### Notification Modal
 ![Notification modal](images/mock-up/NotificationModal.png "Notification modal")
 
 The notification modal only appears when the user is logged in. The notification number is composed of the number
