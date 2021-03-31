@@ -48,14 +48,30 @@ or sign up to create their accounts in order to use the site.
 Once the user is logged in, the dashboard displays all of the user's lists/to-do's and journals/notes that they've made.
 Users may add a new list/to-do or journal/note if they'd like by clicking the **+** icon. Likewise, if they'd like
 to delete their contents, they may also click the **Trash** icon. However, if the user wants to view or update an
-existing property, they need to click the title (ie: Programming Bucket List, Woodworking Bucket List, or
-04/01/2021 Journal Entry) to redirect to its own specific page.
+existing property, they'd need to click the title (ie: Programming Bucket List, Woodworking Bucket List, or
+04/01/2021 Journal Entry) to redirect to its own specific page (see below).
+
+### Specific Page
+![List/To-do specific page](images/mock-up/ListToDoSpecificPage.png "List/To-do specific page") ![Journal/note specific page](images/mock-up/JournalNoteSpecificPage.png "Journal/note specific page")
+
+When the user clicks on the specific page, they may edit the contents that have made before. They may also 
+delete the entire page if they'd like by clicking the "Delete" button.
+
+### Add Contents
+![Add a List/To-do](images/mock-up/ListToDoAdd.png "List/To-do specific page") ![Add a Journal/note](images/mock-up/JournalNoteAdd.png "Journal/note specific page")
+
+This page gets displayed when the user clicks the **+** icon from the dashboard or the menu page.
+For adding a new list/to-do, the user can label the list name (title) and add in any items that they'd
+like by clicking the "add an item" button." Similar, they can also add an image by clicking the "add
+an image" button. Once the user is finished with adding everything, they can click "Submit" to submit
+their contents. Likewise when adding a new content to a journal/note.
+
 
 ### Menu Bar
 ![Menu bar](images/mock-up/MenubarPage.png "Menubar")
 
 The menu bar only appears when the user is logged in. If the user clicks on the "hamburger" icon, this page displays
-the options that the user is allowed to do, they can go to the dashboard, list/to-do, upload photo, journal/notes,
+the options that the user is allowed to do; they can go to the dashboard, list/to-do, upload photo, journal/notes,
 profile, settings, and log out.
 
 ### Notification Modal
@@ -64,11 +80,9 @@ profile, settings, and log out.
 The notification modal only appears when the user is logged in. The notification number is composed of the number
 of how many notifications that have not dismissed by the user. 
 
-There are 3 categories for the notification: Lists/To-Do, Journal/Notes, and Site Notification (where the admin
+There are 3 categories for the notifications: Lists/To-Do, Journal/Notes, and Site Notification (where the admin
 sends an important messages to everyone). The user can click "Dismiss" or "Dismiss all" to decrease the notification
-number. Additionally, they can just close the modal by clicking "Close"
-
-
+number. Additionally, they can just close the modal by clicking "Close."
 
 
 ## Testing Notes
