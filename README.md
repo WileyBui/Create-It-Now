@@ -162,5 +162,5 @@ File storage requires being logged in. You can check out how that's setup in the
 
 ### Running locally:
 ```
-npm run server
+npm run serve
 ```
