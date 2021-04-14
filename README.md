@@ -71,6 +71,7 @@ adding everything, they can click "Submit" to submit their contents.
 
 ### Edit/Add a Journal Entry
 ![Edit/Add a Journal Entry](mockUpImages/EditAddAJournalEntry.png "Edit/Add a Journal Entry")
+
 Users will have the opportunity to add a journal entry after they have completed a to-do item; this is an opportunity for the
 user to reflect upon the challenges for that portion of the project in addition to what they enjoyed, what they disliked, or
 what they would do differently next time. Users may also add a progress photo for the project at this time (with the option to open
@@ -99,6 +100,7 @@ decrease the notification number. Additionally, they can just close the modal by
 
 ### All Journal Entries (For a Project)
 ![All Journal Entries](mockUpImages/AllJournalEntriesPage.png "All Journal Entries")
+
 After the user completes a to-do list for a project, they can review the steps they took to bring their craft to fruition. This page
 shows the completion (or progress thus far) of the project, showing the milestones of the project. The journal will be a nice accompaniment
 to the completed project and may serve as a reminder of the work that was achieved.
