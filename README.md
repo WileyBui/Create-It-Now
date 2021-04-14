@@ -40,44 +40,51 @@ Which (if any) progressive web app feature(s) does your app support?
 ![Welcome page](mockUpImages/WelcomePage.png "Welcome page")
 
 The "Welcome" Page introduces our site's visitors to the web site they have entered. Users must either login
-or sign up to create their accounts in order to use the site.
+or sign up to create their accounts in order to use the site. Users will be able to create projects with to-do
+lists, and upon completion of a to-do item will be prompted to enter a journal entry/reflection about that portion
+of the project (with a progress picture (and potentially other media like voice memos)). The reflections will be
+compiled into an entire journal-type documentation upon the completion of all to-do items.
 
 ### Dashboard Page
 ![Dashboard page](mockUpImages/DashboardPage.png "Dashboard page")
 
-Once the user is logged in, the dashboard displays all of the user's lists/to-do's and journals/notes that they've made.
-Users may add a new list/to-do or journal/note if they'd like by clicking the **+** icon. Likewise, if they'd like
-to delete their contents, they may also click the **Trash** icon. However, if the user wants to view or update an
-existing property, they'd need to click the title (ie: Programming Bucket List, Woodworking Bucket List, or
-04/01/2021 Journal Entry) to redirect to its own specific page (see below).
+Once the user is logged in, the dashboard displays all of the user's projects. Within each project exists a
+to-do and journals entries that they've made. Users may add a new project if they'd like by clicking the **+** icon.
+However, if the user wants to view or update an existing property, they'd need to click the title (ie: Programming 
+Bucket List, Craft-thingy, or View Journal Entry) to redirect to its own specific page (see below).
 
 ### Project-specific Page
 ![Project-specific Page](mockUpImages/ProjectSpecificPage.png "Project-specific Page")
 
 When the user clicks on the specific page, they may edit the contents that have made before. They may also 
-delete the entire page if they'd like by clicking the "Delete" button.
+delete the entire page if they'd like by clicking the "Delete" button. Here the user may also manage their to-do list
+or view/edit existing journal entries.
 
 
 ### Add a Project & To-do Modals
 ![Add a Project Modal](mockUpImages/AddAProjectModal.png "Add a Project Modal") ![Add a To-do Modal](mockUpImages/AddAToDoModal.png "Add a To-do Modal")
 
 This page gets displayed when the user clicks the **+** icon from the dashboard or the menu page.
-For adding a new list/to-do, the user can label the list name (title) and add in any items that they'd
-like by clicking the "add an item" button." Similar, they can also add an image by clicking the "add
-an image" button. Once the user is finished with adding everything, they can click "Submit" to submit
-their contents. Likewise when adding a new content to a journal/note.
+For adding a new list/to-do, the user can label the list name (title) and add a description of the task. Once the user is finished with 
+adding everything, they can click "Submit" to submit their contents.
 
 
 ### Edit/Add a Journal Entry
 ![Edit/Add a Journal Entry](mockUpImages/EditAddAJournalEntry.png "Edit/Add a Journal Entry")
+Users will have the opportunity to add a journal entry after they have completed a to-do item; this is an opportunity for the
+user to reflect upon the challenges for that portion of the project in addition to what they enjoyed, what they disliked, or
+what they would do differently next time. Users may also add a progress photo for the project at this time (with the option to open
+a mobile device camera when applicable).
 
+Users may also edit existing journal entries, in which case the same modal will be displayed with information filled in with the pre-existing
+journal entry.
 
 ### Menu Page
 ![Menu Page](mockUpImages/MenuPage.png "Menu Page")
 
-The menu bar only appears when the user is logged in. If the user clicks on the "hamburger" icon, this page displays
-the options that the user is allowed to do; they can go to the dashboard, list/to-do, upload photo, journal/notes,
-profile, settings, and log out.
+The menu bar only appears when the user is logged in and on a project-specific page. If the user clicks on the "hamburger" icon, this page 
+displays the options that the user is allowed to do; they can go back to the dashboard, view the project's to-do list or view their 
+journal/notes for the project.
 
 ### Notification Modal
 ![Notification modal](mockUpImages/NotificationModal.png "Notification modal")
@@ -85,13 +92,16 @@ profile, settings, and log out.
 The notification modal only appears when the user is logged in. The notification number is composed of the number
 of how many notifications that have not dismissed by the user. 
 
-There are 3 categories for the notifications: Lists/To-Do, Journal/Notes, and Site Notification (where the admin
-sends an important messages to everyone). The user can click "Dismiss" or "Dismiss all" to decrease the notification
-number. Additionally, they can just close the modal by clicking "Close."
+There are 3 categories for the notifications: Lists/To-Do (upcoming deadlines), Journal/Notes (milestones/complete journals ready),
+and Site Notification (where the admin sends an important messages to everyone). The user can click "Dismiss" or "Dismiss all" to
+decrease the notification number. Additionally, they can just close the modal by clicking "Close."
 
 
-### All Journal Entries
+### All Journal Entries (For a Project)
 ![All Journal Entries](mockUpImages/AllJournalEntriesPage.png "All Journal Entries")
+After the user completes a to-do list for a project, they can review the steps they took to bring their craft to fruition. This page
+shows the completion (or progress thus far) of the project, showing the milestones of the project. The journal will be a nice accompaniment
+to the completed project and may serve as a reminder of the work that was achieved.
 
 ## Testing Notes
 
