@@ -91,7 +91,7 @@ number. Additionally, they can just close the modal by clicking "Close."
 
 
 ### All Journal Entries
-![All Journal Entries](mockUpImages/EditAddAJournalEntry.png "All Journal Entries")
+![All Journal Entries](mockUpImages/AllJournalEntriesPage.png "All Journal Entries")
 
 ## Testing Notes
 
