@@ -83,9 +83,8 @@ journal entry.
 ### Menu Page
 ![Menu Page](mockUpImages/MenuPage.png "Menu Page")
 
-The menu bar only appears when the user is logged in and on a project-specific page. If the user clicks on the "hamburger" icon, this page 
-displays the options that the user is allowed to do; they can go back to the dashboard, view the project's to-do list or view their 
-journal/notes for the project.
+The menu bar only appears when the user is logged in. If the user clicks on the "hamburger" icon, this page 
+displays the options that the user is allowed to do; they can redirec to the dashboard, create a new project, or log out.
 
 ### Notification Modal
 ![Notification modal](mockUpImages/NotificationModal.png "Notification modal")
