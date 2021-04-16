@@ -141,7 +141,7 @@ This repo is intended to be a "starting point" for projects that use firebase an
 
 How I generated this project:
 
-1. `vue create firebase_setup_stating_point` (create basic project template)
+1. RUN THIS COMMAND IN THE PARENT DIRECTORY OF THE ACTUAL REPO DIRECTORY `vue create csci-5117-project-2-template-free-labor-1` (create basic project template) 
 2. `vue add router` (update template with vue router)
 3. `npm install firebase` (add the firebase web API to this project)
 4. added the `firebaseConfig.js` file and also the .env files
