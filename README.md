@@ -141,13 +141,14 @@ This repo is intended to be a "starting point" for projects that use firebase an
 
 How I generated this project:
 
-1. RUN THIS COMMAND IN THE PARENT DIRECTORY OF THE ACTUAL REPO DIRECTORY `vue create csci-5117-project-2-template-free-labor-1` (create basic project template) 
-2. `vue add router` (update template with vue router)
-3. `npm install firebase` (add the firebase web API to this project)
-4. added the `firebaseConfig.js` file and also the .env files
-5. `npm install vuefire` (add the vue + firestore bindings to make firestore data easy to work with.)
-6. updated the `main.js` file to use the vuefire plugin
-7. when setting up the auth test I further updated main.js to make sure the authenticaiton info is loaded before rendering starts, and I updated the router configuration to check if a route wants authentication before routing.
+1. RUN THIS COMMAND IN THE PARENT DIRECTORY OF THE ACTUAL REPO DIRECTORY `vue create csci-5117-project-2-template-free-labor-1` (create basic project template)
+2. `cd csci-5117-project-2-template-free-labor-1` 
+3. `vue add router` (update template with vue router)
+4. `npm install firebase` (add the firebase web API to this project)
+5. added the `firebaseConfig.js` file and also the .env files
+6. `npm install vuefire` (add the vue + firestore bindings to make firestore data easy to work with.)
+7. updated the `main.js` file to use the vuefire plugin
+8. when setting up the auth test I further updated main.js to make sure the authenticaiton info is loaded before rendering starts, and I updated the router configuration to check if a route wants authentication before routing.
 
 I've included these instructions with the specific intent of helping you know what you need to do to get setup with firebase on your own project.
 
