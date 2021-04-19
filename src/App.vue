@@ -1,12 +1,150 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <nav class="navbar navbar-expand-lg navbar-dark green-background">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">Free Labor</a>
+        <div
+          v-if="user"
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <router-link
+                :to="{ name: 'ToDo' }"
+                class="nav-link"
+                aria-current="page"
+              >
+                Dashboard
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'ToDoDone' }"
+                class="nav-link"
+                aria-current="page"
+              >
+                Create a new project
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'ToDoDone' }"
+                class="nav-link"
+                aria-current="page"
+              >
+                Logout
+              </router-link>
+            </li> -->
+          </ul>
+          <div class="d-flex">
+            <div class="dropdown">
+              <button
+                class="btn green-background dropdown-toggle btn-sm"
+                type="button"
+                id="profileDropDown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img :src="user.photoURL" class="profile-image" />
+                <span>&nbsp; {{ user.displayName }}</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="profileDropDown">
+                <li>
+                  <a class="dropdown-item" @click.prevent="signOut">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="d-flex">
+            <button
+              class="btn btn-dark"
+              type="button"
+              aria-expanded="false"
+              @click.prevent="signInWithGoogle"
+            >
+              Login / Signup
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="spacing"></div>
+    <router-view />
   </div>
 </template>
+
+
+<script>
+require("@/css/bootstrap.css");
+require("@/css/icons.css");
+
+import { auth, provider } from "./firebaseConfig.js";
+import router from "./router";
+
+export default {
+  data: function () {
+    return {
+      user: null,
+    };
+  },
+  beforeCreate: function () {
+    // ask the auth layer to let us know when the user changes.
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      }
+    });
+
+    let jqueryJS = document.createElement("script");
+    jqueryJS.setAttribute(
+      "src",
+      "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    );
+    document.head.appendChild(jqueryJS);
+
+    let bootstrapJS = document.createElement("script");
+    bootstrapJS.setAttribute(
+      "src",
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    );
+    document.head.appendChild(bootstrapJS);
+  },
+
+  methods: {
+    signInWithGoogle: function () {
+      auth
+        .signInWithRedirect(provider)
+        .then((result) => {
+          this.user = result.user;
+        })
+        .catch((err) => console.log(err));
+    },
+    signOut: function () {
+      auth
+        .signOut()
+        .then(() => {
+          this.user = null;
+          router.push("/");
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
+</script>
 
 <style>
 #app {
@@ -17,16 +155,51 @@
   color: #2c3e50;
 }
 
-#nav {
+#spacing {
   padding: 30px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.profile-image {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  background: #dff4ff;
+}
+
+.color-white {
+  color: white !important;
+}
+
+.blue-background {
+  background: #4299ff !important;
+}
+
+.light-blue-background {
+  background: #A0D1FE !important;
+}
+
+.green-background {
+  background: #2ed7b6 !important;
+}
+
+.light-green-background {
+  background: #48e9c9 !important;
+}
+
+.small-text {
+  font-size: 0.9rem;
+}
+
+.small-error-font {
+  font-size: 1rem;
+  color: red;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
 }
 </style>
