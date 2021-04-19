@@ -14,13 +14,16 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">Free Labor</a>
+        <i class="bi bi-bell color-white"></i>
+        <!-- <img v-if="user" :src="user.photoURL" class="profile-image d-block d-lg-none" />   -->
+
         <div
           v-if="user"
           class="collapse navbar-collapse"
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-start">
-            <li class="nav-item">
+            <li class="nav-item d-block d-lg-none">
               <router-link
                 :to="{ name: 'Dashboard' }"
                 class="nav-link color-white"
@@ -30,7 +33,7 @@
                 Dashboard
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-block d-lg-none">
               <router-link
                 :to="{ name: 'Dashboard' }"
                 class="nav-link color-white"
@@ -40,7 +43,7 @@
                 Create a new project (disabled)
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-block d-lg-none">
               <button @click.prevent="signOut" class="btn nav-link color-white">
                 <i class="bi bi-box-arrow-left"></i>
                 Logout
@@ -48,7 +51,7 @@
             </li>
           </ul>
           <div class="d-flex">
-            <div class="dropdown">
+            <div class="dropdown d-none d-lg-block">
               <button
                 class="btn green-background dropdown-toggle btn-sm color-white"
                 type="button"
