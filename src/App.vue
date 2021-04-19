@@ -19,39 +19,38 @@
           class="collapse navbar-collapse"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!-- <li class="nav-item">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-start">
+            <li class="nav-item">
               <router-link
-                :to="{ name: 'ToDo' }"
-                class="nav-link"
+                :to="{ name: 'Dashboard' }"
+                class="nav-link color-white"
                 aria-current="page"
               >
+                <i class="bi bi-tv"></i>
                 Dashboard
               </router-link>
             </li>
             <li class="nav-item">
               <router-link
-                :to="{ name: 'ToDoDone' }"
-                class="nav-link"
+                :to="{ name: 'Dashboard' }"
+                class="nav-link color-white"
                 aria-current="page"
               >
-                Create a new project
+                <i class="bi bi-folder-plus"></i>
+                Create a new project (disabled)
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link
-                :to="{ name: 'ToDoDone' }"
-                class="nav-link"
-                aria-current="page"
-              >
+              <button @click.prevent="signOut" class="btn nav-link color-white">
+                <i class="bi bi-box-arrow-left"></i>
                 Logout
-              </router-link>
-            </li> -->
+              </button>
+            </li>
           </ul>
           <div class="d-flex">
             <div class="dropdown">
               <button
-                class="btn green-background dropdown-toggle btn-sm"
+                class="btn green-background dropdown-toggle btn-sm color-white"
                 type="button"
                 id="profileDropDown"
                 data-bs-toggle="dropdown"
@@ -71,7 +70,7 @@
         <div v-else>
           <div class="d-flex">
             <button
-              class="btn btn-dark"
+              class="btn green-background color-white"
               type="button"
               aria-expanded="false"
               @click.prevent="signInWithGoogle"
@@ -179,7 +178,7 @@ body {
 }
 
 .light-blue-background {
-  background: #A0D1FE !important;
+  background: #a0d1fe !important;
 }
 
 .green-background {

@@ -47,7 +47,7 @@
             </div>
 
             <label class="control-label w-100">
-              New to-do title<span class="small-error-font">*</span>
+              New to-do title
             </label>
             <input type="text" class="form-control" v-model="todo_name" />
 
@@ -110,11 +110,9 @@ export default {
         // if isAddNewProject, checks everything
         (this.isAddNewProject &&
           this.project_name &&
-          this.todo_name &&
           this.todo_description &&
           this.todo_deadline) ||
         (!this.isAddNewProject &&
-          this.todo_name &&
           this.todo_description &&
           this.todo_deadline)
       ) {
