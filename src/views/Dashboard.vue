@@ -2,7 +2,7 @@
   <div class="container text-start">
     <div v-if="user" class="row">
       <div class="col-8">
-        <h2 class="header-bold">Dashboard</h2>
+        <h2 class="header-bold"><i class="bi bi-tv"></i> Dashboard</h2>
       </div>
       <div class="col-4 text-end">
         <ModalAddAProjectAndOrToDo
