@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Create It Mow logo" src="../assets/logo1.png">
+    <img alt="Create It Now logo" src="../assets/Icon.png">
     <Welcome msg="Welcome to Create it Now!"/>
   </div>
 </template>
