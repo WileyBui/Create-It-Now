@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import ProjectSpecific from '../views/ProjectSpecific.vue'
+import SingleTask from '../views/SingleTask.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,14 @@ const routes = [
     path: '/project/:project_id',
     name: 'ProjectSpecific',
     component: ProjectSpecific
+  },
+  {
+    path: '/todo/:id',
+    name: 'SingleTask',
+    component: SingleTask,
+    meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
   },
   {
     path: '/about',
