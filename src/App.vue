@@ -108,6 +108,7 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user;
+        this.$router.push('/dashboard')
       }
     });
 
@@ -132,7 +133,7 @@ export default {
         .signInWithRedirect(provider)
         .then((result) => {
           this.user = result.user;
-        })
+          })
         .catch((err) => console.log(err));
     },
     signOut: function () {
