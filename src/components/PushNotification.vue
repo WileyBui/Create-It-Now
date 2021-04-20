@@ -80,55 +80,55 @@ export default {
 
   methods: {
     dismissAllNotifications: function () {
-      let error = document.getElementById("error");
+      // let error = document.getElementById("error");
 
-      if (
-        // if isAddNewProject, checks everything
-        (this.isAddNewProject &&
-          this.project_name &&
-          this.todo_description &&
-          this.todo_deadline) ||
-        (!this.isAddNewProject && this.todo_description && this.todo_deadline)
-      ) {
-        // adds a new project to projects db and then add a new to-do to to-do-items db
-        let newProject = {
-          owner_id: this.owner_id,
-          project_name: this.project_name,
-        };
+      // if (
+      //   // if isAddNewProject, checks everything
+      //   (this.isAddNewProject &&
+      //     this.project_name &&
+      //     this.todo_description &&
+      //     this.todo_deadline) ||
+      //   (!this.isAddNewProject && this.todo_description && this.todo_deadline)
+      // ) {
+      //   // adds a new project to projects db and then add a new to-do to to-do-items db
+      //   let newProject = {
+      //     owner_id: this.owner_id,
+      //     project_name: this.project_name,
+      //   };
 
-        let newToDo = {
-          name: this.todo_name,
-          description: this.todo_description,
-          deadline: this.todo_deadline,
-          isComplete: false,
-        };
+      //   let newToDo = {
+      //     name: this.todo_name,
+      //     description: this.todo_description,
+      //     deadline: this.todo_deadline,
+      //     isComplete: false,
+      //   };
 
-        // If add a new project, then add it to the projects db first, then add the new to do to the to-do-items db
-        // Else if add a new to do, then add it to the to-do-items db
-        if (this.isAddNewProject) {
-          db.collection("projects")
-            .add(newProject)
-            .then(function (docRef) {
-              newToDo.project_id = docRef.id;
-              db.collection("to-do-items").add(newToDo);
-            });
-        } else {
-          newToDo.project_id = "new-to-do"; // WILL NEED TO IMPLEMENT THIS LATER
-          db.collection("to-do-items").add(newToDo);
-        }
+      //   // If add a new project, then add it to the projects db first, then add the new to do to the to-do-items db
+      //   // Else if add a new to do, then add it to the to-do-items db
+      //   if (this.isAddNewProject) {
+      //     db.collection("projects")
+      //       .add(newProject)
+      //       .then(function (docRef) {
+      //         newToDo.project_id = docRef.id;
+      //         db.collection("to-do-items").add(newToDo);
+      //       });
+      //   } else {
+      //     newToDo.project_id = "new-to-do"; // WILL NEED TO IMPLEMENT THIS LATER
+      //     db.collection("to-do-items").add(newToDo);
+      //   }
 
-        // resets all the fields from modal form
-        this.project_name = null;
-        this.todo_name = null;
-        this.todo_description = null;
-        this.todo_deadline = null;
+      //   // resets all the fields from modal form
+      //   this.project_name = null;
+      //   this.todo_name = null;
+      //   this.todo_description = null;
+      //   this.todo_deadline = null;
 
-        // removes error indicator && closes the modal
-        error.setAttribute("hidden", true);
-        window.$("#displayNotification").modal("toggle");
-      } else {
-        error.removeAttribute("hidden");
-      }
+      //   // removes error indicator && closes the modal
+      //   error.setAttribute("hidden", true);
+      //   window.$("#displayNotification").modal("toggle");
+      // } else {
+      //   error.removeAttribute("hidden");
+      // }
     },
   },
 };
