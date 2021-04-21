@@ -24,7 +24,7 @@
             <template v-else>
               <strong class="Incomplete">IN PROGRESS </strong>
             </template>
-
+            
           </router-link>
         </button>
       </h2>

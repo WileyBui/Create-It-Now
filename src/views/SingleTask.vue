@@ -53,7 +53,8 @@
                     </template>
             </tr>
           </table>
-          <button @click="backToProject(taskName)">Back to Project</button>
+          <br>
+          <button @click="backToProject(taskName)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
         </div>
       </div>
     </div>
