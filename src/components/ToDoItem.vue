@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">{{task.name}}</router-link></td>
-        <td>{{DateUtils.format(task.deadline,'MMMM Do YYYY, h:mm:ss a')}}</td>
+        <td>{{task.deadline.toDate() | formatDate }}</td>
         <td>{{task.description}}</td>
         <template v-if="task.isComplete">
             <td>
