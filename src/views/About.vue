@@ -1,19 +1,19 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <modalCamera/>
+    <webCamera/>
 
   </div>
 </template>
 
 <script>
-import ModalCamera from '@/components/WebCamera.vue'
+import webCamera from '@/components/WebCamera.vue'
 
 
 export default {
   name: "About",
   components: {
-    ModalCamera
+    webCamera
   },
 }
 </script>

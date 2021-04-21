@@ -9,9 +9,6 @@
   
   <div v-show="isCameraOpen && isLoading" class="camera-loading">
     <ul class="loader-circle">
-      <li></li>
-      <li></li>
-      <li></li>
     </ul>
   </div>
   

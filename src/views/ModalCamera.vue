@@ -11,9 +11,10 @@ import webCamera from '@/components/WebCamera.vue'
 
 
 export default {
-  name: "modalCamera",
+  name: "ModalCamera",
   components: {
     webCamera
   },
 }
 </script>
+
