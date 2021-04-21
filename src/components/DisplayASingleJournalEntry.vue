@@ -1,7 +1,6 @@
 <template>
   <div
-    class="container light-orange-background p-3 margin-top-10 hoverable text-start"
-  >
+    class="container light-orange-background p-3 margin-top-10 hoverable text-start" @click="toSpecificPage(entry)">
     <div class="row">
       <div class="col-9">
         <strong><strong>{{ entry.title }}</strong></strong>
@@ -28,6 +27,10 @@ export default {
   data: function () {
     return {};
   },
-  methods: {},
+  methods: {
+      toSpecificPage(entry) {
+          this.$router.push({ name: 'SingleJournalEntry', params: { id: entry.id } })
+      }
+  },
 };
 </script>
