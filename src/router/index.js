@@ -6,6 +6,7 @@ import ProjectSpecific from '../views/ProjectSpecific.vue'
 import AllJournalsFromProject from '../views/AllJournalsFromProject.vue'
 import SingleTask from '../views/SingleTask.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import JournalEntry from '../components/JournalEntry.vue'
 import { auth } from "@/firebaseConfig"
 
 Vue.use(VueRouter)
@@ -44,6 +45,14 @@ const routes = [
     path: '/todo/:id',
     name: 'SingleTask',
     component: SingleTask,
+    meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/journaltest',
+    name: 'JournalEntry',
+    component: JournalEntry,
     meta: { // connects with the function later in this file.
       requiresAuth: true
     }
