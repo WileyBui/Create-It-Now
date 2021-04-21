@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import ProjectSpecific from '../views/ProjectSpecific.vue'
+import AllJournalsFromProject from '../views/AllJournalsFromProject.vue'
 import SingleTask from '../views/SingleTask.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import { auth } from "@/firebaseConfig"
@@ -27,6 +28,14 @@ const routes = [
     path: '/project/:project_id',
     name: 'ProjectSpecific',
     component: ProjectSpecific,
+    meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/journals/:project_id',
+    name: 'AllJournalsFromProject',
+    component: AllJournalsFromProject,
     meta: { // connects with the function later in this file.
       requiresAuth: true
     }

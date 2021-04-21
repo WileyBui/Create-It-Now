@@ -6,7 +6,7 @@
       </div>
       <div class="col-3 fw-bold small-text text-end">
         <span v-if="task.isComplete" class="green">COMPLETED</span>
-        <span v-else class="red">INCOMPLETE</span>
+        <span v-else class="red">NOT DONE</span>
       </div>
     </div>
     <div>{{ task.description }}</div>
