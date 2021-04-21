@@ -86,8 +86,24 @@ export default {
       journalEntries: [],
       clickedSpecificJournalEntryId: null,
       clickedSpecificJournalEntryIsDone: null,
+      complete: false
     };
+        },
+
+  updated() {
+      var doneTasks = db
+          .collection("to-do-items")
+          .where("project_id", "==", this.project_idLocal)
+          .where("isComplete", "==", false);
+      doneTasks.get().then((res) => {
+          if (res.size == 0) {
+              this.complete = true;
+          } else {
+              this.complete = false;
+          }
+      });
   },
+
   firestore: function() {
         return {
             project_object: db.collection("projects").doc(this.project_idLocal),
