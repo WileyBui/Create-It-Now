@@ -21,13 +21,16 @@
             <th><u><b>Specific Task View</b></u></th>
         </tr>
 
-        <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" />
+        <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" v-on:toDoStatusEvent="getModal"/>
     </table>
     
     <ModalAddAProjectAndOrToDo
       :project_id="project_idLocal"
       :isAddNewProject="false"
     />
+
+    <ModalAddOrUpdateJournal :id="clickedSpecificJournalEntryId" />
+
     <br />
     <br />  
     <h3>Journal Entries</h3>
@@ -40,13 +43,15 @@ import {db} from "../firebaseConfig.js"
 import task from "../components/ToDoItem.vue"
 import JournalEntry from "../components/JournalEntry.vue"
 import ModalAddAProjectAndOrToDo from "@/components/ModalAddAProjectAndOrToDo.vue";
+import ModalAddOrUpdateJournal from "@/components/ModalAddOrUpdateJournal.vue";
 
 export default {
   name: "ProjectSpecific",
   components: {
     task,
     JournalEntry,  
-    ModalAddAProjectAndOrToDo
+    ModalAddAProjectAndOrToDo,
+    ModalAddOrUpdateJournal
   },
   data: function () {
     return {
@@ -54,6 +59,8 @@ export default {
       project_object: null,
       allToDosFromProject: [],
       journalEntries: [],
+      clickedSpecificJournalEntryId: null,
+      clickedSpecificJournalEntryIsDone: null,
     };
   },
   firestore: function() {
@@ -62,7 +69,12 @@ export default {
             allToDosFromProject: db.collection("to-do-items").where("project_id", "==", this.project_idLocal),
             journalEntries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal)
         }
-    },
+  },
+  methods: {
+    getModal: function(id) {
+      this.clickedSpecificJournalEntryId = id;
+    }
+  }
 
         
 }
