@@ -1,0 +1,61 @@
+<template>
+  <div class="accordion d-grid gap-2 col-5 mx-auto margin-bottom-20 orange-background" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Journal Entries
+        </button>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <DisplayASingleJournalEntry
+            v-for="entry in entries"
+            :key="entry.id"
+            :entry="entry"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import DisplayASingleJournalEntry from "@/components/DisplayASingleJournalEntry.vue";
+
+export default {
+  name: "DisplayJournalEntry",
+  props: ["entries"],
+  components: {
+    DisplayASingleJournalEntry,
+  },
+  data: function () {
+    return {};
+  },
+  methods: {
+    // markDone: function (task) {
+    //   db.collection("to-do-items")
+    //     .doc(task.id)
+    //     .update({ ["isComplete"]: true });
+    //   this.$emit("toDoStatusEvent", this.id);
+    // },
+    // markUndone: function (task) {
+    //   db.collection("to-do-items")
+    //     .doc(task.id)
+    //     .update({ ["isComplete"]: false });
+    //   this.$emit("toDoStatusEvent", this.id);
+    // },
+  },
+};
+</script>
