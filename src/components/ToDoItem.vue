@@ -5,9 +5,13 @@
         <td>{{task.description}}</td>
         <template v-if="task.isComplete">
             <td>
-                <input type="checkbox" @click="markUndone(task)" checked />
-                <br />
-                Complete
+                <button 
+                   @click="markUndone(task)"
+                   type="button"
+                   class="btn blue-background color-white p-1 pt-0 pb-0"
+                   >
+                   Complete
+                </button>
             </td>
         </template>
         <template v-else>
@@ -21,14 +25,6 @@
                 </button>
             </td>
         </template>
-        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">
-                <button
-                    type="button"
-                    class="btn blue-background color-white p-1 pt-0 pb-0"
-                >
-                About Task
-                </button>
-            </router-link></td>
     </tr>
 </template>
 

@@ -25,12 +25,6 @@
               <strong class="Incomplete">IN PROGRESS </strong>
             </template>
 
-            <button
-              type="button"
-              class="btn blue-background color-white p-1 pt-0 pb-0"
-            >
-              View
-            </button>
           </router-link>
         </button>
       </h2>
@@ -48,7 +42,6 @@
                 <th><u><b>Deadline</b></u></th>
                 <th><u><b>Task Details</b></u></th>
                 <th><u><b>Status</b></u></th>
-                <th><u><b>Specific Task View</b></u></th>
             </tr>
 
             <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" />

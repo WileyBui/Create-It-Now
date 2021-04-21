@@ -47,12 +47,13 @@
                                 type="button"
                                 class="btn blue-background color-white p-1 pt-0 pb-0"
                             >
-                                Complete
+                                Incomplete
                             </button>
                         </td>
                     </template>
             </tr>
           </table>
+          <button @click="backToProject(taskName)">Back to Project</button>
         </div>
       </div>
     </div>
