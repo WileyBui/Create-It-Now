@@ -72,7 +72,7 @@ export default {
     };
   },
 
-  created() {
+  beforeUpdate() {
     var doneTasks = db
       .collection("to-do-items")
       .where("project_id", "==", this.project.id)
