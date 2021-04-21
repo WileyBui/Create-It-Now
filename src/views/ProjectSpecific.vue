@@ -17,8 +17,13 @@
             }"
             class="remove-a-href-styles text-dark"
           >
-            <strong>{{ project_object.project_name }}</strong>
-            
+            <strong>{{ project_object.project_name }} - </strong>
+            <template v-if="complete">
+              <strong class="Complete">COMPLETED </strong>
+            </template>
+            <template v-else>
+              <strong class="Incomplete">IN PROGRESS </strong>
+            </template>
           </router-link>
         </button>
       </h2>
@@ -74,7 +79,7 @@ export default {
     // JournalEntry,  
     DisplayAllJournalEntries,
     ModalAddAProjectAndOrToDo,
-    ModalAddOrUpdateJournal
+    ModalAddOrUpdateJournal,
   },
   data: function () {
     return {
