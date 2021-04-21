@@ -28,7 +28,7 @@
             </tr>
             <tr>
                     <td>{{taskName.description}}</td>
-                    <td>{{ taskName.deadline }}</td>
+                    <td>{{DateUtils.format(taskName.deadline,'MMMM Do YYYY, h:mm:ss a') }}</td>
                     <template v-if="taskName.isComplete">
                         <td>
                             <button
