@@ -14,7 +14,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">Free Labor</a>
-        <i class="bi bi-bell color-white"></i>
+        <!-- <i class="bi bi-bell color-white"></i> -->
         <!-- <img v-if="user" :src="user.photoURL" class="profile-image d-block d-lg-none" />   -->
 
         <div
@@ -23,7 +23,10 @@
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-start">
-            <li class="nav-item d-block d-lg-none">
+            <li class="nav-item">
+              <PushNotification />
+            </li>
+            <li class="nav-item">
               <router-link
                 :to="{ name: 'Dashboard' }"
                 class="nav-link color-white"
@@ -96,8 +99,12 @@ require("@/css/icons.css");
 
 import { auth, provider } from "./firebaseConfig.js";
 import router from "./router";
+import PushNotification from "@/components/PushNotification.vue";
 
 export default {
+  components: {
+    PushNotification,
+  },
   data: function () {
     return {
       user: null,
@@ -108,7 +115,6 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user;
-        this.$router.push('/dashboard')
       }
     });
 
@@ -185,6 +191,14 @@ body {
   background: #a0d1fe !important;
 }
 
+.orange-background {
+  background: #FFB750 !important;
+}
+
+.light-orange-background {
+  background: #FED7A0 !important;
+}
+
 .green-background {
   background: #2ed7b6 !important;
 }
@@ -204,5 +218,13 @@ body {
 
 .margin-top-10 {
   margin-top: 10px;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: #4299ff !important;
 }
 </style>

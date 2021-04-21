@@ -1,5 +1,5 @@
 <template>
-  <div class="text-end">
+  <div :class="[isAddNewProject ? 'text-end' : '']">
     <i
       class="bi bi-plus-circle plus-icon hoverable align-top"
       data-bs-toggle="modal"
@@ -92,7 +92,7 @@ import { db } from "../firebaseConfig.js";
 
 export default {
   name: "ModalAddAProject",
-  props: ["owner_id", "isAddNewProject"],
+  props: ["owner_id", "isAddNewProject", "project_id"],
   data: function () {
     return {
       project_name: null,
@@ -139,7 +139,7 @@ export default {
               db.collection("to-do-items").add(newToDo);
             });
         } else {
-          newToDo.project_id = "new-to-do"; // WILL NEED TO IMPLEMENT THIS LATER
+          newToDo.project_id = this.project_id;
           db.collection("to-do-items").add(newToDo);
         }
 

@@ -17,8 +17,20 @@
             }"
             class="remove-a-href-styles text-dark"
           >
-            <strong>{{ project.project_name }}&nbsp;</strong>
-            <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View</button>
+            <strong>{{ project.project_name }} - </strong>
+            <template v-if="complete">
+              <strong class="Complete">COMPLETED </strong>
+            </template>
+            <template v-else>
+              <strong class="Incomplete">IN PROGRESS </strong>
+            </template>
+
+            <button
+              type="button"
+              class="btn blue-background color-white p-1 pt-0 pb-0"
+            >
+              View
+            </button>
           </router-link>
         </button>
       </h2>
@@ -29,7 +41,13 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
+          <strong>To-do Items:</strong>
           <DashboardTask v-for="task in tasks" :key="task.id" :task="task" />
+        </div>
+
+        <div class="accordion-body">
+            <strong>Journal Entries:</strong>
+            <DashboardEntry v-for="entry in journalEntries" :key="entry.id" :entry="entry" />
         </div>
       </div>
     </div>
@@ -48,8 +66,24 @@ export default {
   },
   data: function () {
     return {
-      tasks: [],
+        tasks: [],
+        journalEntries: [],
+        complete: false
     };
+  },
+
+  created() {
+    var doneTasks = db
+      .collection("to-do-items")
+      .where("project_id", "==", this.project.id)
+      .where("isComplete", "==", false);
+    doneTasks.get().then((res) => {
+      if (res.size == 0) {
+        this.complete = true;
+      } else {
+        this.complete = false;
+      }
+    });
   },
 
   firestore: function () {
@@ -58,6 +92,10 @@ export default {
         .collection("to-do-items")
         .where("project_id", "==", this.project.id),
       // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
+
+      journalEntries: db
+        .collection("journalEntries")
+        .where("project_id", "==", this.project.id)
     };
   },
 };
@@ -73,5 +111,13 @@ export default {
 .remove-a-href-styles {
   text-decoration: none !important;
   color: inherit;
+}
+
+strong.Complete {
+  color: green;
+}
+
+strong.Incomplete {
+  color: yellow;
 }
 </style>

@@ -51,12 +51,14 @@ export default {
   },
 
   firestore: function () {
-    return {
-      projects: db
-        .collection("projects")
-        .where("owner_id", "==", auth.currentUser.uid),
-      // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
-    };
+    if (auth.currentUser) {
+      return {
+        projects: db
+          .collection("projects")
+          .where("owner_id", "==", auth.currentUser.uid),
+        // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
+      };
+    }
   },
 };
 //
