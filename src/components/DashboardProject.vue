@@ -93,7 +93,7 @@ export default {
         .where("project_id", "==", this.project.id),
       // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
 
-      journalEnties: db
+      journalEntries: db
         .collection("journalEntries")
         .where("project_id", "==", this.project.id)
     };

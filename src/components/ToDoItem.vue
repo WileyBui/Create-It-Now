@@ -1,23 +1,30 @@
 <template>
     <tr>
-        <td>{{task.name}}</td>
+        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">{{task.name}}</router-link></td>
         <td>{{task.deadline}}</td>
         <td>{{task.description}}</td>
         <template v-if="task.isComplete">
             <td>
-                <input type="checkbox" @click="markUndone(task)" checked />
-                <br />
-                Complete
+                <button 
+                   @click="markUndone(task)"
+                   type="button"
+                   class="btn blue-background color-white p-1 pt-0 pb-0"
+                   >
+                   Complete
+                </button>
             </td>
         </template>
         <template v-else>
             <td>
-                <input type="checkbox" @click="markDone(task)" />
-                <br />
-                Incomplete
+                <button
+                    @click="markDone(task)"
+                    type="button"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    >
+                    Incomplete
+                </button>
             </td>
         </template>
-        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">More About Task</router-link></td>
     </tr>
 </template>
 
