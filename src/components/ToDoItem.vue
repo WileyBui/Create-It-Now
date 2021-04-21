@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td>{{task.name}}</td>
+        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">{{task.name}}</router-link></td>
         <td>{{task.deadline}}</td>
         <td>{{task.description}}</td>
         <template v-if="task.isComplete">
@@ -17,7 +17,6 @@
                 Incomplete
             </td>
         </template>
-        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">More About Task</router-link></td>
     </tr>
 </template>
 
