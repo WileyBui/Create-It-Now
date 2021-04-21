@@ -1,11 +1,11 @@
 <template>
     <tr>
-        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">{{task.name}}</router-link></td>
-        <td>{{task.deadline ? task.deadline.toDate() : "" | formatDate }}</td>
+        <td class="taskname"><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle"><strong>{{task.name}}</strong></router-link></td>
+        <td><strong>{{task.deadline ? task.deadline.toDate() : "" | formatDate }}</strong></td>
 
         <!-- <td>{{task.deadline}}</td> -->
 
-        <td>{{task.description}}</td>
+        <td><strong>{{task.description}}</strong></td>
         <template v-if="task.isComplete">
             <td>
                 <button 
@@ -60,5 +60,15 @@ export default {
 td {
   padding: 1em;
   color: black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: gray;
+    font-size: 125%
 }
 </style>

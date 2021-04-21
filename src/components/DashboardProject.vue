@@ -17,7 +17,7 @@
             }"
             class="remove-a-href-styles text-dark"
           >
-            <strong>{{ project.project_name }} - </strong>
+              <strong><strong>{{ project.project_name }} - </strong></strong>
             <template v-if="complete">
               <strong class="Complete">COMPLETED </strong>
             </template>

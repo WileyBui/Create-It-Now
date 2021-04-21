@@ -1,9 +1,9 @@
 <template>
-  <div class="accordion margin-bottom-20 orange-background" id="accordionExample">
+  <div class="accordion accordion margin-bottom-20 orange-background" id="accordionExample">
     <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="headingOne">
         <button
-          class="accordion-button orange-background entry-header"
+          class="accordion-button show orange-background entry-header"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseOne"
