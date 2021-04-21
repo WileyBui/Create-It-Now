@@ -16,12 +16,18 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
   },
   {
     path: '/project/:project_id',
     name: 'ProjectSpecific',
-    component: ProjectSpecific
+    component: ProjectSpecific,
+    meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
   },
   {
     path: '/todo/:id',
