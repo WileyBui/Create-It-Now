@@ -4,7 +4,6 @@
             <table>
                 <tr>
                     <th>Task Name</th>
-                    <th>Is the task completed?</th>
                     <th>Completion Status</th>
                     <th>Details about the task</th>
                     <th>Time Allocated for Task</th>
@@ -12,8 +11,20 @@
                 </tr>
                 <tr>
                     <td>{{taskName.name}}</td>
-                    <td>[{{taskName.isComplete}}]</td>
-                    <td>Done?</td>
+                    <template v-if="taskName.isComplete">
+                        <td>
+                            <input type="checkbox" @click="markUndone(taskName)" checked />
+                            <br />
+                            Complete
+                        </td>
+                    </template>
+                    <template v-else>
+                        <td>
+                            <input type="checkbox" @click="markDone(taskName)" />
+                            <br />
+                            Incomplete
+                        </td>
+                    </template>
                     <td>{{taskName.description}}</td>
                     <td>{{ taskName.deadline }}</td>
                     <td>{{taskName.project_id}}</td>
@@ -51,6 +62,14 @@
         methods: {
             addNewTaskToProject: function() {
                 console.log("still gotta implement") //still have to implement this
+            },
+
+            markDone: function (task) {
+                db.collection('to-do-items').doc(task.id).update({ ['isComplete']: true })
+            },
+
+            markUndone: function (task) {
+                db.collection('to-do-items').doc(task.id).update({ ['isComplete']: false })
             }
         }
     }
