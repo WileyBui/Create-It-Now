@@ -29,7 +29,7 @@
       :isAddNewProject="false"
     />
 
-    <ModalAddOrUpdateJournal :id="clickedSpecificJournalEntryId" />
+    <ModalAddOrUpdateJournal :todo_id="clickedSpecificJournalEntryId" />
 
     <br />
     <br />  
@@ -73,6 +73,7 @@ export default {
   methods: {
     getModal: function(id) {
       this.clickedSpecificJournalEntryId = id;
+      window.$("#addAJournal").modal("toggle");
     }
   }
 
