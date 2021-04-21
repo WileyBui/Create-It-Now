@@ -15,7 +15,7 @@
                            class="remove-a-href-styles text-dark">
               <strong>{{ project.project_name }}&nbsp; </strong>
               <template v-if="complete">
-                  <strong class="Complete"> - Complete </strong>
+                  <strong class="Complete"> - Done </strong>
               </template>
               <template v-else>
                   <strong class="Incomplete"> - In Progress </strong>
@@ -82,7 +82,7 @@ export default {
         .where("project_id", "==", this.project.id),
       // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
 
-      journalEnties: db
+      journalEntries: db
         .collection("journalEntries")
         .where("project_id", "==", this.project.id)
     };
@@ -103,7 +103,7 @@ export default {
 }
 
 strong.Complete {
-    color: lawngreen;
+    color: green;
 }
 
 strong.Incomplete {
