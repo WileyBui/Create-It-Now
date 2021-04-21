@@ -63,7 +63,7 @@
             <label class="control-label w-100 margin-top-10">
               To-do deadline<span class="small-error-font">*</span>
             </label>
-            <datepicker format="MMMM Do YYYY, h:mm:ss a" class="form-control" v-model="todo_deadline" />
+            <datepicker class="form-control" v-model="todo_deadline" />
           </div>
           <div class="modal-footer">
             <button
