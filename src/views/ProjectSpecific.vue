@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- ELISE'S PART -->
-    <table class="project-header">
+    <table v-if="project_object" class="project-header">
       <tr>
         <th><u><b>Project Name</b></u></th>
       </tr>
@@ -21,17 +21,27 @@
             <th><u><b>Specific Task View</b></u></th>
         </tr>
 
-        <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" :project_id = "project_id"/>
+        <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" />
     </table>
+    
+    <ModalAddAProjectAndOrToDo
+      :project_id="project_idLocal"
+      :isAddNewProject="false"
+    />
+        
   </div>
 </template>
 
 <script>
 import {db} from "../firebaseConfig.js"
 import task from "../components/ToDoItem.vue"
+import ModalAddAProjectAndOrToDo from "@/components/ModalAddAProjectAndOrToDo.vue";
+
 export default {
   name: "ProjectSpecific",
-  components: {task
+  components: {
+    task, 
+    ModalAddAProjectAndOrToDo
   },
   data: function () {
     return {
