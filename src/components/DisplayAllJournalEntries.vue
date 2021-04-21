@@ -1,9 +1,9 @@
 <template>
-  <div class="accordion d-grid gap-2 col-5 mx-auto margin-bottom-20 orange-background" id="accordionExample">
-    <div class="accordion-item">
+  <div class="accordion margin-bottom-20 orange-background" id="accordionExample">
+    <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="headingOne">
         <button
-          class="accordion-button"
+          class="accordion-button orange-background"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseOne"
