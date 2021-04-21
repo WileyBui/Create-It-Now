@@ -1,5 +1,4 @@
-.firebaserc/
-.env 
+.firebaserc
 
 #.gitignore found https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
 # Logs
@@ -119,4 +118,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-.env
