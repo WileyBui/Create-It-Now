@@ -2,7 +2,7 @@
   <div class="container light-green-background p-3 margin-top-10 hoverable" @click="toSpecificPage(task)">
     <div class="row">
       <div class="col-9">
-          <strong>{{ task.name }}</strong> (due {{ task.deadline.toDate() | formatDate }})
+          <strong>{{ task.name }}</strong> (due {{task.deadline ? task.deadline.toDate() : "" | formatDate }})
       </div>
       <div class="col-3 fw-bold small-text text-end">
         <span v-if="task.isComplete" class="green">COMPLETED</span>
