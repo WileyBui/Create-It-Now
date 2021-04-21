@@ -55,7 +55,7 @@ import { db } from "../firebaseConfig.js";
 
 export default {
   name: "ModalAddOrUpdateJournal",
-  props: ["todo_id"],
+  props: ["todo_id", "project_id"],
 
   data: function () {
     return {
@@ -88,6 +88,8 @@ export default {
 
     addANewJournal: function () {
       let journalFields = {
+        project_id: this.project_id,
+        todo_id: this.todo_id,
         title: this.journal_title,
         description: this.journal_description,
       };
