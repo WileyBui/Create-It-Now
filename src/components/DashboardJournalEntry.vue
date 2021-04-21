@@ -1,5 +1,5 @@
 <template>
-  <div class="container light-green-background p-3 margin-top-10 hoverable" @click="toSpecificPage(task)">
+  <div class="container orange-background p-3 margin-top-10 hoverable" @click="toSpecificPage(entry)">
     <div class="row">
       <div class="col-9">
           <strong>{{ entry.title }}</strong>
@@ -16,8 +16,8 @@ export default {
   props: ["entry"],
   components: {},
   methods: {
-      toSpecificPage(task) {
-          this.$router.push({ name: 'SingleTask', params: { id: task.id } })
+      toSpecificPage(entry) {
+          this.$router.push({ name: 'SingleEntry', params: { id: entry.id } })
       }
   }
   
