@@ -17,7 +17,7 @@ export default {
   components: {},
   methods: {
       toSpecificPage(entry) {
-          this.$router.push({ name: 'SingleEntry', params: { id: entry.id } })
+          this.$router.push({ name: 'SingleJournalEntry', params: { id: entry.id } })
       }
   }
   
