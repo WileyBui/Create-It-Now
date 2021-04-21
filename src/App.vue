@@ -115,7 +115,6 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user;
-        this.$router.push('/dashboard')
       }
     });
 
