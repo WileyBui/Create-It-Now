@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { db } from "../firebaseConfig.js";
+//import { db } from "../firebaseConfig.js";
 import SpecificNotification from "./SpecificNotification.vue";
 
 export default {
