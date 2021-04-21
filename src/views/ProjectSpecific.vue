@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ project_object.project_name }}</h3>
+    <h3 class="project-title">{{ project_object.project_name }}</h3>
     <template v-if="isComplete">
       <strong class="Complete">COMPLETED</strong>
     </template>
@@ -8,18 +8,18 @@
       <strong class="Incomplete">IN PROGRESS</strong>
     </template>
 
-    <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
+    <div class="accordion accordion-flush mb-3 margin-tile" id="accordionFlushExample">
       <div class="accordion-item green-background">
         <h2 class="accordion-header" id="flush-headingOne">
           <button
-            class="accordion-button show green-background"
+            class="accordion-button show green-background todo-header"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#flush-collapseOne"
             aria-expanded="true"
             aria-controls="flush-collapseOne"
           >
-            To-do Items
+            <strong>To-do Items</strong>
           </button>
         </h2>
         <div
@@ -29,7 +29,6 @@
           data-bs-parent="#accordionFlushExample"
         >
           <div class="accordion-body">
-            <strong>To-do Items:</strong>
             <table class="todos-table">
               <tr>
                 <th>
@@ -159,5 +158,20 @@ tr {
 
 th {
   padding: 0.5em;
+}
+
+h3.project-title{
+    font-size: 300%;
+    color: brown;
+}
+
+div.margin-tile{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+button.todo-header{
+    color: blueviolet;
+    font-size: 75%;
 }
 </style>
