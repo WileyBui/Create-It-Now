@@ -93,12 +93,6 @@
   </div>
 </template>
 
-<<<<<<< HEAD
-
-<script>
-    //import {db} from "../firebaseConfig.js"
-=======
->>>>>>> wiley-dev
 
 <script>
 //import {db} from "../firebaseConfig.js"
