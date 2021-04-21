@@ -1,7 +1,7 @@
 <template>
   <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
     <div class="accordion-item green-background">
-      <h2 class="accordion-header" id="flush-headingOne">
+      <h2 class="accordion-header" id="flush-heading">
         <button
           class="accordion-button show green-background"
           type="button"

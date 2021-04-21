@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="modalCamera">
+    <h1>Take a picture</h1>
     <webCamera/>
 
   </div>
@@ -11,7 +11,7 @@ import webCamera from '@/components/WebCamera.vue'
 
 
 export default {
-  name: "About",
+  name: "ModalCamera",
   components: {
     webCamera
   },

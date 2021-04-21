@@ -1,5 +1,5 @@
 <template>
-<div id="modalCamera" class="web-camera-container">
+<div id="webCamera" class="web-camera-container">
   <div class="camera-button">
       <button type="button" class="button is-rounded" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
         <span v-if="!isCameraOpen">Open Camera</span>
@@ -9,9 +9,6 @@
   
   <div v-show="isCameraOpen && isLoading" class="camera-loading">
     <ul class="loader-circle">
-      <li></li>
-      <li></li>
-      <li></li>
     </ul>
   </div>
   
@@ -40,7 +37,7 @@
 <script>
 
 export default {
-    name: "modalCamera",
+    name: "webCamera",
 
     data() {
         return {
