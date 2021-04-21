@@ -57,12 +57,14 @@
 <script>
 import { db } from "../firebaseConfig.js";
 import DashboardTask from "./DashboardTask.vue";
+import DashboardEntry from "./DashboardJournalEntry.vue"
 
 export default {
   name: "DashboardProject",
   props: ["project"],
   components: {
-    DashboardTask,
+      DashboardTask,
+      DashboardEntry
   },
   data: function () {
     return {
