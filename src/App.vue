@@ -221,6 +221,10 @@ body {
   margin-top: 10px;
 }
 
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
 .nav-link {
   color: white !important;
 }

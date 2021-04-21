@@ -45,13 +45,15 @@
           :isAddNewProject="false"
         />
 
-        <ModalAddOrUpdateJournal :todo_id="clickedSpecificJournalEntryId" />
+        <ModalAddOrUpdateJournal :todo_id="clickedSpecificJournalEntryId" :project_id="project_idLocal" />
 
         <br />
         <br />
-
         <h3>Journal Entries</h3>
-        <JournalEntry v-for="entry in journalEntries" :key="entry.id" :id="entry.id" :entry ="entry" />
+        <!-- <JournalEntry v-for="entry in journalEntries" :key="entry.id" :id="entry.id" :entry ="entry" /> -->
+
+        <DisplayAllJournalEntries :entries="journalEntries" />
+
       </div>
     </div>
   </div>
@@ -60,7 +62,8 @@
 <script>
 import {db} from "../firebaseConfig.js"
 import task from "../components/ToDoItem.vue"
-import JournalEntry from "../components/JournalEntry.vue"
+import DisplayAllJournalEntries from "../components/DisplayAllJournalEntries.vue"
+// import JournalEntry from "../components/JournalEntry.vue"
 import ModalAddAProjectAndOrToDo from "@/components/ModalAddAProjectAndOrToDo.vue";
 import ModalAddOrUpdateJournal from "@/components/ModalAddOrUpdateJournal.vue";
 
@@ -68,7 +71,8 @@ export default {
   name: "ProjectSpecific",
   components: {
     task,
-    JournalEntry,  
+    // JournalEntry,  
+    DisplayAllJournalEntries,
     ModalAddAProjectAndOrToDo,
     ModalAddOrUpdateJournal
   },
