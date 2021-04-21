@@ -12,12 +12,23 @@
         </template>
         <template v-else>
             <td>
-                <input type="checkbox" @click="markDone(task)" />
-                <br />
-                Incomplete
+                <button
+                    @click="markDone(task)"
+                    type="button"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    >
+                    Incomplete
+                </button>
             </td>
         </template>
-        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">More About Task</router-link></td>
+        <td><router-link :to="{name:'SingleTask', params:{id:this.id}}" id="todosSingle">
+                <button
+                    type="button"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                >
+                About Task
+                </button>
+            </router-link></td>
     </tr>
 </template>
 

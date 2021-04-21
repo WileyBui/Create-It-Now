@@ -1,40 +1,62 @@
 <template>
-    <body>
-        <div id="singleTask">
-            <table>
-                <tr>
-                    <th>Task Name</th>
-                    <th>Completion Status</th>
-                    <th>Details about the task</th>
-                    <th>Deadline</th>
-                </tr>
-                <tr>
-                    <td>{{taskName.name}}</td>
+  <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
+    <div class="accordion-item green-background">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button
+          class="accordion-button show green-background"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne"
+          aria-expanded="true"
+          aria-controls="flush-collapseOne"
+        >
+        </button>
+      </h2>
+      <div
+        id="flush-collapseOne"
+        class="accordion-collapse show"
+        aria-labelledby="flush-headingOne"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <strong id="thisTaskName">{{taskName.name}}</strong>
+          <table class="todos-table">
+            <tr>
+                <th><u><b>Task Details</b></u></th>
+                <th><u><b>Deadline</b></u></th>
+                <th><u><b>Status</b></u></th>
+            </tr>
+            <tr>
+                    <td>{{taskName.description}}</td>
+                    <td>{{ taskName.deadline }}</td>
                     <template v-if="taskName.isComplete">
                         <td>
-                            <input type="checkbox" @click="markUndone(taskName)" checked />
-                            <br />
-                            Complete
+                            <button
+                                @click="markUndone(taskName)"
+                                type="button"
+                                class="btn blue-background color-white p-1 pt-0 pb-0"
+                            >
+                                Complete
+                            </button>
                         </td>
                     </template>
                     <template v-else>
                         <td>
-                            <input type="checkbox" @click="markDone(taskName)" />
-                            <br />
-                            Incomplete
+                            <button
+                                @click="markDone(taskName)"
+                                type="button"
+                                class="btn blue-background color-white p-1 pt-0 pb-0"
+                            >
+                                Complete
+                            </button>
                         </td>
                     </template>
-                    <td>{{taskName.description}}</td>
-                    <td>{{ taskName.deadline }}</td>
-                </tr>
-            </table>
-            
+            </tr>
+          </table>
         </div>
-        <div>
-            <button @click="addNewTaskToProject" id="addNewTaskToProject">Add a Task To This Project</button>
-            <button @click="backToProject(taskName)">Back to Project</button>
-        </div>
-    </body>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
     //var taskNum = document.getElementById("taskIdNum").innerHTML
@@ -104,6 +126,11 @@
   td {
     padding: 1em;
     color: black;
+  }
+
+  #thisTaskName {
+      color: black;
+      font-size: 2em;
   }
 
 
