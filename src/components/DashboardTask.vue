@@ -1,5 +1,5 @@
 <template>
-  <div class="container light-green-background p-3 margin-top-10" @click="toSpecificPage(task)">
+  <div class="container light-green-background p-3 margin-top-10 hoverable" @click="toSpecificPage(task)">
     <div class="row">
       <div class="col-9">
           <strong>{{ task.name }}</strong> (due {{ task.deadline }})

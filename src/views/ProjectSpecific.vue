@@ -23,10 +23,8 @@
         <task v-for="task in allToDosFromProject" :key="task.id" :id = "task.id" :task = "task" />
     </table>
     
-    <ModalAddAProjectAndOrToDo
-      :project_id="project_idLocal"
-      :isAddNewProject="false"
-    />
+    <ModalAddAProjectAndOrToDo :project_id="project_idLocal" :isAddNewProject="false" />
+
     <br />
     <br />  
     <h3>Journal Entries</h3>
