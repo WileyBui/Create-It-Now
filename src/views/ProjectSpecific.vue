@@ -28,32 +28,39 @@
       :project_id="project_idLocal"
       :isAddNewProject="false"
     />
-        
+    <br />
+    <br />  
+    <h3>Journal Entries</h3>
+      <JournalEntry v-for="entry in journalEntries" :key="entry.id" :id="entry.id" :entry ="entry" />
   </div>
 </template>
 
 <script>
 import {db} from "../firebaseConfig.js"
 import task from "../components/ToDoItem.vue"
+import JournalEntry from "../components/JournalEntry.vue"
 import ModalAddAProjectAndOrToDo from "@/components/ModalAddAProjectAndOrToDo.vue";
 
 export default {
   name: "ProjectSpecific",
   components: {
-    task, 
+    task,
+    JournalEntry,  
     ModalAddAProjectAndOrToDo
   },
   data: function () {
     return {
       project_idLocal: this.$route.params.project_id,
       project_object: null,
-      allToDosFromProject: []
+      allToDosFromProject: [],
+      journalEntries: [],
     };
   },
   firestore: function() {
         return {
             project_object: db.collection("projects").doc(this.project_idLocal),
-            allToDosFromProject: db.collection("to-do-items").where("project_id", "==", this.project_idLocal)
+            allToDosFromProject: db.collection("to-do-items").where("project_id", "==", this.project_idLocal),
+            journalEntries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal)
         }
     },
 

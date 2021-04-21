@@ -44,6 +44,11 @@
           <strong>To-do Items:</strong>
           <DashboardTask v-for="task in tasks" :key="task.id" :task="task" />
         </div>
+
+        <div class="accordion-body">
+            <strong>Journal Entries:</strong>
+            <DashboardEntry v-for="entry in journalEntries" :key="entry.id" :entry="entry" />
+        </div>
       </div>
     </div>
   </div>
@@ -61,8 +66,9 @@ export default {
   },
   data: function () {
     return {
-      tasks: [],
-      complete: false,
+        tasks: [],
+        journalEntries: [],
+        complete: false
     };
   },
 
@@ -86,6 +92,10 @@ export default {
         .collection("to-do-items")
         .where("project_id", "==", this.project.id),
       // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
+
+      journalEnties: db
+        .collection("journalEntries")
+        .where("project_id", "==", this.project.id)
     };
   },
 };
