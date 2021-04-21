@@ -33,6 +33,7 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
+          <strong>ToDo Items:</strong>
           <DashboardTask v-for="task in tasks" :key="task.id" :task="task" />
         </div>
       </div>

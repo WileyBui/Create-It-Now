@@ -1,5 +1,5 @@
 <template>
-  <div class="container light-green-background p-3 margin-top-10">
+  <div class="container light-green-background p-3 margin-top-10" @click="toSpecificPage(task)">
     <div class="row">
       <div class="col-9">
           <strong>{{ task.name }}</strong> (due {{ task.deadline }})
@@ -18,6 +18,11 @@ export default {
   name: "DashboardTask",
   props: ["task"],
   components: {},
+  methods: {
+      toSpecificPage(task) {
+          this.$router.push({ name: 'SingleTask', params: { id: task.id } })
+      }
+  }
 };
 </script>
 
