@@ -101,6 +101,7 @@ import { auth, provider } from "./firebaseConfig.js";
 import router from "./router";
 import PushNotification from "@/components/PushNotification.vue";
 
+
 export default {
   components: {
     PushNotification,
