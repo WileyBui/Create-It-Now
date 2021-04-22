@@ -13,9 +13,7 @@
             <h5 class="modal-title" id="addAJournalLabel">
               <i class="bi bi-list-task"></i>
               <!-- make a conditional statement if you're adding or updating a journal -->
-              <template v-if="journalEntry.length > 0">
-                Update Journal</template
-              >
+              <template v-if="journalEntry"> Update Journal</template>
               <template v-else> Add a Journal</template>
             </h5>
             <button
@@ -26,7 +24,9 @@
             ></button>
           </div>
           <div class="modal-body container text-start">
-            <label class="control-label w-100">Journal Title</label>
+            <label class="control-label w-100"
+              >Journal Title {{ journalEntry }} ok</label
+            >
             <input type="text" class="form-control" v-model="journal_title" />
 
             <label class="control-label w-100 margin-top-10">Description</label>
@@ -100,33 +100,37 @@ export default {
   components: {
     WebCamera,
   },
+
   data: function () {
     return {
       journal_title: null,
       journal_description: null,
-      journalEntry: [],
+      journalEntry: null,
     };
   },
 
-  firestore: function () {
-    return {
-      journalEntry: db
-        .collection("journal-entries")
-        .where("todo_id", "==", this.todo_id),
-    };
-  },
+  watch: {
+    // watch for the todo_id changes
+    todo_id: function () {
+      this.journal_title = null;
+      this.journal_description = null;
+      this.journalEntry = null;
 
-  mounted() {
-    this.setJournalForm();
+      db.collection("journalEntries")
+        .where("todo_id", "==", this.todo_id)
+        .get()
+        .then((snapshot) => {
+          this.journalEntry = snapshot.docs[0].data();
+          this.setJournalForm(this.journalEntry);
+        });
+    },
   },
 
   methods: {
-    setJournalForm: function () {
-      if (this.journalEntry.length > 0) {
-        // already in database, just need to bind it
-        this.journal_title = this.journalEntry[0].title;
-        this.journal_description = this.journalEntry[0].description;
-      }
+    setJournalForm: function (journal) {
+      // already in database, just need to bind it to our form
+      this.journal_title = journal.title;
+      this.journal_description = journal.description;
     },
 
     addANewJournal: function () {
@@ -137,7 +141,7 @@ export default {
         description: this.journal_description,
       };
 
-      if (this.journalEntry.length > 0) {
+      if (this.journalEntry) {
         // already in database, just need to update it
         db.collection("journalEntries")
           .doc(this.journalEntry[0].id)
@@ -150,6 +154,7 @@ export default {
 
       this.journal_title = null;
       this.journal_description = null;
+      this.journalEntry = null;
 
       window.$("#addAJournal").modal("toggle");
     },

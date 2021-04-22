@@ -1,5 +1,5 @@
 <template>
-  <div class="light-blue-background padding-vertical-5">
+  <div class="container light-blue-background padding-vertical-5">
     <div class="unable-to-find-id">
       <strong>
         Your {{ error_type }} URL doesn't match with our records. You may...

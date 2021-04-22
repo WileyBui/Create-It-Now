@@ -1,6 +1,6 @@
 <template>
-  <div class="container text-start">
-    <div v-if="user && project" class="row">
+  <div v-if="user && project" class="container text-start">
+    <div class="row">
       <h2 class="header-bold">
         <i class="bi bi-journal-check"></i>
         All Journal Entries: {{ project.project_name }}
@@ -16,9 +16,9 @@
         />
       </div>
     </div>
-    <div v-else>
-      <UnableToFindId error_type="project journal" />
-    </div>
+  </div>
+  <div v-else>
+    <UnableToFindId error_type="project journal" />
   </div>
 </template>
 
