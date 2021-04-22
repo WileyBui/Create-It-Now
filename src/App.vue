@@ -233,9 +233,9 @@ body {
   padding-bottom: 10px;
 }
 
-.padding-vertical-10 {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.padding-vertical-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .nav-link {
