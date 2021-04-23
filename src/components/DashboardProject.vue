@@ -1,9 +1,9 @@
 <template>
   <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
-    <div class="accordion-item green-background">
-      <h2 class="accordion-header" id="flush-heading">
+    <div class="accordion-item light-green-background">
+      <h2 class="accordion-header" id="flush-headingOne">
         <button
-          class="accordion-button show green-background"
+          class="accordion-button show light-green-background"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#flush-collapseOne"
@@ -41,13 +41,11 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
-          <strong>To-do Items:</strong>
-          <DashboardTask v-for="task in tasks" :key="task.id" :task="task" />
-        </div>
+          <!-- <strong>To-do Items:</strong>
+          <DashboardTask v-for="task in tasks" :key="task.id" :task="task" /> -->
+          <DashboardAccordianToDoItems :tasks="tasks" />
 
-        <div class="accordion-body">
-            <strong>Journal Entries:</strong>
-            <DashboardEntry v-for="entry in journalEntries" :key="entry.id" :entry="entry" />
+          <DashboardAccordianJournalEntries :entries="journalEntries" />
         </div>
       </div>
     </div>
@@ -56,21 +54,21 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
-import DashboardTask from "./DashboardTask.vue";
-import DashboardEntry from "./DashboardJournalEntry.vue"
+import DashboardAccordianToDoItems from "./DashboardAccordianToDoItems.vue";
+import DashboardAccordianJournalEntries from "./DashboardAccordianJournalEntries.vue";
 
 export default {
   name: "DashboardProject",
   props: ["project"],
   components: {
-      DashboardTask,
-      DashboardEntry
+    DashboardAccordianToDoItems,
+    DashboardAccordianJournalEntries
   },
   data: function () {
     return {
-        tasks: [],
-        journalEntries: [],
-        complete: false
+      tasks: [],
+      journalEntries: [],
+      complete: false,
     };
   },
 
@@ -97,7 +95,7 @@ export default {
 
       journalEntries: db
         .collection("journalEntries")
-        .where("project_id", "==", this.project.id)
+        .where("project_id", "==", this.project.id),
     };
   },
 };

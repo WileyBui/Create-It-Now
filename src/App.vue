@@ -221,8 +221,21 @@ body {
   margin-top: 10px;
 }
 
+.margin-top-20 {
+  margin-top: 20px;
+}
+
 .margin-bottom-20 {
   margin-bottom: 20px;
+}
+
+.padding-bottom-10 {
+  padding-bottom: 10px;
+}
+
+.padding-vertical-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .nav-link {
@@ -231,5 +244,9 @@ body {
 
 .nav-link:hover {
   color: #4299ff !important;
+}
+
+.color-black {
+  color: black !important;
 }
 </style>

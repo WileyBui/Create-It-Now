@@ -1,74 +1,82 @@
 <template>
   <div>
-    <h3 class="project-title">{{ project_object.project_name }}</h3>
-    <template v-if="isComplete">
-        <strong class="Complete"><strong>COMPLETED</strong></strong>
+    <template v-if="project_object">
+      <h3 class="project-title">{{ project_object.project_name }}</h3>
+      <template v-if="isComplete">
+          <strong class="Complete"><strong>COMPLETED</strong></strong>
+      </template>
+      <template v-else>
+        <strong class="Incomplete">IN PROGRESS</strong>
+      </template>
+
+      <div
+        class="accordion accordion-flush mb-3 margin-tile"
+        id="accordionFlushExample"
+      >
+        <div class="accordion-item green-background">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button
+              class="accordion-button show green-background todo-header"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="true"
+              aria-controls="flush-collapseOne"
+            >
+              <strong>To-do Items</strong>
+            </button>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse show"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <table class="todos-table">
+                <tr>
+                  <th>
+                    <u><b>Task Name</b></u>
+                  </th>
+                  <th>
+                    <u><b>Deadline</b></u>
+                  </th>
+                  <th>
+                    <u><b>Task Details</b></u>
+                  </th>
+                  <th>
+                    <u><b>Status</b></u>
+                  </th>
+                </tr>
+                <task
+                  v-for="task in allToDosFromProject"
+                  :key="task.id"
+                  :id="task.id"
+                  :task="task"
+                  v-on:toDoStatusEvent="getModal"
+                />
+              </table>
+            </div>
+            <ModalAddAProjectAndOrToDo
+              :project_id="project_idLocal"
+              :isAddNewProject="false"
+            />
+
+            <ModalAddOrUpdateJournal
+              :todo_id="clickedSpecificJournalEntryId"
+              :project_id="project_idLocal"
+            />
+          </div>
+        </div>
+        <DisplayAllJournalEntries
+          :entries="journalEntries"
+          class="margin-top-10"
+        />
+      </div>
     </template>
     <template v-else>
-      <strong class="Incomplete">IN PROGRESS</strong>
+      <UnableToFindId error_type="project" />
     </template>
-
-    <div class="accordion accordion-flush mb-3 margin-tile" id="accordionFlushExample">
-      <div class="accordion-item green-background">
-        <h2 class="accordion-header" id="flush-headingOne">
-          <button
-            class="accordion-button show green-background todo-header"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne"
-            aria-expanded="true"
-            aria-controls="flush-collapseOne"
-          >
-            <strong>To-do Items</strong>
-          </button>
-        </h2>
-        <div
-          id="flush-collapseOne"
-          class="accordion-collapse show"
-          aria-labelledby="flush-headingOne"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            <table class="todos-table">
-              <tr>
-                <th>
-                  <u><b>Task Name</b></u>
-                </th>
-                <th>
-                  <u><b>Deadline</b></u>
-                </th>
-                <th>
-                  <u><b>Task Details</b></u>
-                </th>
-                <th>
-                  <u><b>Status</b></u>
-                </th>
-              </tr>
-              <task
-                v-for="task in allToDosFromProject"
-                :key="task.id"
-                :id="task.id"
-                :task="task"
-                v-on:toDoStatusEvent="getModal"
-              />
-            </table>
-          </div>
-          <ModalAddAProjectAndOrToDo
-            :project_id="project_idLocal"
-            :isAddNewProject="false"
-          />
-
-          <ModalAddOrUpdateJournal
-            :todo_id="clickedSpecificJournalEntryId"
-            :project_id="project_idLocal"
-          />
-        </div>
-      </div>
-      <DisplayAllJournalEntries
-        :entries="journalEntries"
-        class="margin-top-10"
-      />
-    </div>
   </div>
 </template>
 
@@ -79,6 +87,7 @@ import DisplayAllJournalEntries from "../components/DisplayAllJournalEntries.vue
 // import JournalEntry from "../components/JournalEntry.vue"
 import ModalAddAProjectAndOrToDo from "@/components/ModalAddAProjectAndOrToDo.vue";
 import ModalAddOrUpdateJournal from "@/components/ModalAddOrUpdateJournal.vue";
+import UnableToFindId from "@/components/UnableToFindId.vue";
 
 export default {
   name: "ProjectSpecific",
@@ -88,6 +97,7 @@ export default {
     DisplayAllJournalEntries,
     ModalAddAProjectAndOrToDo,
     ModalAddOrUpdateJournal,
+    UnableToFindId,
   },
   data: function () {
     return {
@@ -166,14 +176,14 @@ h3.project-title{
     margin: 0%;
 }
 
-div.margin-tile{
-    margin-left: 5%;
-    margin-right: 5%;
+div.margin-tile {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-button.todo-header{
-    color: blueviolet;
-    font-size: 75%;
+button.todo-header {
+  color: blueviolet;
+  font-size: 75%;
 }
 
 strong.Complete {
