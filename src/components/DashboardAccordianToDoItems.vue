@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion" id="to-do-accordion">
+  <div v-if="tasks.length > 0" class="accordion" id="to-do-accordion">
     <div class="accordion-item green-background">
       <h2 class="accordion-header" id="headingAccordian">
         <button

@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion margin-top-20" id="journal-entry-accordian">
+  <div v-if="entries.length > 0" class="accordion margin-top-20" id="journal-entry-accordian">
     <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="journalHeadingAccordian">
         <button

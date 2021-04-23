@@ -1,9 +1,9 @@
 <template>
   <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
-    <div class="accordion-item light-green-background">
+    <div class="accordion-item light-blue-background">
       <h2 class="accordion-header" id="flush-headingOne">
         <button
-          class="accordion-button show light-green-background"
+          class="accordion-button show light-blue-background"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#flush-collapseOne"
