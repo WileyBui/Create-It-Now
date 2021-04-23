@@ -8,13 +8,17 @@
 
       <div class="margin-top-20"></div>
 
-      <div class="container orange-background padding-bottom-10">
+      <div
+        v-if="journalEntries.length > 0"
+        class="container orange-background padding-bottom-10"
+      >
         <DisplayASingleJournalEntry
           v-for="entry in journalEntries"
           :key="entry.id"
           :entry="entry"
         />
       </div>
+      <div v-else>There are no journal entries from this project yet.</div>
     </div>
   </div>
   <div v-else>

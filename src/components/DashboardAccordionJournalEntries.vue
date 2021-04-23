@@ -1,23 +1,23 @@
 <template>
-  <div v-if="entries.length > 0" class="accordion margin-top-20" id="journal-entry-accordian">
+  <div v-if="entries.length > 0" class="accordion margin-top-20" id="journal-entry-accordion">
     <div class="accordion-item orange-background">
-      <h2 class="accordion-header" id="journalHeadingAccordian">
+      <h2 class="accordion-header" id="journalHeadingAccordion">
         <button
           class="accordion-button orange-background color-black fw-bold"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#collapseJournalAccordian"
+          data-bs-target="#collapseJournalAccordion"
           aria-expanded="true"
-          aria-controls="collapseJournalAccordian"
+          aria-controls="collapseJournalAccordion"
         >
           Journal Entries
         </button>
       </h2>
       <div
-        id="collapseJournalAccordian"
+        id="collapseJournalAccordion"
         class="accordion-collapse collapse"
-        aria-labelledby="journalHeadingAccordian"
-        data-bs-parent="#journal-entry-accordian"
+        aria-labelledby="journalHeadingAccordion"
+        data-bs-parent="#journal-entry-accordion"
       >
         <div class="accordion-body">
           <DashboardJournalEntry v-for="entry in entries" :key="entry.id" :entry="entry" />
@@ -31,7 +31,7 @@
 import DashboardJournalEntry from "./DashboardJournalEntry.vue";
 
 export default {
-  name: "DashboardAccordianJournalEntries",
+  name: "DashboardAccordionJournalEntries",
   props: ["entries"],
   components: {
     DashboardJournalEntry,

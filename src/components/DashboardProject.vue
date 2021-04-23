@@ -41,11 +41,8 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
-          <!-- <strong>To-do Items:</strong>
-          <DashboardTask v-for="task in tasks" :key="task.id" :task="task" /> -->
-          <DashboardAccordianToDoItems :tasks="tasks" />
-
-          <DashboardAccordianJournalEntries :entries="journalEntries" />
+          <DashboardAccordionToDoItems :tasks="tasks" />
+          <DashboardAccordionJournalEntries :entries="journalEntries" />
         </div>
       </div>
     </div>
@@ -54,15 +51,15 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
-import DashboardAccordianToDoItems from "./DashboardAccordianToDoItems.vue";
-import DashboardAccordianJournalEntries from "./DashboardAccordianJournalEntries.vue";
+import DashboardAccordionToDoItems from "./DashboardAccordionToDoItems.vue";
+import DashboardAccordionJournalEntries from "./DashboardAccordionJournalEntries.vue";
 
 export default {
   name: "DashboardProject",
   props: ["project"],
   components: {
-    DashboardAccordianToDoItems,
-    DashboardAccordianJournalEntries
+    DashboardAccordionToDoItems,
+    DashboardAccordionJournalEntries
   },
   data: function () {
     return {
