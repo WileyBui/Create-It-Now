@@ -69,6 +69,7 @@
           </div>
         </div>
         <DisplayAllJournalEntries
+          v-if="journalEntries.length > 0"
           :entries="journalEntries"
           class="margin-top-10"
         />

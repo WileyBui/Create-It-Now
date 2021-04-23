@@ -3,7 +3,7 @@
     <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="journalHeadingAccordion">
         <button
-          class="accordion-button orange-background color-black fw-bold"
+          class="accordion-button orange-background color-black fw-bold collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseJournalAccordion"

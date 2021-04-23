@@ -24,12 +24,14 @@
             ></button>
           </div>
           <div class="modal-body container text-start">
-            <label class="control-label w-100"
-              >Journal Title {{ journalEntry }} ok {{ journal_id }}</label
-            >
+            <label class="control-label w-100">
+              Journal Title {{ journalEntry }} ok {{ journal_id }}
+            </label>
             <input type="text" class="form-control" v-model="journal_title" />
 
-            <label class="control-label w-100 margin-top-10">Description {{ todo_id }}</label>
+            <label class="control-label w-100 margin-top-10">
+              Description {{ todo_id }}
+            </label>
             <textarea
               class="form-control"
               rows="3"
@@ -81,8 +83,9 @@
               href="#modal"
               data-bs-toggle="modal"
               role="button"
-              >Open #modal</a
             >
+              Open #modal
+            </a>
           </div>
         </div>
       </div>
@@ -110,29 +113,46 @@ export default {
     };
   },
 
-  watch: {
-    // watch for the todo_id changes
-    todo_id: function () {
-      this.journal_title = null;
-      this.journal_description = null;
-      this.journalEntry = null;
+  // updated() {
+  //   // watch for the todo_id changes
+  //   this.journal_title = null;
+  //   this.journal_description = null;
+  //   this.journalEntry = null;
 
-      db.collection("journalEntries")
-        .where("todo_id", "==", this.todo_id)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.size > 0) {
-            // already in database, just need to bind it to our form
-            this.journalEntry = snapshot.docs[0].data();
-            this.journal_id = snapshot.docs[0];
-            this.journal_title = this.journalEntry.title;
-            this.journal_description = this.journalEntry.description;
-          }
-        });
-    },
-  },
+  //   db.collection("journalEntries")
+  //     .where("todo_id", "==", this.todo_id)
+  //     .get()
+  //     .then((snapshot) => {
+  //       if (snapshot.size > 0) {
+  //         // already in database, just need to bind it to our form
+  //         this.journalEntry = snapshot.docs[0].data();
+  //         this.journal_id = snapshot.docs[0];
+  //         this.journal_title = this.journalEntry.title;
+  //         this.journal_description = this.journalEntry.description;
+  //       }
+  //     });
+  // },
+  // watch: {
+  //   // watch for the todo_id changes
+  //   todo_id: function () {
+  //     this.journal_title = null;
+  //     this.journal_description = null;
+  //     this.journalEntry = null;
 
-
+  //     db.collection("journalEntries")
+  //       .where("todo_id", "==", this.todo_id)
+  //       .get()
+  //       .then((snapshot) => {
+  //         if (snapshot.size > 0) {
+  //           // already in database, just need to bind it to our form
+  //           this.journalEntry = snapshot.docs[0].data();
+  //           this.journal_id = snapshot.docs[0];
+  //           this.journal_title = this.journalEntry.title;
+  //           this.journal_description = this.journalEntry.description;
+  //         }
+  //       });
+  //   },
+  // },
 
   methods: {
     addANewJournal: function () {
@@ -145,7 +165,7 @@ export default {
 
       if (this.journalEntry) {
         // already in database, just need to update it
-        console.log("update: ", this.journalEntry.id)
+        console.log("update: ", this.journalEntry.id);
         db.collection("journalEntries")
           .doc(this.journalEntry.id)
           .update(journalFields);
