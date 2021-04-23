@@ -245,4 +245,8 @@ body {
 .nav-link:hover {
   color: #4299ff !important;
 }
+
+.color-black {
+  color: black !important;
+}
 </style>

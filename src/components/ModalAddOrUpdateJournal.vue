@@ -25,11 +25,11 @@
           </div>
           <div class="modal-body container text-start">
             <label class="control-label w-100"
-              >Journal Title {{ journalEntry }} ok</label
+              >Journal Title {{ journalEntry }} ok {{ journal_id }}</label
             >
             <input type="text" class="form-control" v-model="journal_title" />
 
-            <label class="control-label w-100 margin-top-10">Description</label>
+            <label class="control-label w-100 margin-top-10">Description {{ todo_id }}</label>
             <textarea
               class="form-control"
               rows="3"
@@ -106,6 +106,7 @@ export default {
       journal_title: null,
       journal_description: null,
       journalEntry: null,
+      journal_id: null,
     };
   },
 
@@ -120,19 +121,20 @@ export default {
         .where("todo_id", "==", this.todo_id)
         .get()
         .then((snapshot) => {
-          this.journalEntry = snapshot.docs[0].data();
-          this.setJournalForm(this.journalEntry);
+          if (snapshot.size > 0) {
+            // already in database, just need to bind it to our form
+            this.journalEntry = snapshot.docs[0].data();
+            this.journal_id = snapshot.docs[0];
+            this.journal_title = this.journalEntry.title;
+            this.journal_description = this.journalEntry.description;
+          }
         });
     },
   },
 
-  methods: {
-    setJournalForm: function (journal) {
-      // already in database, just need to bind it to our form
-      this.journal_title = journal.title;
-      this.journal_description = journal.description;
-    },
 
+
+  methods: {
     addANewJournal: function () {
       let journalFields = {
         project_id: this.project_id,
@@ -143,18 +145,15 @@ export default {
 
       if (this.journalEntry) {
         // already in database, just need to update it
+        console.log("update: ", this.journalEntry.id)
         db.collection("journalEntries")
-          .doc(this.journalEntry[0].id)
+          .doc(this.journalEntry.id)
           .update(journalFields);
       } else {
         // add to the database
         journalFields.todo_id = this.todo_id;
         db.collection("journalEntries").add(journalFields);
       }
-
-      this.journal_title = null;
-      this.journal_description = null;
-      this.journalEntry = null;
 
       window.$("#addAJournal").modal("toggle");
     },
