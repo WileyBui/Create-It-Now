@@ -3,7 +3,7 @@
     <template v-if="project_object">
       <h3 class="project-title">{{ project_object.project_name }}</h3>
       <template v-if="isComplete">
-        <strong class="Complete">COMPLETED</strong>
+          <strong class="Complete"><strong>COMPLETED</strong></strong>
       </template>
       <template v-else>
         <strong class="Incomplete">IN PROGRESS</strong>
@@ -170,9 +170,10 @@ th {
   padding: 0.5em;
 }
 
-h3.project-title {
-  font-size: 300%;
-  color: brown;
+h3.project-title{
+    font-size: 300%;
+    color: brown;
+    margin: 0%;
 }
 
 div.margin-tile {
@@ -183,5 +184,15 @@ div.margin-tile {
 button.todo-header {
   color: blueviolet;
   font-size: 75%;
+}
+
+strong.Complete {
+  color: green;
+  font-size: larger;
+}
+
+strong.Incomplete {
+  color: yellow;
+  font-size: larger;
 }
 </style>

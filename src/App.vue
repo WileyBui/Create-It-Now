@@ -166,7 +166,7 @@ export default {
 }
 
 #spacing {
-  padding: 30px;
+  padding: 1%;
 }
 
 .profile-image {
