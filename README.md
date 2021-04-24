@@ -22,6 +22,14 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
+* We used Bootstrap 5.0 accordions as components to display our projects, to-do items, and journal entries.
+However, they all had the same IDs, which means if a user clicked on one accordion's header, the current
+accordion as well as every other accordions also collapsed or showed up at the same time. Our solution was
+to concatenate the HTML ID along with an index, all of which gets binded to the data-bs-target, ie: 
+`:data-bs-target="'#' + type + '-flush-collapse-' + index"`. This now lets the user click on a single
+accordion header to collapse the whole accordion without impacting other ones.
+
+- Accordion collapse bug when clicked --- Wiley will explain more about this later
 * ...
 
 Which (if any) device integration(s) does your app support?

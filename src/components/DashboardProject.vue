@@ -1,14 +1,14 @@
 <template>
-  <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
+  <div class="accordion accordion-flush mb-3">
     <div class="accordion-item light-blue-background">
-      <h2 class="accordion-header" id="flush-headingOne">
+      <h2 class="accordion-header">
         <button
           class="accordion-button show light-blue-background"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#flush-collapseOne"
+          :data-bs-target="'#flush-collapse-' + index"
           aria-expanded="true"
-          aria-controls="flush-collapseOne"
+          :aria-controls="'flush-collapse-' + index"
         >
           <router-link
             :to="{
@@ -34,15 +34,18 @@
           </router-link>
         </button>
       </h2>
-      <div
-        id="flush-collapseOne"
-        class="accordion-collapse show"
-        aria-labelledby="flush-headingOne"
-        data-bs-parent="#accordionFlushExample"
-      >
+      <div :id="'flush-collapse-' + index" class="accordion-collapse show">
         <div class="accordion-body">
-          <DashboardAccordionToDoItems :tasks="tasks" />
-          <DashboardAccordionJournalEntries :entries="journalEntries" />
+          <DashboardToDoItemsOrJournalEntriesAccordion
+            :items="tasks"
+            type="to-do"
+            :index="index"
+          />
+          <DashboardToDoItemsOrJournalEntriesAccordion
+            :items="journalEntries"
+            type="journal"
+            :index="index"
+          />
         </div>
       </div>
     </div>
@@ -51,15 +54,13 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
-import DashboardAccordionToDoItems from "./DashboardAccordionToDoItems.vue";
-import DashboardAccordionJournalEntries from "./DashboardAccordionJournalEntries.vue";
+import DashboardToDoItemsOrJournalEntriesAccordion from "./DashboardToDoItemsOrJournalEntriesAccordion.vue";
 
 export default {
   name: "DashboardProject",
-  props: ["project"],
+  props: ["project", "index"],
   components: {
-    DashboardAccordionToDoItems,
-    DashboardAccordionJournalEntries
+    DashboardToDoItemsOrJournalEntriesAccordion,
   },
   data: function () {
     return {
