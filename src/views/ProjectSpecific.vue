@@ -174,7 +174,9 @@ th {
 h3.project-title{
     font-size: 300%;
     color: brown;
-    margin: 0%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: lightgray;
 }
 
 div.margin-tile {
