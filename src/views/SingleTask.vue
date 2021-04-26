@@ -70,7 +70,7 @@
                 </div>
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" @click="submit">Attach File</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit">Attach File</button>
               </div>
             </div>
           </div>
@@ -95,8 +95,8 @@
             return {
                 id: this.$route.params.id,
                 task: null,
-                filelist: [], //array of URLs for files attached to this task
                 tempfilelist: [],
+                filelist: [],
                 file: null, //no longer used, might need to delete
                 fileURL: ""
             }
@@ -128,8 +128,10 @@
             submit: function() {
               var i;
               var filename = "";
-              for (i = 0; i < this.tempfilelist.length; i++) { 
-                filename = this.tempfilelist[i].name
+              var localtempfilelist = this.tempfilelist;
+              this.tempfilelist = [];
+              for (i = 0; i < localtempfilelist.length; i++) { 
+                filename = localtempfilelist[i].name
                 console.log("filename = " + filename);
               
               
@@ -143,10 +145,10 @@
                   // the saved url is public as far as I understand it.
                   ref.getDownloadURL().then((realurl)=>{
                     console.log("realurl = " + realurl);
-                    this.filelist.push(realurl)
+                    this.task.filelist.push(realurl)
                     console.table(this.filelist);
                     db.collection('to-do-items').doc(this.task.id).update({
-                      filelist: this.filelist
+                      filelist: this.task.filelist
                     })
                     .then(() => {
                       console.log("Document successfully updated!");
@@ -170,15 +172,18 @@
               // the list of files from event.target.files, which is a FileList object. 
               // Each item in the FileList is a File object.
               const files = event.target.files || event.dataTransfer.files;
-              console.log("inside fileChange")
+              //console.log("inside fileChange")
               var i;
-              if (files.length > 0) {
+              // if (files.length > 0) {
+              //   this.tempfilelist = []
+              //   //console.log("files.length > 0")
+              // }
+              if (!this.tempfilelist) {
                 this.tempfilelist = []
-                console.log("files.length > 0")
               }
               for (i = 0; i < files.length; i++) { 
                 this.tempfilelist.push(files[i])
-                console.log("this.tempfilelist.push(files[i]) " + files[i].name)
+                //console.log("this.tempfilelist.push(files[i]) " + files[i].name)
               }
             }
             
