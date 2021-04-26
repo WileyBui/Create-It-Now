@@ -6,14 +6,14 @@
     <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="headingOne">
         <button
-          class="accordion-button show orange-background entry-header"
+          class="accordion-button show orange-background"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseOne"
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          <strong>Journal Entries</strong>
+          <strong class="entry-header">Journal Entries</strong>
         </button>
       </h2>
       <div
@@ -64,8 +64,8 @@ export default {
 </script>
 
 <style>
-button.entry-header {
-  color: black;
-  font-size: 75%;
+strong.entry-header {
+  color: blueviolet;
+  font-size: 125%;
 }
 </style>

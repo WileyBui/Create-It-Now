@@ -6,7 +6,7 @@
           <strong class="Complete"><strong>COMPLETED</strong></strong>
       </template>
       <template v-else>
-        <strong class="Incomplete">IN PROGRESS</strong>
+          <strong class="Incomplete"><strong>IN PROGRESS</strong></strong>
       </template>
 
       <div
@@ -16,14 +16,14 @@
         <div class="accordion-item green-background">
           <h2 class="accordion-header" id="flush-headingOne">
             <button
-              class="accordion-button show green-background todo-header"
+              class="accordion-button show green-background"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseOne"
               aria-expanded="true"
               aria-controls="flush-collapseOne"
             >
-              <strong>To-do Items</strong>
+              <strong class="todo-header">To-do Items</strong>
             </button>
           </h2>
           <div
@@ -112,7 +112,7 @@ export default {
     };
   },
 
-  updated() {
+  beforeMount() {
     var doneTasks = db
       .collection("to-do-items")
       .where("project_id", "==", this.project_idLocal)
@@ -184,9 +184,9 @@ div.margin-tile {
   margin-right: 5%;
 }
 
-button.todo-header {
+strong.todo-header {
   color: blueviolet;
-  font-size: 75%;
+  font-size: 125%;
 }
 
 strong.Complete {
