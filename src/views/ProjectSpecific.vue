@@ -173,10 +173,10 @@ th {
 
 h3.project-title{
     font-size: 300%;
-    color: brown;
+    color: black;
     margin-left: 5%;
     margin-right: 5%;
-    background-color: lightgray;
+    background-color: #2ed7b6;
 }
 
 div.margin-tile {
@@ -185,7 +185,7 @@ div.margin-tile {
 }
 
 strong.todo-header {
-  color: blueviolet;
+  color: white;
   font-size: 125%;
 }
 

@@ -65,7 +65,7 @@ export default {
 
 <style>
 strong.entry-header {
-  color: blueviolet;
+  color: white;
   font-size: 125%;
 }
 </style>
