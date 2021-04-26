@@ -1,3 +1,4 @@
+/* eslint-disable vue/require-v-for-key */
 <template>
   <div class="accordion accordion-flush mb-3" id="accordionFlushExample">
     <div class="accordion-item green-background">
@@ -29,6 +30,7 @@
             <tr>
                     <td>{{task.description}}</td>
                     <td>{{task.deadline ? task.deadline.toDate() : "" | formatDate }}</td>
+                    <td v-for="(file, id) in task.filelist" :key="id"><a v-bind:href="file"> attachment</a></td>
                     <template v-if="task.isComplete">
                         <td>
                             <button
@@ -97,7 +99,7 @@
                 task: null,
                 tempfilelist: [],
                 filelist: [],
-                file: null, //no longer used, might need to delete
+                file: null, 
                 fileURL: ""
             }
         },
@@ -144,9 +146,9 @@
                   // You can save the generated download url if you want to be able to access the file later.
                   // the saved url is public as far as I understand it.
                   ref.getDownloadURL().then((realurl)=>{
-                    console.log("realurl = " + realurl);
+                    //console.log("realurl = " + realurl);
                     this.task.filelist.push(realurl)
-                    console.table(this.filelist);
+                    //console.table(this.filelist);
                     db.collection('to-do-items').doc(this.task.id).update({
                       filelist: this.task.filelist
                     })
@@ -155,7 +157,7 @@
                     })
                     .catch((error) => {
                     // The document probably doesn't exist.
-                    console.error("Error updating document: ", error);
+                      console.error("Error updating document: ", error);
                     })
                   })
                 })
