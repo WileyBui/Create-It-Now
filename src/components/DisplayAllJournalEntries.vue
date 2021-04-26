@@ -1,5 +1,8 @@
 <template>
-  <div class="accordion accordion margin-bottom-20 orange-background" id="accordionExample">
+  <div
+    class="accordion margin-bottom-20 orange-background"
+    id="accordionExample"
+  >
     <div class="accordion-item orange-background">
       <h2 class="accordion-header" id="headingOne">
         <button
@@ -10,7 +13,7 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-            <strong>Journal Entries</strong>
+          <strong>Journal Entries</strong>
         </button>
       </h2>
       <div
@@ -61,8 +64,8 @@ export default {
 </script>
 
 <style>
-    button.entry-header {
-        color: blueviolet;
-        font-size: 75%;
-    }
+button.entry-header {
+  color: black;
+  font-size: 75%;
+}
 </style>
