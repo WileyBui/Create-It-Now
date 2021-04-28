@@ -3,11 +3,12 @@
     class="container light-orange-background p-3 margin-top-10 text-start">
     <div class="row">
       <div class="col-9 hoverable" @click="toSpecificPage(entry)">
-        <strong><strong>{{ entry.title }}</strong></strong>
+        <strong><strong>{{ entry.title }} </strong></strong>
         <div>{{ entry.description }}</div>
       </div>
       <div class="col-3 fw-bold small-text text-end">
-        <JournalEntry />
+        <JournalEntry 
+        :entry="entry"/>
       </div>
     </div>
     <!-- <div>{{ entry.picture }}</div> -->
