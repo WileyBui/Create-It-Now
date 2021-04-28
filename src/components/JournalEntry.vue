@@ -75,6 +75,7 @@
               Close
             </button>
             <button @click="updateJournal"
+              data-bs-dismiss="modal"
               type="button"
               class="btn btn-primary"
             >
@@ -89,7 +90,8 @@
 
 
 <script>
-//import {db} from "../firebaseConfig.js"
+import {db} from "../firebaseConfig.js"
+import firebase from 'firebase/app';
 
 export default {
   name: "JournalEntry",
@@ -98,8 +100,7 @@ export default {
         updateJournal: function() {
             this.entry.title = document.getElementById("editableTitle").value
             this.entry.description = document.getElementById("editableDescription").value
-
-            this.$firestoreRefs.entry.set(this.todoitem)
+            db.collection("journalEntries").doc(this.entry.id).set({ title: this.entry.title, description: this.entry.description, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
         }
     }
 };
