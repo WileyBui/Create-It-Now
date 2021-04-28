@@ -20,6 +20,8 @@
 
         <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
         <span> -- </span>
+        <button @click="deleteEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Delete Entry</button>
+        <span> -- </span>
         <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
     </div>
 
@@ -35,7 +37,7 @@
             <input v-model="inputBody" />
         </div>
 
-        <button @click="updateEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Update Entry</button>
+        <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
         <span> -- </span>
         <button @click="cancelUpdate()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
     </div>
@@ -83,6 +85,13 @@ export default {
             this.inputBody = this.entry.description;
         },
 
+        deleteEntry: function (entry) {
+            var project_id = entry.project_id;
+            db.collection("journalEntries").doc(entry.id).delete().then(() => {
+                this.$router.push({ name: 'ProjectSpecific', params: { project_id: project_id } })
+            })
+        },
+
         editEntry: function () {
             this.inputTitle = this.entry.title;
             this.inputBody = this.entry.description;
@@ -94,8 +103,8 @@ export default {
             window.$("#addAJournal").modal("toggle");
         },
 
-        updateEntry: function () {
-            (db.collection("journalEntries").doc(this.entry.id)).set({ title: this.inputTitle, description: this.inputBody, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+        updateEntry: function (entry) {
+            (db.collection("journalEntries").doc(entry.id)).set({ title: this.inputTitle, description: this.inputBody, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
             this.editable = false;
         }
     }
