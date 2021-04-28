@@ -95,6 +95,7 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
+import firebase from 'firebase/app';
 import WebCamera from "./WebCamera.vue";
 
 export default {
@@ -161,6 +162,8 @@ export default {
         todo_id: this.todo_id,
         title: this.journal_title,
         description: this.journal_description,
+        created_at: firebase.firestore.FieldValue.serverTimestamp(),
+        last_modified: firebase.firestore.FieldValue.serverTimestamp()
       };
 
       if (this.journalEntry) {
