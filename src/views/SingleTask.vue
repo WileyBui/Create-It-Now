@@ -58,7 +58,7 @@
                   <template v-else>
                       <tr>
                           <td><input v-model="inputDescription" /></td>
-                          <td>{{taskName.deadline ? taskName.deadline.toDate() : "" | formatDate }}</td>
+                          <td><datepicker :bootstrap-styling="true" v-model="newDeadline"></datepicker></td>
                           <template v-if="taskName.isComplete">
                               <td>
                                   <strong>
@@ -95,12 +95,16 @@
 <script>
     //var taskNum = document.getElementById("taskIdNum").innerHTML
     //console.log(taskNum)
-    import {db} from "../firebaseConfig.js"
+    import { db } from "../firebaseConfig.js";
+    import Datepicker from "vuejs-datepicker";
     //import task from "../components/Word.vue"
     //var taskname = db.collection("tasks")
     //console.log(taskname)
     //console.log(this.$route.params.id)
     export default {
+        components: {
+            Datepicker,
+        },
         data() {
             return {
                 id: this.$route.params.id,
@@ -108,7 +112,8 @@
 
                 editable: false,
                 inputTitle: '',
-                inputDescription: ''
+                inputDescription: '',
+                newDeadline: null,
             }
         },
 
@@ -135,6 +140,7 @@
                 this.editable = true;
                 this.inputTitle = task.name;
                 this.inputDescription = task.description;
+                this.newDeadline = task.deadline.toDate();
             },
 
             markDone: function (task) {
@@ -146,7 +152,7 @@
             },
 
             updateTodo: function (task) {
-                (db.collection('to-do-items').doc(task.id)).set({ name: this.inputTitle, description: this.inputDescription }, { merge: true });
+                (db.collection('to-do-items').doc(task.id)).set({ name: this.inputTitle, description: this.inputDescription, deadline: this.newDeadline }, { merge: true });
                 this.editable = false;
             }
         }
