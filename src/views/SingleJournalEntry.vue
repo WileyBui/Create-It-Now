@@ -21,34 +21,6 @@
                 <label class="journal-title">Title:</label>
                 <input v-model="inputTitle" />
             </div>
-        <!-- <div class="margin-top-10">
-            <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
-            <span> -- </span>
-            <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry">Delete Entry</button>
-            <span> -- </span>
-            <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
-        </div>
-
-        <div class="modal fade" id="deleteEntry" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteEntryLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-start" id="deleteEntryLabel">Are you sure you want to delete this entry?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start">
-                    <strong class="text-danger">Warning:</strong>
-                    You can't undo this action!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" @click="deleteEntry(entry)">Understood</button>
-                </div>
-                </div>
-            </div>
-        </div> 
-        -->
-
 
             <div class="entry-body light-orange-background">
                 <label class="journal-body">Body:</label>
@@ -59,14 +31,33 @@
         <div v-if="!editable">
             <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
             <span> -- </span>
-            <button @click="deleteEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Delete Entry</button>
+            <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry">Delete Entry</button>
             <span> -- </span>
             <button @click="toJournalEntries(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Entry Listing</button>
             <span> -- </span>
             <button @click="toJournal(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Journal</button>
             <span> -- </span>
             <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Project</button>
-        </div>
+
+            <div class="modal fade" id="deleteEntry" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteEntryLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-start" id="deleteEntryLabel">Are you sure you want to delete this entry?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <strong class="text-danger">Warning:</strong>
+                        You can't undo this action!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="deleteEntry(entry)">Understood</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
 
         <div v-else class="margin-top-10">
             <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
