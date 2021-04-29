@@ -83,6 +83,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "modalcamera" */ '../views/ModalCamera.vue')
   },
   {
+    path: '/filetest',
+    name: 'Files',
+    // route level code-splitting
+    // this generates a separate chunk (Files.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "modalcamera" */ '../views/Files.vue')
+  },
+  {
     path: "*",
     name: 'PageNotFound',
     component: PageNotFound
