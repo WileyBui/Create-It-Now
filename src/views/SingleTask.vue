@@ -87,7 +87,8 @@
                   <span> -- </span>
                   <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
               </div>
-              <!-- <AttachModal :context="task" :dbcontext="this.dbcontext"  /> -->
+
+              <!-- this is the starting point for file attachment modal information /> -->
 
               <div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal">
@@ -115,6 +116,7 @@
                   </div>
                 </div>
               </div>
+              <!-- this is the ending point of file attachment modal -->
             </div>
       </div>
     </div>
@@ -138,7 +140,8 @@
                 inputTitle: '',
                 inputDescription: '',
                 newDeadline: null,
-                tempfilelist: [],
+                
+                //file modal data
                 filelist: [],
                 file: null, 
                 fileURL: ""
@@ -184,18 +187,15 @@
                 (db.collection('to-do-items').doc(task.id)).set({ name: this.inputTitle, description: this.inputDescription, deadline: this.newDeadline }, { merge: true });
                 this.editable = false;
             },
+            //begin file modal functions
             submit: function() {
-              // var i;
               var filename = "";
-
-              //var localtempfilelist = this.tempfilelist;
-              //this.tempfilelist = [];
 
               if (typeof this.task.filelist == 'undefined') {
                 this.task.filelist = [];
                 console.log("this.task.filelist = " + this.task.filelist);
               } 
-              //for (i = 0; i < localtempfilelist.length; i++) { 
+               
               filename = this.file.name
               console.log("filename = " + filename);              
           
@@ -246,6 +246,7 @@
               console.log(this.file)
 
             },
+            //end file modal functions
 
             
 
