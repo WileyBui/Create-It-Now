@@ -122,8 +122,7 @@
    
     export default {
         components: {
-            Datepicker,
-            // AttachModal,
+            Datepicker
         },
         data() {
             return {
@@ -205,12 +204,7 @@
                     console.log("realurl = " + realurl);
 
                     this.task.filelist.push({name:filename, url:realurl, uploadDate:Date.now(), user:auth.currentUser.uid})
-                    // db.collection("fileAttachments").add({
-                    //   name: filename,
-                    //   url: realurl,
-
-
-                    // })
+                   
                     console.table(this.filelist);
                     db.collection('to-do-items').doc(this.task.id).update({
                       filelist: this.task.filelist
