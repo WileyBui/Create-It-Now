@@ -49,10 +49,13 @@
             <label class="control-label w-100">
               New to-do deadline<span class="small-error-font">*</span>
             </label>
-            <datepicker :bootstrap-styling="true" v-model="todo_deadline"></datepicker>
+            <datepicker
+              :bootstrap-styling="true"
+              v-model="todo_deadline"
+            ></datepicker>
 
             <label class="control-label w-100 margin-top-10">
-              To-do title
+              To-do title<span class="small-error-font">*</span>
             </label>
             <input type="text" class="form-control" v-model="todo_name" />
 
@@ -112,12 +115,10 @@ export default {
       let error = document.getElementById("error");
 
       if (
-        // if isAddNewProject, checks everything
-        (this.isAddNewProject &&
-          this.project_name &&
-          this.todo_description &&
-          this.todo_deadline) ||
-        (!this.isAddNewProject && this.todo_description && this.todo_deadline)
+        this.todo_deadline &&
+        this.todo_name &&
+        this.todo_description &&
+        ((this.isAddNewProject && this.project_name) || !this.isAddNewProject)
       ) {
         // adds a new project to projects db and then add a new to-do to to-do-items db
         let newProject = {

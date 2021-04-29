@@ -44,6 +44,7 @@ export default {
       // if the user is logged in already, automatically redirect to Dashboard
       if (user) {
         router.push(Dashboard);
+        document.title = "Create It Now - Welcome";
       }
     });
   },

@@ -13,7 +13,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">Free Labor</a>
+        <a class="navbar-brand" href="/">Create It Now</a>
         <!-- <i class="bi bi-bell color-white"></i> -->
         <!-- <img v-if="user" :src="user.photoURL" class="profile-image d-block d-lg-none" />   -->
 
@@ -101,7 +101,6 @@ import { auth, provider } from "./firebaseConfig.js";
 import router from "./router";
 import PushNotification from "@/components/PushNotification.vue";
 
-
 export default {
   components: {
     PushNotification,
@@ -140,7 +139,7 @@ export default {
         .signInWithRedirect(provider)
         .then((result) => {
           this.user = result.user;
-          })
+        })
         .catch((err) => console.log(err));
     },
     signOut: function () {
@@ -194,11 +193,11 @@ body {
 }
 
 .orange-background {
-  background: #FFB750 !important;
+  background: #ffb750 !important;
 }
 
 .light-orange-background {
-  background: #FED7A0 !important;
+  background: #fed7a0 !important;
 }
 
 .green-background {
