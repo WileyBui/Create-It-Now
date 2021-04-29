@@ -101,7 +101,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                     <div class="modal-body">
-                      <input type="file" id="avatar" name="avatar" accept="image/*" @change="fileChange"/>
+                      <input type="file" id="avatar" name="avatar" accept="audio/*, video/*, image/*" @change="fileChange"/>
+                      <hr>
+                      <ul>
+                        <li v-for="file in task.filelist" :key="file.id"> <a v-bind:href="file.url">{{file.name}}</a></li>
+                      </ul>
                     </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -123,6 +127,7 @@
     export default {
         components: {
             Datepicker
+            
         },
         data() {
             return {
@@ -142,7 +147,8 @@
 
         firestore: function() {
             return {
-                task: db.collection("to-do-items").doc(this.id)
+                task: db.collection("to-do-items").doc(this.id),
+                filelist: db.collection("to-do-items").doc(this.id).filelist
             }
         },
 
@@ -179,20 +185,21 @@
                 this.editable = false;
             },
             submit: function() {
-              var i;
+              // var i;
               var filename = "";
-              var localtempfilelist = this.tempfilelist;
-              this.tempfilelist = [];
+
+              //var localtempfilelist = this.tempfilelist;
+              //this.tempfilelist = [];
+
               if (typeof this.task.filelist == 'undefined') {
                 this.task.filelist = [];
                 console.log("this.task.filelist = " + this.task.filelist);
               } 
-              for (i = 0; i < localtempfilelist.length; i++) { 
-                filename = localtempfilelist[i].name
-                console.log("filename = " + filename);
-              
-              
-                var url = "/taskfiles/"+ filename;
+              //for (i = 0; i < localtempfilelist.length; i++) { 
+              filename = this.file.name
+              console.log("filename = " + filename);              
+          
+              var url = "/taskfiles/"+ filename;
                 console.log("url = " + url);
                 const ref = storage.ref().child(url);
                 ref.put(this.file).then(()=>{
@@ -205,7 +212,7 @@
 
                     this.task.filelist.push({name:filename, url:realurl, uploadDate:Date.now(), user:auth.currentUser.uid})
                    
-                    console.table(this.filelist);
+                    console.log(this.task.filelist);
                     db.collection('to-do-items').doc(this.task.id).update({
                       filelist: this.task.filelist
                     })
@@ -218,12 +225,10 @@
                     })
                   })
                 })
-              }
+              },
               
-            },
-
-
           
+
             // This function keeps the this.file up to date with the file input
             fileChange: function(event) {
               //When the user finishes selecting a file or files, 
@@ -232,19 +237,21 @@
               // Each item in the FileList is a File object.
               const files = event.target.files || event.dataTransfer.files;
               //console.log("inside fileChange")
-              var i;
-              // if (files.length > 0) {
-              //   this.tempfilelist = []
-              //   //console.log("files.length > 0")
-              // }
-              if (!this.tempfilelist) {
-                this.tempfilelist = []
+
+              if (!files.length) {
+                this.file = null;
+              } else  {
+                this.file = files[0]
               }
-              for (i = 0; i < files.length; i++) { 
-                this.tempfilelist.push(files[i])
-                console.log("this.tempfilelist.push(files[i]) " + files[i].name)
-              }
-            }
+              console.log(this.file)
+
+            },
+
+            
+
+
+          
+            
         }
     }
 
