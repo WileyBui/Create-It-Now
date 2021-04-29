@@ -5,7 +5,7 @@
           <strong>{{ entry.title }}</strong>
       </div>
     </div>
-    <div>{{ entry.description }}</div>
+    <div class="text-truncate">{{ entry.description }}</div>
   </div>
 </template>
 

@@ -63,11 +63,32 @@
                                           :entries="journalEntries"
                                           class="margin-top-10" />
 
-                <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Project</button>
-                <span> -- </span>
-                <button @click="deleteProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Delete Project</button>
-                <span> -- </span>
-                <button @click="backToDash()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Dashboard</button>
+                <div class="margin-top-10">
+                    <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Project</button>
+                    <span> -- </span>
+                    <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteProject">Delete Project</button>
+                    <span> -- </span>
+                    <button @click="backToDash()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Dashboard</button>
+                </div>
+
+                <div class="modal fade" id="deleteProject" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteProjectLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteProjectLabel">Are you sure you want to delete this project?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            <strong class="text-danger">Warning:</strong>
+                            You can't undo this action!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" @click="deleteProject()">Understood</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -134,9 +155,11 @@
                                           :entries="journalEntries"
                                           class="margin-top-10" />
 
-                <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-                <span> -- </span>
-                <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+                <div class="margin-top-10">
+                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
+                    <span> -- </span>
+                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+                </div>
             </div>
         </div>
     </template>
@@ -218,8 +241,22 @@ export default {
         this.editable = false;
     },
 
-    deleteProject: function() {
-        
+    deleteProject: function () {
+        // delete all to-do items
+        this.allToDosFromProject.forEach(function(item) {
+          db.collection("to-do-items").doc(item.id).delete();
+        });
+
+        // delete all journal entries
+        this.journalEntries.forEach(function(item) {
+          db.collection("journalEntries").doc(item.id).delete();
+        });
+
+        // delete project itself
+        db.collection("projects").doc(this.project_idLocal).delete();
+
+        window.$("#deleteProject").modal("toggle");
+        this.$router.push('/')
     },
 
     editProject: function() {
