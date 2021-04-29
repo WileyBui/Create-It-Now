@@ -13,22 +13,34 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          <strong class="entry-header">Journal Entries</strong>
+          <strong class="entry-header">Journal Entries - </strong>
+          <router-link
+            :to="{
+              name: 'ProjectJournal',
+              params: { project_id: proj_id },
+            }"
+            class="remove-a-href-styles text-dark"
+          >
+
+            <button
+              type="button"
+              class="btn blue-background color-white p-1 pt-0 pb-0"
+            >
+              View Journal
+            </button>
+          </router-link>
         </button>
       </h2>
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse show"
-        aria-labelledby="headingOne"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <DisplayASingleJournalEntry
-            v-for="entry in entries"
-            :key="entry.id"
-            :entry="entry"
-          />
-        </div>
+      <div id="collapseOne"
+           class="accordion-collapse collapse show"
+           aria-labelledby="headingOne"
+           data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+              <DisplayASingleJournalEntry v-for="entry in entries"
+                                          :key="entry.id"
+                                          :entry="entry" />
+          </div>
+          <button @click="toAllEntries()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
       </div>
     </div>
   </div>
@@ -39,12 +51,14 @@ import DisplayASingleJournalEntry from "@/components/DisplayASingleJournalEntry.
 
 export default {
   name: "DisplayJournalEntry",
-  props: ["entries"],
+  props: ["entries", "proj_id"],
   components: {
     DisplayASingleJournalEntry,
   },
   data: function () {
-    return {};
+    return {
+        project_idLocal: this.project_id
+    };
   },
   methods: {
     // markDone: function (task) {
@@ -59,6 +73,13 @@ export default {
     //     .update({ ["isComplete"]: false });
     //   this.$emit("toDoStatusEvent", this.id);
     // },
+
+      toAllEntries: function () {
+          this.$router.push({
+              name: 'AllJournalsFromProject',
+              params: { project_id: this.proj_id },
+          });
+      }
   },
 };
 </script>

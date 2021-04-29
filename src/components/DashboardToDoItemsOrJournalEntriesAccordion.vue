@@ -22,7 +22,19 @@
           aria-expanded="true"
           :aria-controls="type + '-flush-collapse-' + index"
         >
-          <template v-if="type == 'journal'"> Journal Entries </template>
+          <template v-if="type == 'journal'"> Journal Entries - 
+              <router-link :to="{
+              name: 'ProjectJournal',
+              params: { project_id: project_id },
+            }"
+                           class="remove-a-href-styles text-dark">
+
+                  <button type="button"
+                          class="btn blue-background color-white p-1 pt-0 pb-0">
+                      View Journal
+                  </button>
+              </router-link>
+          </template>
           <template v-else> To-do Items </template>
         </button>
       </h2>
@@ -32,13 +44,12 @@
         :class="[type == 'journal' ? 'collapse' : 'show']"
       >
         <div class="accordion-body">
-          <template v-if="type == 'journal'">
-            <DashboardJournalEntry
-              v-for="entry in items"
-              :key="entry.id"
-              :entry="entry"
-            />
-          </template>
+            <template v-if="type == 'journal'">
+                <DashboardJournalEntry v-for="entry in items"
+                                       :key="entry.id"
+                                       :entry="entry" />
+                 <button @click="toAllEntries()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
+            </template>
           <template v-else>
             <DashboardTask v-for="task in items" :key="task.id" :task="task" />
           </template>
@@ -61,10 +72,18 @@ import DashboardJournalEntry from "./DashboardJournalEntry.vue";
 // header to collapse its own corresponding accordion. 
 export default {
   name: "DashboardToDoItemsAccordion",
-  props: ["items", "type", "index"],
+  props: ["items", "type", "index", "project_id"],
   components: {
     DashboardTask,
     DashboardJournalEntry,
   },
+  methods: {
+      toAllEntries: function () {
+          this.$router.push({
+              name: 'AllJournalsFromProject',
+              params: { project_id: this.project_id },
+          });
+      }
+  }
 };
 </script>

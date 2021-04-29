@@ -1,45 +1,50 @@
 <template>
-    <div v-if="!editable" class="journal-entry light-orange-background">
-        <div class="entry-heading">
-            <h3 class="journal-title">{{entry.title}}</h3>
-            <h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
-            <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
+    <div>
+        <div v-if="!editable" class="journal-entry light-orange-background">
+            <div class="entry-heading">
+                <h3 class="journal-title">{{entry.title}}</h3>
+                <h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
+                <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
+            </div>
+
+            <div class="entry-photo">
+
+            </div>
+
+            <div class="entry-body light-orange-background">
+                <p class="journal-body">{{entry.description}}</p>
+            </div>
         </div>
 
-        <div class="entry-photo">
+        <div v-else class="journal-entry light-orange-background">
+            <div class="entry-heading">
+                <label class="journal-title">Title:</label>
+                <input v-model="inputTitle" />
+            </div>
 
+            <div class="entry-body light-orange-background">
+                <label class="journal-body">Body:</label>
+                <input v-model="inputBody" />
+            </div>
         </div>
 
-        <div class="entry-body light-orange-background">
-            <p class="journal-body">{{entry.description}}</p>
+        <div v-if="!editable">
+            <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
+            <span> -- </span>
+            <button @click="deleteEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Delete Entry</button>
+            <span> -- </span>
+            <button @click="toJournalEntries(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Entry Listing</button>
+            <span> -- </span>
+            <button @click="toJournal(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Journal</button>
+            <span> -- </span>
+            <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Project</button>
         </div>
 
-        <div class="to-do-item green-background">
-            <h4>{{task}}</h4>
+        <div v-else>
+            <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
+            <span> -- </span>
+            <button @click="cancelUpdate()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
         </div>
-
-        <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
-        <span> -- </span>
-        <button @click="deleteEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Delete Entry</button>
-        <span> -- </span>
-        <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
-    </div>
-
-
-
-    <div v-else class="journal-entry light-orange-background">
-        <div class="entry-heading">
-            <label class="journal-title">Title:</label>
-            <input v-model="inputTitle" />
-        </div>
-
-        <div class="entry-body light-orange-background">
-            <input v-model="inputBody" />
-        </div>
-
-        <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-        <span> -- </span>
-        <button @click="cancelUpdate()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
     </div>
 </template>
 
@@ -77,6 +82,14 @@ export default {
     methods: {
         backToProject: function (entry) {
             this.$router.push({ name: 'ProjectSpecific', params: { project_id: entry.project_id } })
+        },
+
+        toJournalEntries: function (entry) {
+            this.$router.push({ name: 'AllJournalsFromProject', params: { project_id: entry.project_id } })
+        },
+
+        toJournal: function (entry) {
+            this.$router.push({ name: 'ProjectJournal', params: { project_id: entry.project_id } })
         },
 
         cancelUpdate: function () {

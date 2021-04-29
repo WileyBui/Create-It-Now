@@ -45,6 +45,7 @@
             :items="journalEntries"
             type="journal"
             :index="index"
+            :project_id="project.id"
           />
         </div>
       </div>

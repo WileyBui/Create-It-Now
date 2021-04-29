@@ -61,6 +61,7 @@
                 </div>
                 <DisplayAllJournalEntries v-if="journalEntries.length > 0"
                                           :entries="journalEntries"
+                                          :proj_id="project_idLocal"
                                           class="margin-top-10" />
 
                 <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Project</button>
@@ -132,6 +133,7 @@
                 </div>
                 <DisplayAllJournalEntries v-if="journalEntries.length > 0"
                                           :entries="journalEntries"
+                                          :proj_id="project_idLocal"
                                           class="margin-top-10" />
 
                 <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
@@ -206,7 +208,9 @@ export default {
         .where("project_id", "==", this.project_idLocal),
       journalEntries: db
         .collection("journalEntries")
-        .where("project_id", "==", this.project_idLocal),
+        .where("project_id", "==", this.project_idLocal)
+        //.orderBy("created_at", "asc")
+        .limit(3),
     };
   },
   methods: {

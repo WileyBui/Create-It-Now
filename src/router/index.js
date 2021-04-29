@@ -7,6 +7,7 @@ import AllJournalsFromProject from '../views/AllJournalsFromProject.vue'
 import SingleTask from '../views/SingleTask.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import SingleJournalEntry from '../views/SingleJournalEntry.vue'
+import ProjectJournal from '../views/ProjectJournal.vue'
 import { auth } from "@/firebaseConfig"
 
 Vue.use(VueRouter)
@@ -54,6 +55,14 @@ const routes = [
     name: 'SingleJournalEntry',
     component: SingleJournalEntry,
     meta: { // connects with the function later in this file.
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/projectjournal/:project_id',
+    name: 'ProjectJournal',
+    component: ProjectJournal,
+    meta: {
       requiresAuth: true
     }
   },
