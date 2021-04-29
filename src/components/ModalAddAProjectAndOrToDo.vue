@@ -47,7 +47,15 @@
             </div>
 
             <label class="control-label w-100">
-              New to-do title
+              New to-do deadline<span class="small-error-font">*</span>
+            </label>
+            <datepicker
+              :bootstrap-styling="true"
+              v-model="todo_deadline"
+            ></datepicker>
+
+            <label class="control-label w-100 margin-top-10">
+              To-do title<span class="small-error-font">*</span>
             </label>
             <input type="text" class="form-control" v-model="todo_name" />
 
@@ -59,11 +67,6 @@
               rows="3"
               v-model="todo_description"
             ></textarea>
-
-            <label class="control-label w-100 margin-top-10">
-              To-do deadline<span class="small-error-font">*</span>
-            </label>
-            <datepicker class="form-control" v-model="todo_deadline" />
           </div>
           <div class="modal-footer">
             <button
@@ -89,14 +92,14 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
-import Datepicker from 'vuejs-datepicker';
+import Datepicker from "vuejs-datepicker";
 //import moment from 'vue-moment';
 
 export default {
   name: "ModalAddAProject",
   props: ["owner_id", "isAddNewProject", "project_id"],
   components: {
-    Datepicker
+    Datepicker,
   },
   data: function () {
     return {
@@ -112,14 +115,10 @@ export default {
       let error = document.getElementById("error");
 
       if (
-        // if isAddNewProject, checks everything
-        (this.isAddNewProject &&
-          this.project_name &&
-          this.todo_description &&
-          this.todo_deadline) ||
-        (!this.isAddNewProject &&
-          this.todo_description &&
-          this.todo_deadline)
+        this.todo_deadline &&
+        this.todo_name &&
+        this.todo_description &&
+        ((this.isAddNewProject && this.project_name) || !this.isAddNewProject)
       ) {
         // adds a new project to projects db and then add a new to-do to to-do-items db
         let newProject = {
@@ -132,7 +131,7 @@ export default {
           description: this.todo_description,
           deadline: this.todo_deadline,
           isComplete: false,
-          project_id: ''
+          project_id: "",
         };
 
         // If add a new project, then add it to the projects db first, then add the new to do to the to-do-items db

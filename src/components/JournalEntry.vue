@@ -1,7 +1,7 @@
 <template>
   <div>
     <i
-      class="bi bi-plus-circle plus-icon hoverable align-top"
+      class="bi bi-pencil hoverable align-top"
       data-bs-toggle="modal"
       data-bs-target="#journalEntryModal"
     ></i>
@@ -17,8 +17,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="journalEntryModal">
-              <i class="bi bi-list-task"></i>
-              <span> Sample Journal Entry </span>
+              <textarea v-model= "entry.title" id = "editableTitle" rows="1"> </textarea>
             </h5>
             <button
               type="button"
@@ -28,13 +27,9 @@
             ></button>
           </div>
           <div class="modal-body container text-start">
-            Hi! This is sample text until journals are configured in the DB.
-            <ul>
-              <li>Woke up</li>
-              <li>Tried to fix the code for server</li>
-              <li>Made it a lot worse</li>
-              <li>Went to bed</li>
-            </ul>
+            <textarea v-model= "entry.description" id = "editableDescription" rows="4" cols = "44"> </textarea>
+            <br>
+            <br>
             <div class="d-flex justify-content-around">
               <div class="d-grid gap-2 col-5 mx-auto">
                 <button
@@ -79,10 +74,10 @@
             >
               Close
             </button>
-            <button
+            <button @click="updateJournal"
+              data-bs-dismiss="modal"
               type="button"
               class="btn btn-primary"
-              @click="addNewDocument"
             >
               Submit
             </button>
@@ -95,11 +90,18 @@
 
 
 <script>
-//import {db} from "../firebaseConfig.js"
+import {db} from "../firebaseConfig.js"
+import firebase from 'firebase/app';
 
 export default {
-  name: "task",
-  props: ["id", "entry", "project_id"],
-  methods: {},
+  name: "JournalEntry",
+  props: ["entry"],
+  methods: {
+        updateJournal: function() {
+            this.entry.title = document.getElementById("editableTitle").value
+            this.entry.description = document.getElementById("editableDescription").value
+            db.collection("journalEntries").doc(this.entry.id).set({ title: this.entry.title, description: this.entry.description, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+        }
+    }
 };
 </script>

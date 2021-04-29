@@ -25,12 +25,12 @@
           </div>
           <div class="modal-body container text-start">
             <label class="control-label w-100">
-              Journal Title {{ journalEntry }} ok {{ journal_id }}
+              Journal Title
             </label>
             <input type="text" class="form-control" v-model="journal_title" />
 
             <label class="control-label w-100 margin-top-10">
-              Description {{ todo_id }}
+              Description
             </label>
             <textarea
               class="form-control"
@@ -95,6 +95,7 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
+import firebase from 'firebase/app';
 import WebCamera from "./WebCamera.vue";
 
 export default {
@@ -161,6 +162,8 @@ export default {
         todo_id: this.todo_id,
         title: this.journal_title,
         description: this.journal_description,
+        created_at: firebase.firestore.FieldValue.serverTimestamp(),
+        last_modified: firebase.firestore.FieldValue.serverTimestamp()
       };
 
       if (this.journalEntry) {

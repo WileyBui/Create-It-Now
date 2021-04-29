@@ -1,11 +1,11 @@
 <template>
   <div class="container light-orange-background p-3 margin-top-10 hoverable" @click="toSpecificPage(entry)">
     <div class="row">
-      <div class="col-9">
-          <strong>{{ entry.title }}</strong>
-      </div>
+        <div class="col-9">
+            <strong>{{ entry.title }}</strong> - {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}
+        </div>
     </div>
-    <div>{{ entry.description }}</div>
+    <div class="text-truncate">{{ entry.description }}</div>
   </div>
 </template>
 

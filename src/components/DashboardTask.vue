@@ -9,7 +9,7 @@
         <span v-else class="red">NOT DONE</span>
       </div>
     </div>
-    <div>{{ task.description }}</div>
+    <div class="text-truncate">{{ task.description }}</div>
   </div>
 </template>
 

@@ -1,26 +1,24 @@
 <template>
-  <div v-if="user && project" class="container text-start">
-    <div class="row">
-      <h2 class="header-bold">
-        <i class="bi bi-journal-check"></i>
-        All Journal Entries: {{ project.project_name }}
-      </h2>
+    <div v-if="user && project" class="container text-start">
+        <div class="row">
+            <h2 class="header-bold">
+                <i class="bi bi-journal-check"></i>
+                All Journal Entries: {{ project.project_name }}
+            </h2>
 
-      <div class="margin-top-20"></div>
+            <div class="margin-top-20"></div>
 
-      <div
-        v-if="journalEntries.length > 0"
-        class="container orange-background padding-bottom-10"
-      >
-        <DisplayASingleJournalEntry
-          v-for="entry in journalEntries"
-          :key="entry.id"
-          :entry="entry"
-        />
-      </div>
-      <div v-else>There are no journal entries from this project yet.</div>
+            <div v-if="journalEntries.length > 0"
+                 class="container orange-background padding-bottom-10">
+                <DisplayASingleJournalEntry v-for="entry in journalEntries"
+                                            :key="entry.id"
+                                            :entry="entry" />
+            </div>
+            <div v-else>There are no journal entries from this project yet.</div>
+        </div>
+
+        <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Project</button>
     </div>
-  </div>
   <div v-else>
     <UnableToFindId error_type="project journal" />
   </div>
@@ -69,6 +67,16 @@ export default {
       };
     }
   },
+
+  methods: {
+        backToProject: function () {
+            this.$router.push({ name: 'ProjectSpecific', params: { project_id: this.project_id } })
+        },
+
+        toEntry: function (entry) {
+            this.$router.push({ name: 'SingleJournalEntry', params: { id: entry.id } })
+        }
+  }
 };
 //
 </script>

@@ -1,13 +1,14 @@
 <template>
   <div
-    class="container light-orange-background p-3 margin-top-10 hoverable text-start" @click="toSpecificPage(entry)">
+    class="container light-orange-background p-3 margin-top-10 text-start">
     <div class="row">
-      <div class="col-9">
-        <strong><strong>{{ entry.title }}</strong></strong>
+      <div class="col-9 hoverable" @click="toSpecificPage(entry)">
+        <strong><strong>{{ entry.title }} </strong></strong>
         <div>{{ entry.description }}</div>
       </div>
       <div class="col-3 fw-bold small-text text-end">
-        <JournalEntry />
+        <JournalEntry 
+        :entry="entry"/>
       </div>
     </div>
     <!-- <div>{{ entry.picture }}</div> -->
