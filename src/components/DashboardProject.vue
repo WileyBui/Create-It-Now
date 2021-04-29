@@ -17,7 +17,7 @@
             }"
             class="remove-a-href-styles text-dark"
           >
-              <strong><strong>{{ project.project_name }} - </strong></strong>
+            <strong>{{ project.project_name }} - </strong>
             <template v-if="complete">
               <strong class="Complete">COMPLETED </strong>
             </template>
@@ -89,12 +89,14 @@ export default {
     return {
       tasks: db
         .collection("to-do-items")
-        .where("project_id", "==", this.project.id),
+        .where("project_id", "==", this.project.id)
+        .limit(3),
       // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
 
       journalEntries: db
         .collection("journalEntries")
-        .where("project_id", "==", this.project.id),
+        .where("project_id", "==", this.project.id)
+        .limit(3),
     };
   },
 };

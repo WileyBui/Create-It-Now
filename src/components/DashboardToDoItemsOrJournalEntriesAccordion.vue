@@ -13,7 +13,7 @@
           class="accordion-button color-black fw-bold"
           :class="[
             type == 'journal'
-              ? 'orange-background collapsed'
+              ? 'orange-background'
               : 'green-background show',
           ]"
           type="button"
@@ -40,8 +40,7 @@
       </h2>
       <div
         :id="type + '-flush-collapse-' + index"
-        class="accordion-collapse collapse"
-        :class="[type == 'journal' ? 'collapse' : 'show']"
+        class="accordion-collapse collapse show"
       >
         <div class="accordion-body">
             <template v-if="type == 'journal'">
@@ -66,10 +65,10 @@ import DashboardJournalEntry from "./DashboardJournalEntry.vue";
 // The props are items, type, and index.
 // We are referencing `items` as journal entries or the to-do tasks, depending
 // on what parameter type that we are passing in, so the `type` prop is either a
-// "to-do" or a "journal". If it's a "journal" type, then we need to call the 
+// "to-do" or a "journal". If it's a "journal" type, then we need to call the
 // `DashboardJournalEntry` component, otherwise, we need to call `DashboardTask`
 // component. The index is for the HTML ID tag so users can click on an accordion
-// header to collapse its own corresponding accordion. 
+// header to collapse its own corresponding accordion.
 export default {
   name: "DashboardToDoItemsAccordion",
   props: ["items", "type", "index", "project_id"],

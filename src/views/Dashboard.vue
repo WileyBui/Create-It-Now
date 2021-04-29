@@ -17,6 +17,7 @@
       :key="project.id"
       :project="project"
       :index="index"
+      class="margin-top-10"
     />
   </div>
 </template>

@@ -25,12 +25,12 @@
           </div>
           <div class="modal-body container text-start">
             <label class="control-label w-100">
-              Journal Title {{ journalEntry }} ok {{ journal_id }}
+              Journal Title
             </label>
             <input type="text" class="form-control" v-model="journal_title" />
 
             <label class="control-label w-100 margin-top-10">
-              Description {{ todo_id }}
+              Description
             </label>
             <textarea
               class="form-control"
