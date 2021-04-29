@@ -28,7 +28,11 @@
   </div>
   
   <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-    <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
+    <input v-model="photoName" placeholder="Name photo here">
+    <a id="savePhoto" :download="photoName" class="button" role="button" @click="savePhoto">
+      Save Image
+    </a>
+    <a id="downloadPhoto" :download="photoName" class="button" role="button" @click="downloadImage">
       Download
     </a>
   </div>
@@ -36,8 +40,13 @@
 </template>
 <script>
 
+// code taken from:
+// https://dev.to/ditarahma08/make-a-camera-app-in-web-part-2-capturing-the-image-289i
+import { db, storage } from "../firebaseConfig.js";
+import firebase from 'firebase/app'
 export default {
     name: "webCamera",
+    props: ["user", "context", "docId"],
 
     data() {
         return {
@@ -45,9 +54,19 @@ export default {
         isPhotoTaken: false,
         isShotPhoto: false,
         isLoading: false,
-        link: '#'
+        link: '#',
+        photoName: "image.jpg",
+        //ourCollection: "",
+        filelist: []
         }
     },
+
+    firestore: function() {
+            return {
+                //ourCollection: db.collection(this.context).doc(this.docId),
+                //filelist: db.collection("to-do-items").doc(this.id).filelist
+            }
+        },
   
     methods: {
         toggleCamera() {
@@ -111,10 +130,58 @@ export default {
     },
     
     downloadImage() {
-      const download = document.getElementById("downloadPhoto");
-      const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
+      var download = document.getElementById("downloadPhoto");
+      var canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
     .replace("image/jpeg", "image/octet-stream");
       download.setAttribute("href", canvas);
+    },
+    savePhoto() {
+      var url = "/photos/" + this.photoName;
+      var tempContext = this.context;
+      var tempDocId = this.docId;
+      var tempPhotoName = this.photoName;
+      var tempUID = this.user.uid;
+
+
+      console.log("url = " + url);
+      console.log("this = " + this);
+      console.log("this.context = " + this.context);
+      console.log("this.docId = " + this.docId);
+      console.log("this.user = " + this.user.uid);
+
+      //db.collection(this.context).doc(this.docId).update({testupdate: url})
+      //var download = document.getElementById("savePhoto");
+      var canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
+      .replace("image/jpeg", "image/octet-stream");
+      console.log("canvas type= " + canvas);
+      
+      const ref = storage.ref().child(url);
+      
+      
+      document.getElementById("photoTaken").toBlob(function(blob){
+        ref.put(blob).then(()=>{
+          ref.getDownloadURL().then((realurl)=>{
+            console.log("realurl = " + realurl);
+            //var blob = "";
+            console.log("canvas blob= " + blob);
+          
+            //var tempFileList = db.collection(this.context).doc(this.docId).filelist;
+            //console.log("tempFileList= " + this.filelist);
+            //change url to realurl in the line below for it to work and not just test  
+            //this.filelist.push({name:this.photoName, url:realurl, uploadDate:Date.now(), user:this.user.uid})
+            db.collection(tempContext).doc(tempDocId).update({
+              filelist: firebase.firestore.FieldValue.arrayUnion({name:tempPhotoName, url:realurl, uploadDate:Date.now(), user:tempUID})
+            })
+            .then(() => {
+              console.log("Document successfully updated!");
+            })
+            .catch((error) => {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            })
+          })
+        })
+      });
     }
   }
 }
