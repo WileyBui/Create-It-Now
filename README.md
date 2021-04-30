@@ -134,7 +134,7 @@ along with a very brief caption:**
 **Document integrations with 3rd Party code or services here.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
-* npm install firebase-functions
+* npm install firebase-functions@latest firebase-admin@latest --save
 * ...
 
 **If there's anything else you would like to disclose about how your project
