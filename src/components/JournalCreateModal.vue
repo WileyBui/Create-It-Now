@@ -21,14 +21,14 @@
               Journal Title
             </label>
               
-              <textarea id = "editableTitle" rows="1">Journal Title</textarea>
+              <textarea id = "editableTitle" rows="1"></textarea>
 
           </div>
           <div class="modal-body container text-start">
             <label class="control-label w-100 margin-top-10">
               Description
             </label>
-            <textarea id = "editableDescription" rows="4" cols = "44">Journal Description</textarea>
+            <textarea id = "editableDescription" rows="4" cols = "44"></textarea>
             <br>
             <br>
             <div class="d-flex justify-content-around">
