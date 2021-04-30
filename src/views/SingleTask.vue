@@ -39,7 +39,9 @@
                               <td>
                                   <button @click="markUndone(task)"
                                           type="button"
-                                          class="btn blue-background color-white p-1 pt-0 pb-0">
+                                          class="btn blue-background color-white p-1 pt-0 pb-0"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#journalEntryModal">
                                       Complete
                                   </button>
                               </td>
@@ -48,7 +50,9 @@
                               <td>
                                   <button @click="markDone(task)"
                                           type="button"
-                                          class="btn blue-background color-white p-1 pt-0 pb-0">
+                                          class="btn blue-background color-white p-1 pt-0 pb-0"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#journalEntryModal">
                                       Incomplete
                                   </button>
                               </td>
@@ -87,7 +91,10 @@
                   <span> -- </span>
                   <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
               </div>
-
+              <div class="col-3 fw-bold small-text text-end">
+                <JournalCreateModal 
+                :entry="task"/>
+              </div>
               <!-- this is the starting point for file attachment modal information /> -->
 
               <div>
@@ -125,10 +132,12 @@
 <script>
     import { db, storage, auth } from "../firebaseConfig.js"; 
     import Datepicker from "vuejs-datepicker";
+    import JournalCreateModal from "../components/JournalCreateModal.vue";
    
     export default {
         components: {
-            Datepicker
+            Datepicker,
+            JournalCreateModal,
             
         },
         data() {
