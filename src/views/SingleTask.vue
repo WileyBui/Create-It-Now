@@ -82,7 +82,7 @@
               </table>
               <br>
               <div v-if="!editable">
-                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask">Edit ToDo Item</button>
+                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask">Edit To Do Item</button>
                   
                   <button @click="backToProject(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask2">Back to Project</button>
               </div>
