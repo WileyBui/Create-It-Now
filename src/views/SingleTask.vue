@@ -97,9 +97,11 @@
               </div>
               <!-- this is the starting point for file attachment modal information /> -->
 
-              <div>
+              <div v-if="editable">
+                <webCamera :context="context" :user="this.user" :docId="this.id"/>
+                <br>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
-                  Attach File
+                  File Attachments
                 </button>
                 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -133,17 +135,20 @@
     import { db, storage, auth } from "../firebaseConfig.js"; 
     import Datepicker from "vuejs-datepicker";
     import JournalCreateModal from "../components/JournalCreateModal.vue";
-   
+    import webCamera from '@/components/WebCamera.vue'
+
     export default {
         components: {
             Datepicker,
             JournalCreateModal,
+            webCamera
             
         },
         data() {
             return {
                 id: this.$route.params.id,
                 task: null,
+                context: "to-do-items",
 
                 editable: false,
                 inputTitle: '',
@@ -162,6 +167,14 @@
                 task: db.collection("to-do-items").doc(this.id),
                 filelist: db.collection("to-do-items").doc(this.id).filelist
             }
+        },
+        beforeCreate: function () {
+          // ask the auth layer to let us know when the user changes.
+          auth.onAuthStateChanged((user) => {
+          if (user) {
+            this.user = user;
+          }
+          });
         },
 
         methods: {
