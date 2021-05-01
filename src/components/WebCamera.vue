@@ -134,6 +134,7 @@ export default {
       var canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
     .replace("image/jpeg", "image/octet-stream");
       download.setAttribute("href", canvas);
+      this.toggleCamera();
     },
     savePhoto() {
       var url = "/photos/" + this.photoName;
