@@ -3,7 +3,7 @@
         <div v-if="!editable" class="journal-entry light-orange-background">
             <div class="entry-heading">
                 <h3 class="journal-title">{{entry.title}}</h3>
-                <h4 class="entry-timestamp" id="written">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
+                <!--<h4 class="entry-timestamp" id="written">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>-->
                 <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 
@@ -11,7 +11,7 @@
 
             </div>
 
-            <div class="entry-body light-orange-background">
+            <div class="entry-body light-orange-background" id="descriptionJournalBody">
                 <p class="journal-body" id="description">{{entry.description}}</p>
             </div>
         </div>
@@ -19,12 +19,12 @@
         <div v-else class="journal-entry light-orange-background">
             <div class="entry-heading">
                 <label class="journal-title">Title:</label>
-                <input v-model="inputTitle" />
+                <input v-model="inputTitle" id="editTitleBox"/>
             </div>
 
             <div class="entry-body light-orange-background">
-                <label class="journal-body">Body:</label>
-                <input v-model="inputBody" />
+                <label class="journal-body" id="bodyLabel">Body:</label>
+                <input v-model="inputBody" id="editBodyBox"/>
             </div>
         </div>
 
@@ -60,9 +60,9 @@
         </div> 
 
         <div v-else class="margin-top-10">
-            <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-            <span> -- </span>
-            <button @click="cancelUpdate()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+            <button @click="updateEntry(entry)" type="button" id="updateFinish" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
+            
+            <button @click="cancelUpdate()" type="button" id="updateCancel" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
         </div>
     </div>
 </template>
@@ -188,9 +188,9 @@ h4.entry-timestamp{
     font-size: 95%;
 }
 
-/* p.journal-body{
-
-} */
+p.journal-body{
+    color: black;
+}
 
 #specificJournal, #specificJournal2, #specificJournal3, #specificJournal4, #specificJournal5 {
     margin: 1em;
@@ -201,4 +201,28 @@ h4.entry-timestamp{
     /*font-weight: bold; */
 }
 
+#updateCancel, #updateFinish {
+    margin: 1em;
+}
+
+#editBodyBox {
+    margin: 0.5em;
+    width: 20em;
+    background-color: rgb(255, 237, 204);
+}
+
+#editTitleBox {
+    background-color: rgb(255, 237, 204);
+    margin: 1em;
+    height: 3em;
+}
+
+#bodyLabel {
+    color: white;
+    font-size: 2em;
+}
+
+#descriptionJournalBody {
+    height: 5em;
+}
 </style>
