@@ -82,14 +82,14 @@
               </table>
               <br>
               <div v-if="!editable">
-                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit ToDo Item</button>
-                  <span> -- </span>
-                  <button @click="backToProject(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
+                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask">Edit ToDo Item</button>
+                  
+                  <button @click="backToProject(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask2">Back to Project</button>
               </div>
               <div v-else>
-                  <button @click="updateTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-                  <span> -- </span>
-                  <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+                  <button @click="updateTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask3">Finish</button>
+                  
+                  <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask4">Cancel</button>
               </div>
               <div class="col-3 fw-bold small-text text-end">
                 <JournalCreateModal 
@@ -98,7 +98,7 @@
               <!-- this is the starting point for file attachment modal information /> -->
 
               <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
                   Attach File
                 </button>
                 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
@@ -117,7 +117,7 @@
                     </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit">Attach File</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit" id="attachFile2">Attach File</button>
                       </div>
                     </div>
                   </div>
@@ -299,5 +299,11 @@
       font-size: 2em;
   }
 
+  #editSingleTask, #editSingleTask2, #attachFile {
+    margin: 1em;
+  }
 
+  #editSingleTask3, #editSingleTask4, #attachFile2 {
+    margin: 1em;
+  }
 </style>

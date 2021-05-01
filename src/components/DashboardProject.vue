@@ -27,6 +27,7 @@
 
             <button
               type="button"
+              id="viewProjectDashboard"
               class="btn blue-background color-white p-1 pt-0 pb-0"
             >
               View
@@ -120,5 +121,9 @@ strong.Complete {
 
 strong.Incomplete {
   color: yellow;
+}
+
+#viewProjectDashboard {
+  margin-left: 1em;
 }
 </style>

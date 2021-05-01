@@ -23,10 +23,10 @@
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-start">
-            <li class="nav-item">
+            <li class="nav-item" id="dashNotif">
               <PushNotification />
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="dashLink">
               <router-link
                 :to="{ name: 'Dashboard' }"
                 class="nav-link color-white"
@@ -248,5 +248,9 @@ body {
 
 .color-black {
   color: black !important;
+}
+
+#dashLink, #dashNotif {
+  margin: 1em;
 }
 </style>

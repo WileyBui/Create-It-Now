@@ -22,14 +22,14 @@
           aria-expanded="true"
           :aria-controls="type + '-flush-collapse-' + index"
         >
-          <template v-if="type == 'journal'"> Journal Entries - 
+          <template v-if="type == 'journal'"> Journal Entries  
               <router-link :to="{
               name: 'ProjectJournal',
               params: { project_id: project_id },
             }"
                            class="remove-a-href-styles text-dark">
 
-                  <button type="button"
+                  <button type="button" id="viewJournalDashboard"
                           class="btn blue-background color-white p-1 pt-0 pb-0">
                       View Journal
                   </button>
@@ -47,7 +47,7 @@
                 <DashboardJournalEntry v-for="entry in items"
                                        :key="entry.id"
                                        :entry="entry" />
-                 <button @click="toAllEntries()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
+                 <button @click="toAllEntries()" type="button" id="seeAllEntriesDash" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
             </template>
           <template v-else>
             <DashboardTask v-for="task in items" :key="task.id" :task="task" />
@@ -86,3 +86,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+  #viewJournalDashboard {
+    margin-left: 1em;
+  }
+
+  #seeAllEntriesDash {
+    margin-top: 1em;
+  }
+</style>

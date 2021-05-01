@@ -3,8 +3,8 @@
         <div v-if="!editable" class="journal-entry light-orange-background">
             <div class="entry-heading">
                 <h3 class="journal-title">{{entry.title}}</h3>
-                <h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
-                <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
+                <h4 class="entry-timestamp" id="written">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
+                <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 
             <div class="entry-photo">
@@ -12,7 +12,7 @@
             </div>
 
             <div class="entry-body light-orange-background">
-                <p class="journal-body">{{entry.description}}</p>
+                <p class="journal-body" id="description">{{entry.description}}</p>
             </div>
         </div>
 
@@ -29,15 +29,15 @@
         </div>
 
         <div v-if="!editable">
-            <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Entry</button>
-            <span> -- </span>
-            <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry">Delete Entry</button>
-            <span> -- </span>
-            <button @click="toJournalEntries(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Entry Listing</button>
-            <span> -- </span>
-            <button @click="toJournal(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Journal</button>
-            <span> -- </span>
-            <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Project</button>
+            <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal">Edit Entry</button>
+            
+            <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry" id="specificJournal2">Delete Entry</button>
+            
+            <button @click="toJournalEntries(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal3">View Entry Listing</button>
+            
+            <button @click="toJournal(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal4">View Journal</button>
+            
+            <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal5">View Project</button>
 
             <div class="modal fade" id="deleteEntry" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteEntryLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -191,4 +191,14 @@ h4.entry-timestamp{
 p.journal-body{
 
 }
+
+#specificJournal, #specificJournal2, #specificJournal3, #specificJournal4, #specificJournal5 {
+    margin: 1em;
+}
+
+#description, #modif, #written {
+    font-size: 1em;
+    font-weight: bold;
+}
+
 </style>

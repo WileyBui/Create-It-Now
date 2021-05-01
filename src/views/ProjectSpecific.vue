@@ -65,11 +65,11 @@
                                           class="margin-top-10" />
 
                 <div class="margin-top-10">
-                    <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Edit Project</button>
-                    <span> -- </span>
-                    <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteProject">Delete Project</button>
-                    <span> -- </span>
-                    <button @click="backToDash()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Dashboard</button>
+                    <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="bottomButton">Edit Project</button>
+                    
+                    <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteProject" id="bottomButton2">Delete Project</button>
+                    
+                    <button @click="backToDash()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="bottomButton3">Back to Dashboard</button>
                 </div>
 
                 <div class="modal fade" id="deleteProject" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteProjectLabel" aria-hidden="true">
@@ -285,7 +285,7 @@ div.project-header {
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 1%;
-    background-color: gray;
+    background-color: rgb(152, 231, 145);
 }
 
 table.todos-table {
@@ -327,5 +327,9 @@ strong.Complete {
 strong.Incomplete {
   color: yellow;
   font-size: larger;
+}
+
+#bottomButton, #bottomButton2, #bottomButton3 {
+  margin: 1em;
 }
 </style>
