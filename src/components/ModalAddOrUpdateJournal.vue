@@ -171,7 +171,7 @@ export default {
         console.log("update: ", this.journalEntry.id);
         db.collection("journalEntries")
           .doc(this.journalEntry.id)
-          .update(journalFields);
+            .set(journalFields, { merge: true });
       } else {
         // add to the database
         journalFields.todo_id = this.todo_id;

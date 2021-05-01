@@ -21,14 +21,14 @@
               Journal Title
             </label>
               
-              <textarea id = "editableTitle" rows="1"></textarea>
+              <textarea v-model="editableTitle" rows="1"></textarea>
 
           </div>
           <div class="modal-body container text-start">
             <label class="control-label w-100 margin-top-10">
               Description
             </label>
-            <textarea id = "editableDescription" rows="4" cols = "44"></textarea>
+            <textarea v-model="editableDescription" rows="4" cols = "44"></textarea>
             <br>
             <br>
             <div class="d-flex justify-content-around">
@@ -97,11 +97,15 @@ import firebase from 'firebase/app';
 export default {
   name: "JournalEntry",
   props: ["entry"],
+  data: function () {
+      return {
+          editableTitle: "",
+          editableDescription: ""
+      }
+  },
   methods: {
         updateJournal: function() {
-            this.entry.name = document.getElementById("editableTitle").value
-            this.entry.description = document.getElementById("editableDescription").value
-            db.collection("journalEntries").doc(this.entry.id).set({ project_id: this.entry.project_id, todo_id: this.entry.id, title: this.entry.name, description: this.entry.description, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+            db.collection("journalEntries").doc(this.entry.id).set({ project_id: this.entry.project_id, todo_id: this.entry.id, title: this.editableTitle, description: this.editableDescription, created_at: firebase.firestore.FieldValue.serverTimestamp(), last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
         }
     }
 };
