@@ -97,7 +97,7 @@
               </div>
               <!-- this is the starting point for file attachment modal information /> -->
 
-              <div>
+              <div v-if="editable">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
                   Attach File
                 </button>
