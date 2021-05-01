@@ -198,7 +198,7 @@ h4.entry-timestamp{
 
 #description, #modif, #written {
     font-size: 1em;
-    font-weight: bold;
+    /*font-weight: bold; */
 }
 
 </style>

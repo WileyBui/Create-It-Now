@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="entry-body light-orange-background">
-                    <p class="journal-body">{{entry.description}}</p>
+                    <p class="journal-body" id="description">{{entry.description}}</p>
                 </div>
             </div>
         </div>
@@ -98,5 +98,10 @@ export default {
     h3.journal-title {
         font-size: 300%;
         display: inline-block;
+    }
+
+    #description, #modif, #written {
+        font-size: 1em;
+        /*font-weight: bold; */
     }
 </style>
