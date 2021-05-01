@@ -232,7 +232,7 @@ export default {
       journalEntries: db
         .collection("journalEntries")
         .where("project_id", "==", this.project_idLocal)
-        //.orderBy("created_at", "asc")
+        .orderBy("created_at", "desc")
         .limit(3),
     };
   },

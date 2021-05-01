@@ -92,12 +92,12 @@ export default {
         .collection("to-do-items")
         .where("project_id", "==", this.project.id)
         .limit(3),
-      // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
 
       journalEntries: db
         .collection("journalEntries")
         .where("project_id", "==", this.project.id)
-        .limit(3),
+        .orderBy("created_at", "desc")
+        .limit(3)
     };
   },
 };
