@@ -18,15 +18,32 @@
                 </div>
             </div>
         </div>
+        <div> 
+            
+            <!-- <button
+                    type="button"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#journalEntryModal">
+                Add New Journal Entry
+            </button>
+            <ModalAddOrUpdateJournal
+                :project_id="project_idLocal"
+            />                -->
+        </div>
         <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
     </div>
 </template>
 
 <script>
 import { db } from "../firebaseConfig.js";
+// import ModalAddOrUpdateJournal from "@/components/ModalAddOrUpdateJournal.vue";
 
 export default {
     name: "ProjectJournal",
+    // components: {
+    //     ModalAddOrUpdateJournal
+    // },
     props: [ "project_id" ],
 
     data: function () {
