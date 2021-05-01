@@ -62,8 +62,8 @@ export default {
         project: db.collection("projects").doc(this.project_id),
         journalEntries: db
           .collection("journalEntries")
-          .where("project_id", "==", this.project_id),
-        // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
+          .where("project_id", "==", this.project_id)
+          .orderBy("created_at", "asc"),
       };
     }
   },

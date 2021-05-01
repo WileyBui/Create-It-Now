@@ -44,7 +44,7 @@ export default {
     firestore: function () {
         return {
             project: db.collection("projects").doc(this.project_idLocal),
-            entries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal),
+            entries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal).orderBy("created_at", "asc"),
         }
     },
 
