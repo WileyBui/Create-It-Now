@@ -30,7 +30,7 @@
   <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
     <input v-model="photoName" placeholder="Name photo here">
     <a id="savePhoto" :download="photoName" class="button" role="button" @click="savePhoto">
-      Save Image
+      Save Image &nbsp;&nbsp;
     </a>
     <a id="downloadPhoto" :download="photoName" class="button" role="button" @click="downloadImage">
       Download
@@ -55,7 +55,7 @@ export default {
         isShotPhoto: false,
         isLoading: false,
         link: '#',
-        photoName: "image.jpg",
+        photoName: "PleaseUseUniqueName.jpg",
         //ourCollection: "",
         filelist: []
         }
@@ -182,6 +182,7 @@ export default {
           })
         })
       });
+      this.toggleCamera();
     }
   }
 }

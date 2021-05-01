@@ -188,9 +188,9 @@ h4.entry-timestamp{
     font-size: 95%;
 }
 
-p.journal-body{
+/* p.journal-body{
 
-}
+} */
 
 #specificJournal, #specificJournal2, #specificJournal3, #specificJournal4, #specificJournal5 {
     margin: 1em;
