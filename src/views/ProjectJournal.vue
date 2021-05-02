@@ -39,7 +39,7 @@
             <ModalAddIndependentJournal :project_id="project_idLocal" />
             <button @click="getJournalModal()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="addingJournal">Add New Entry</button>
         </div>
-        <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
+        <button @click="backToProject()" type="button" class="btn btn-primary">Back to Project</button>
     </div>
 </template>
 
