@@ -11,7 +11,7 @@
                 <div v-for="file in entry.filelist.slice()" :key="file.id">
                     <img v-bind:src="file.url" alt="Issues loading image" class="entry-image" />
                     <div class="overlay">
-                        <div class="text"><a v:bind:href="file.url">{{file.name}}</a></div>
+                        <div class="text"><a v-bind:href="file.url">{{file.name}}</a></div>
                     </div>
                 </div>
             </div>
