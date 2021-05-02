@@ -28,7 +28,7 @@
   </div>
   
   <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-    <input v-model="photoName" placeholder="Name photo here">
+    <input v-model="photoName" placeholder="PleaseUseUniqueNames">
     <a id="savePhoto" :download="photoName" class="button" role="button" @click="savePhoto">
       Save Image &nbsp;&nbsp;
     </a>
@@ -132,7 +132,7 @@ export default {
     downloadImage() {
       var download = document.getElementById("downloadPhoto");
       var canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
-    .replace("image/jpeg", "image/octet-stream");
+      .replace("image/jpeg", "image/octet-stream");
       download.setAttribute("href", canvas);
       this.toggleCamera();
     },
