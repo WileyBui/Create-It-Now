@@ -5,8 +5,8 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 ## App Info:
 
 * Team Name: Free Labor
-* App Name: TODO
-* App Link: <https://TODO.firebaseapp.com/>
+* App Name: Create It Now!
+* App Link: <https://project-2---maker-s-journal.web.app>
 
 ### Students
 
