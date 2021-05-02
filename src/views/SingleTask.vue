@@ -82,8 +82,29 @@
               </table>
               <br>
               <div v-if="!editable">
-                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask">Edit ToDo Item</button>
-                  
+                  <button @click="editTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask">Edit To Do Item</button>
+
+                  <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry" id="specificJournal2">Delete Entry</button>
+
+                  <div class="modal fade" id="deleteEntry" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteEntryLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title text-start" id="deleteEntryLabel">Are you sure you want to delete this todo item?</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body text-start">
+                                  <strong class="text-danger">Warning:</strong>
+                                  You can't undo this action!
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary" @click="deleteTodo(task)">Understood</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
                   <button @click="backToProject(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask2">Back to Project</button>
               </div>
               <div v-else>
@@ -97,9 +118,11 @@
               </div>
               <!-- this is the starting point for file attachment modal information /> -->
 
-              <div>
+              <div v-if="editable">
+                <webCamera :context="context" :user="this.user" :docId="this.id"/>
+                <br>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
-                  Attach File
+                  File Attachments
                 </button>
                 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -133,17 +156,20 @@
     import { db, storage, auth } from "../firebaseConfig.js"; 
     import Datepicker from "vuejs-datepicker";
     import JournalCreateModal from "../components/JournalCreateModal.vue";
-   
+    import webCamera from '@/components/WebCamera.vue'
+
     export default {
         components: {
             Datepicker,
             JournalCreateModal,
+            webCamera
             
         },
         data() {
             return {
                 id: this.$route.params.id,
                 task: null,
+                context: "to-do-items",
 
                 editable: false,
                 inputTitle: '',
@@ -163,6 +189,14 @@
                 filelist: db.collection("to-do-items").doc(this.id).filelist
             }
         },
+        beforeCreate: function () {
+          // ask the auth layer to let us know when the user changes.
+          auth.onAuthStateChanged((user) => {
+          if (user) {
+            this.user = user;
+          }
+          });
+        },
 
         methods: {
             addNewTaskToProject: function() {
@@ -175,6 +209,14 @@
 
             cancelEdit: function () {
                 this.editable = false;
+            },
+
+            deleteTodo: function (task) {
+                var project_id = task.project_id;
+                db.collection("to-do-items").doc(task.id).delete().then(() => {
+                    window.$("#deleteEntry").modal("toggle");
+                    this.$router.push({ name: 'ProjectSpecific', params: { project_id: project_id } })
+                })
             },
 
             editTodo: function (task) {

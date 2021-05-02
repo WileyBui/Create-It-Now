@@ -11,7 +11,7 @@
 
             </div>
 
-            <div class="entry-body light-orange-background">
+            <div class="entry-body light-orange-background" id="descriptionJournalBody">
                 <p class="journal-body" id="description">{{entry.description}}</p>
             </div>
         </div>
@@ -19,12 +19,12 @@
         <div v-else class="journal-entry light-orange-background">
             <div class="entry-heading">
                 <label class="journal-title">Title:</label>
-                <input v-model="inputTitle" />
+                <input v-model="inputTitle" id="editTitleBox"/>
             </div>
 
             <div class="entry-body light-orange-background">
-                <label class="journal-body">Body:</label>
-                <input v-model="inputBody" />
+                <label class="journal-body" id="bodyLabel">Body:</label>
+                <input v-model="inputBody" id="editBodyBox"/>
             </div>
         </div>
 
@@ -57,23 +57,57 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+        <!-- this is the starting point for file attachment modal information /> -->
 
-        <div v-else class="margin-top-10">
-            <button @click="updateEntry(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-            <span> -- </span>
-            <button @click="cancelUpdate()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+              <div v-if="editable">
+                <webCamera :context="context" :user="this.user" :docId="entry_idLocal"/>
+                <br>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
+                  File Attachments
+                </button>
+                <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="fileModalLabel">Attach a file to this item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                    <div class="modal-body">
+                      <input type="file" id="avatar" name="avatar" accept="audio/*, video/*, image/*" @change="fileChange"/>
+                      <hr>
+                      <ul>
+                        <li v-for="file in entry.filelist" :key="file.id"> <a v-bind:href="file.url">{{file.name}}</a></li>
+                      </ul>
+                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit" id="attachFile2">Attach File</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <!-- this is the ending point of file attachment modal --> 
+            <button @click="updateEntry(entry)" type="button" id="updateFinish" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
+            
+            <button @click="cancelUpdate()" type="button" id="updateCancel" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
         </div>
     </div>
 </template>
 
 <script>
-import { db } from "../firebaseConfig.js";
+import { db, storage, auth } from "../firebaseConfig.js";
 import firebase from 'firebase/app';
+import webCamera from '@/components/WebCamera.vue'
 
 export default {
     name: "SingleJournalEntry",
     props: [],
+    components: {
+            webCamera
+            
+    },
 
     data: function () {
         return {
@@ -83,7 +117,13 @@ export default {
 
             editable: false,
             inputTitle: '',
-            inputBody: ''
+            inputBody: '',
+
+            //file modal stuff
+            filelist: [],
+            file: null, 
+            fileURL: "",
+            context: "journalEntries",
         }
     },
 
@@ -96,6 +136,14 @@ export default {
         return {
             entry: db.collection("journalEntries").doc(this.entry_idLocal),
         }
+    },
+    beforeCreate: function () {
+          // ask the auth layer to let us know when the user changes.
+          auth.onAuthStateChanged((user) => {
+          if (user) {
+            this.user = user;
+          }
+          });
     },
 
     methods: {
@@ -139,7 +187,67 @@ export default {
         updateEntry: function (entry) {
             (db.collection("journalEntries").doc(entry.id)).set({ title: this.inputTitle, description: this.inputBody, last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
             this.editable = false;
-        }
+        },
+        //begin file modal functions
+        submit: function() {
+            var filename = "";
+
+            if (typeof this.entry.filelist == 'undefined') {
+                this.entry.filelist = [];
+                console.log("this.entry.filelist = " + this.entry.filelist);
+            } 
+               
+            filename = this.file.name
+            console.log("filename = " + filename);              
+          
+            var url = "/" + this.context + "/"+ filename;
+            console.log("url = " + url);
+            const ref = storage.ref().child(url);
+            ref.put(this.file).then(()=>{
+                // This happens only when the file is done uploading.
+                // now that the file is uploaded, we can get a URL for it:
+                // You can save the generated download url if you want to be able to access the file later.
+                // the saved url is public as far as I understand it.
+                ref.getDownloadURL().then((realurl)=>{
+                    console.log("realurl = " + realurl);
+
+                    this.entry.filelist.push({name:filename, url:realurl, uploadDate:Date.now(), user:auth.currentUser.uid})
+                   
+                    console.log(this.entry.filelist);
+                    db.collection(this.context).doc(this.entry_idLocal).update({
+                        filelist: this.entry.filelist
+                    })
+                    .then(() => {
+                        console.log("Document successfully updated!");
+                    })
+                    .catch((error) => {
+                    // The document probably doesn't exist.
+                        console.error("Error updating document: ", error);
+                    })
+                })
+            })
+              },
+              
+          
+
+            // This function keeps the this.file up to date with the file input
+            fileChange: function(event) {
+              //When the user finishes selecting a file or files, 
+              //the element's change event is fired. You can access
+              // the list of files from event.target.files, which is a FileList object. 
+              // Each item in the FileList is a File object.
+              const files = event.target.files || event.dataTransfer.files;
+              //console.log("inside fileChange")
+
+              if (!files.length) {
+                this.file = null;
+              } else  {
+                this.file = files[0]
+              }
+              console.log(this.file)
+
+            },
+            //end file modal functions
     }
 }
 </script>
@@ -189,7 +297,7 @@ h4.entry-timestamp{
 }
 
 p.journal-body{
-
+    color: black;
 }
 
 #specificJournal, #specificJournal2, #specificJournal3, #specificJournal4, #specificJournal5 {
@@ -198,7 +306,31 @@ p.journal-body{
 
 #description, #modif, #written {
     font-size: 1em;
-    font-weight: bold;
+    /*font-weight: bold; */
 }
 
+#updateCancel, #updateFinish {
+    margin: 1em;
+}
+
+#editBodyBox {
+    margin: 0.5em;
+    width: 20em;
+    background-color: rgb(255, 237, 204);
+}
+
+#editTitleBox {
+    background-color: rgb(255, 237, 204);
+    margin: 1em;
+    height: 3em;
+}
+
+#bodyLabel {
+    color: white;
+    font-size: 2em;
+}
+
+#descriptionJournalBody {
+    height: 5em;
+}
 </style>

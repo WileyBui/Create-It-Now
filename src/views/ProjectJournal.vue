@@ -9,14 +9,32 @@
                     <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
                 </div>
 
-                <div class="entry-photo">
-
+                <div v-if="entry.filelist" class="entry-photo">
+                    <div v-for="file in entry.filelist.slice()" :key="file.name" :id="file.name">
+                        <img src="file.url" />    
+                    </div>
                 </div>
 
-                <div class="entry-body light-orange-background">
+                <div class="entry-body light-orange-background" id="allJournalsBody">
                     <p class="journal-body">{{entry.description}}</p>
                 </div>
             </div>
+        </div>
+        <div> 
+            
+            <!-- <button
+                    type="button"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#journalEntryModal">
+                Add New Journal Entry
+            </button>
+            <ModalAddOrUpdateJournal
+                :project_id="project_idLocal"
+            /> 
+                           -->
+            <ModalAddIndependentJournal :project_id="project_idLocal" />
+            <button @click="getJournalModal()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="addingJournal">Add New Entry</button>
         </div>
         <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
     </div>
@@ -24,9 +42,13 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
+import ModalAddIndependentJournal from "@/components/ModalAddIndependentJournal.vue";
 
 export default {
     name: "ProjectJournal",
+    components: {
+        ModalAddIndependentJournal
+    },
     props: [ "project_id" ],
 
     data: function () {
@@ -44,7 +66,7 @@ export default {
     firestore: function () {
         return {
             project: db.collection("projects").doc(this.project_idLocal),
-            entries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal),
+            entries: db.collection("journalEntries").where("project_id", "==", this.project_idLocal).orderBy("created_at", "asc"),
         }
     },
 
@@ -55,7 +77,10 @@ export default {
 
         toEntry: function (entry) {
             this.$router.push({ name: 'SingleJournalEntry', params: { id: entry.id } })
-        }
+        },
+        getJournalModal: function () {
+            window.$("#addAJournalIndependent").modal("toggle");
+        },
     }
 }
 </script>
@@ -98,5 +123,13 @@ export default {
     h3.journal-title {
         font-size: 300%;
         display: inline-block;
+    }
+
+    #allJournalsBody {
+        height: 2em;
+    }
+
+    #addingJournal {
+        margin: 1em;
     }
 </style>

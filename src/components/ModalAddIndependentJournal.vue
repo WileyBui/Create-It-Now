@@ -2,7 +2,7 @@
   <div>
     <div
       class="modal fade"
-      id="addAJournal"
+      id="addAJournalIndependent"
       tabindex="-1"
       aria-labelledby="addAJournalLabel"
       aria-hidden="true"
@@ -159,7 +159,6 @@ export default {
     addANewJournal: function () {
       let journalFields = {
         project_id: this.project_id,
-        todo_id: this.todo_id,
         title: this.journal_title,
         description: this.journal_description,
         created_at: firebase.firestore.FieldValue.serverTimestamp(),
@@ -174,7 +173,7 @@ export default {
             .set(journalFields, { merge: true });
       } else {
         // add to the database
-        journalFields.todo_id = this.todo_id;
+        //journalFields.todo_id = this.todo_id;
         db.collection("journalEntries").add(journalFields);
       }
 

@@ -17,7 +17,7 @@
             <div v-else>There are no journal entries from this project yet.</div>
         </div>
 
-        <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">View Project</button>
+        <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="viewProject">View Project</button>
     </div>
   <div v-else>
     <UnableToFindId error_type="project journal" />
@@ -62,8 +62,8 @@ export default {
         project: db.collection("projects").doc(this.project_id),
         journalEntries: db
           .collection("journalEntries")
-          .where("project_id", "==", this.project_id),
-        // .orderBy("timestamp", "desc"), WILEY - WILL NEED TO SORT QUERY WHEN PROJECT IS FINISHED
+          .where("project_id", "==", this.project_id)
+          .orderBy("created_at", "asc"),
       };
     }
   },
@@ -84,5 +84,9 @@ export default {
 <style scope>
 .header-bold {
   font-weight: bold;
+}
+
+#viewProject {
+  margin:1em;
 }
 </style>

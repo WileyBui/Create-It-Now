@@ -122,7 +122,7 @@
                          class="accordion-collapse show"
                          aria-labelledby="flush-headingOne"
                          data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
+                        <div class="accordion-body" id="todosTable">
                             <table class="todos-table">
                                 <tr>
                                     <th>
@@ -158,9 +158,9 @@
                                           class="margin-top-10" />
 
                 <div class="margin-top-10">
-                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-                    <span> -- </span>
-                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="finishButton">Finish</button>
+                    
+                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="cancelButton">Cancel</button>
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@ export default {
       journalEntries: db
         .collection("journalEntries")
         .where("project_id", "==", this.project_idLocal)
-        //.orderBy("created_at", "asc")
+        .orderBy("created_at", "desc")
         .limit(3),
     };
   },
@@ -291,8 +291,6 @@ div.project-header {
 table.todos-table {
   margin-left: auto;
   margin-right: auto;
-  border-block-style: double;
-  border-color: lightseagreen;
 }
 
 tr {
@@ -331,5 +329,14 @@ strong.Incomplete {
 
 #bottomButton, #bottomButton2, #bottomButton3 {
   margin: 1em;
+}
+
+#cancelButton, #finishButton {
+  margin: 1em;
+}
+
+#todosTable {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
