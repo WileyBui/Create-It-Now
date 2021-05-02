@@ -3,7 +3,7 @@
         <div v-if="!editable" class="journal-entry light-orange-background">
             <div class="entry-heading">
                 <h3 class="journal-title">{{entry.title}}</h3>
-                <!--<h4 class="entry-timestamp" id="written">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>-->
+                <h4 class="entry-timestamp" id="written">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
                 <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 

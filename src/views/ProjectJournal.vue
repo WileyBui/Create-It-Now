@@ -5,7 +5,7 @@
             <div class="journal-module hoverable light-orange-background" v-for="entry in entries" :key="entry.id" :id="entry.id" @click="toEntry(entry)">
                 <div class="entry-heading">
                     <h3 class="journal-title">{{entry.title}}</h3>
-                    <!--<h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>-->
+                    <h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
                     <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
                 </div>
 
