@@ -18,7 +18,7 @@
         aria-labelledby="flush-headingOne"
         data-bs-parent="#accordionFlushExample"
       >
-          <div class="accordion-body horizontal-scroll">
+          <div class="accordion-body">
               <div v-if="!editable">
                   <strong id="thisTaskName">{{task.name}}</strong>
               </div>
@@ -33,7 +33,7 @@
                   </tr>
                   <template v-if="!editable">
                       <tr>
-                          <td>{{task.description}}</td>
+                          <td class="horizontal-scroll">{{task.description}}</td>
                           <td>{{task.deadline ? task.deadline.toDate() : "" | formatDate }}</td>
                           <template v-if="task.isComplete">
                               <td>
