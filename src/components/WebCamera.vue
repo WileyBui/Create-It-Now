@@ -25,16 +25,28 @@
     <button type="button" class="button" @click="takePhoto">
       <img src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png">
     </button>
+    <br />
   </div>
   
   <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-    <input v-model="photoName" placeholder="Name photo here">
-    <a id="savePhoto" :download="photoName" class="button" role="button" @click="savePhoto">
-      Save Image &nbsp;&nbsp;
-    </a>
-    <a id="downloadPhoto" :download="photoName" class="button" role="button" @click="downloadImage">
-      Download
-    </a>
+      <br />
+      <input v-model="photoName" placeholder="fileName.jpg (must be unique)" size="25">
+      <br />
+      <button type="button"
+              id="savePhoto"
+              :download="photoName"
+              class="btn blue-background color-white p-1 pt-0 pb-0"
+              @click="savePhoto">
+          Save Image &nbsp;&nbsp;
+      </button>
+
+      <button type="button"
+              id="downloadPhoto"
+              :download="photoName"
+              class="btn blue-background color-white p-1 pt-0 pb-0"
+              @click="downloadImage">
+          Download
+      </button>
   </div>
 </div>
 </template>
@@ -55,7 +67,7 @@ export default {
         isShotPhoto: false,
         isLoading: false,
         link: '#',
-        photoName: "PleaseUseUniqueName.jpg",
+        photoName: "",
         //ourCollection: "",
         filelist: []
         }
@@ -188,3 +200,9 @@ export default {
   }
 }
 </script>
+
+<style>
+    #savePhoto, #downloadPhoto {
+        margin: 1em;
+    }
+</style>
