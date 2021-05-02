@@ -7,8 +7,13 @@
                 <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 
-            <div class="entry-photo">
-
+            <div v-if="entry.filelist" class="entry-photo light">
+                <div v-for="file in entry.filelist.slice()" :key="file.id">
+                    <img v-bind:src="file.url" alt="Issues loading image" class="entry-image" />
+                    <div class="overlay">
+                        <div class="text"><a v:bind:href="file.url">{{file.name}}</a></div>
+                    </div>
+                </div>
             </div>
 
             <div class="entry-body light-orange-background" id="descriptionJournalBody">
@@ -333,4 +338,57 @@ p.journal-body{
 #descriptionJournalBody {
     height: 5em;
 }
+
+    img.entry-image {
+        object-fit: cover;
+        display: block;
+        border-radius: 1em;
+        border: 1px solid #ddd;
+        max-width: 100%;
+        height: auto;
+    }
+
+    img:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+
+    div.entry-photo {
+        float: right;
+        clear: right;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+        width: 50%;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        background-color: #008CBA;
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+    }
+
+    .entry-photo:hover .overlay {
+        bottom: 0;
+        height: 100%;
+    }
+
+    .text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
 </style>
