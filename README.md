@@ -32,11 +32,11 @@ accordion header to collapse the whole accordion without impacting other ones.
 - Accordion collapse bug when clicked --- Wiley will explain more about this later
 * ...
 
-Which (if any) device integration(s) does your app support?
+**Which (if any) device integration(s) does your app support?**
 
 * Camera
 
-Which (if any) progressive web app feature(s) does your app support?
+**Which (if any) progressive web app feature(s) does your app support?**
 
 * Push Notifications
 
