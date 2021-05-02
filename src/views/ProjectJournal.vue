@@ -29,7 +29,10 @@
             </button>
             <ModalAddOrUpdateJournal
                 :project_id="project_idLocal"
-            />                -->
+            /> 
+                           -->
+            <ModalAddIndependentJournal :project_id="project_idLocal" />
+            <button @click="getJournalModal()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="addingJournal">Add New Entry</button>
         </div>
         <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
     </div>
@@ -37,13 +40,13 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
-// import ModalAddOrUpdateJournal from "@/components/ModalAddOrUpdateJournal.vue";
+import ModalAddIndependentJournal from "@/components/ModalAddIndependentJournal.vue";
 
 export default {
     name: "ProjectJournal",
-    // components: {
-    //     ModalAddOrUpdateJournal
-    // },
+    components: {
+        ModalAddIndependentJournal
+    },
     props: [ "project_id" ],
 
     data: function () {
@@ -72,7 +75,10 @@ export default {
 
         toEntry: function (entry) {
             this.$router.push({ name: 'SingleJournalEntry', params: { id: entry.id } })
-        }
+        },
+        getJournalModal: function () {
+            window.$("#addAJournalIndependent").modal("toggle");
+        },
     }
 }
 </script>
@@ -119,5 +125,9 @@ export default {
 
     #allJournalsBody {
         height: 2em;
+    }
+
+    #addingJournal {
+        margin: 1em;
     }
 </style>
