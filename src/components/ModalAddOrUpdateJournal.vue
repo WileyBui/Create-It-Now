@@ -38,31 +38,6 @@
               v-model="journal_description"
             ></textarea>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-target="#modal2"
-              data-bs-toggle="modal"
-              data-bs-dismiss="modal"
-            >
-              Take a picture
-            </button>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="addANewJournal"
-            >
-              Submit
-            </button>
-          </div>
         </div>
       </div>
     </div>

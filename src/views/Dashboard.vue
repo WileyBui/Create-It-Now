@@ -58,7 +58,7 @@ export default {
         projects: db
           .collection("projects")
           .where("owner_id", "==", auth.currentUser.uid)
-          .orderBy("timestamp", "desc")
+          .orderBy("timestamp", "asc")
       };
     }
   },

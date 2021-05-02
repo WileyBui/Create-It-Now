@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{project.project_name}} Journal</h1>
+        <h1 class="project-title">{{project.project_name}} Journal</h1>
         <div class="journal-entries">
             <div class="journal-module hoverable light-orange-background" style="overflow:auto;" v-for="entry in entries" :key="entry.id" :id="entry.id" @click="toEntry(entry)">
                 <div class="entry-heading">
@@ -135,6 +135,17 @@ export default {
         margin-right: 5%;
         border-block-style: double;
         border-color: lightseagreen;
+    }
+
+    h1.project-title {
+        color: white;
+        margin: auto;
+        font-size: 300%;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-color: rgb(152, 231, 145);
     }
 
     h3.journal-title {
