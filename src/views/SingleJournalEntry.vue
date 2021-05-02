@@ -7,18 +7,37 @@
                 <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 
-            <div v-if="entry.filelist" class="entry-photo light">
+            <div class="light-orange-background margin-top-20 padding-bottom-20" style="overflow:auto;">
+                <div class="float-end entry-photo light" style="width: 50%">
+                    <div>
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/61j4acmknmL._AC_SL1500_.jpg" class="" />
+                        <div class="overlay">
+                            <div class="text"><a href="">FILE NAME</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entry-body" style="word-wrap: break-word">
+                    <p class="journal-body" id="description">{{entry.description}}</p>
+                </div>
+            </div>
+            <!-- <div class="entry-photo light">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/61j4acmknmL._AC_SL1500_.jpg" class="" />
+                    <div class="overlay">
+                        <div class="text"><a href="">FILE NAME</a></div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div v-if="entry.filelist" class="entry-photo light">
                 <div v-for="file in entry.filelist.slice()" :key="file.id">
                     <img v-bind:src="file.url" alt="Issues loading image" class="entry-image" />
                     <div class="overlay">
                         <div class="text"><a v-bind:href="file.url">{{file.name}}</a></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="entry-body light-orange-background" id="descriptionJournalBody">
-                <p class="journal-body" id="description">{{entry.description}}</p>
-            </div>
         </div>
 
         <div v-else class="journal-entry light-orange-background">
@@ -276,7 +295,7 @@ div.entry-heading{
 div.entry-body{
    text-align: left;
    margin-left: 5%;
-   margin-right: 5%;
+   /* margin-right: 5%; */
    font-size: 120%;
 }
 
@@ -336,7 +355,7 @@ p.journal-body{
 }
 
 #descriptionJournalBody {
-    height: 5em;
+    min-height: 5em;
 }
 
     img.entry-image {
