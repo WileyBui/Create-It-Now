@@ -233,6 +233,10 @@ body {
   padding-bottom: 10px;
 }
 
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+
 .padding-vertical-5 {
   padding-top: 5px;
   padding-bottom: 5px;

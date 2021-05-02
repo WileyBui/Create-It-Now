@@ -2,7 +2,7 @@
     <div>
         <h1>{{project.project_name}} Journal</h1>
         <div class="journal-entries">
-            <div class="journal-module hoverable light-orange-background" v-for="entry in entries" :key="entry.id" :id="entry.id" @click="toEntry(entry)">
+            <div class="journal-module hoverable light-orange-background" style="overflow:auto;" v-for="entry in entries" :key="entry.id" :id="entry.id" @click="toEntry(entry)">
                 <div class="entry-heading">
                     <h3 class="journal-title">{{entry.title}}</h3>
                     <h4 class="entry-timestamp">Written on: {{entry.created_at ? entry.created_at.toDate() : "" | formatDate }}</h4>
@@ -13,12 +13,12 @@
                     <div v-for="file in entry.filelist.slice()" :key="file.id">
                         <img v-bind:src="file.url" alt="Issues loading image" class="entry-image"/>
                         <div class="overlay">
-                            <div class="text"><a v:bind:href="file.url">{{file.name}}</a></div>
+                            <div class="text"><a v-bind:href="file.url">{{file.name}}</a></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="entry-body light-orange-background" id="allJournalsBody">
+                <div class="entry-body light-orange-background" id="allJournalsBody" style="word-wrap: break-word;">
                     <p class="journal-body">{{entry.description}}</p>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <ModalAddIndependentJournal :project_id="project_idLocal" />
             <button @click="getJournalModal()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="addingJournal">Add New Entry</button>
         </div>
-        <button @click="backToProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Back to Project</button>
+        <button @click="backToProject()" type="button" class="btn btn-primary">Back to Project</button>
     </div>
 </template>
 
@@ -142,9 +142,9 @@ export default {
         display: inline-block;
     }
 
-    #allJournalsBody {
+    /* #allJournalsBody {
         height: 2em;
-    }
+    } */
 
     #addingJournal {
         margin: 1em;

@@ -30,7 +30,7 @@
                            class="remove-a-href-styles text-dark">
 
                   <button type="button" id="viewJournalDashboard"
-                          class="btn blue-background color-white p-1 pt-0 pb-0">
+                          class="btn btn-primary">
                       View Journal
                   </button>
               </router-link>
@@ -47,7 +47,7 @@
                 <DashboardJournalEntry v-for="entry in items"
                                        :key="entry.id"
                                        :entry="entry" />
-                 <button @click="toAllEntries()" type="button" id="seeAllEntriesDash" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
+                 <button @click="toAllEntries()" type="button" id="seeAllEntriesDash" class="btn btn-primary">See All Entries</button>
             </template>
           <template v-else>
             <DashboardTask v-for="task in items" :key="task.id" :task="task" />
@@ -93,5 +93,9 @@ export default {
 
   #seeAllEntriesDash {
     margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
   }
 </style>
