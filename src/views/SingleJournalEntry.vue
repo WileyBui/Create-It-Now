@@ -87,10 +87,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- this is the ending point of file attachment modal --> 
 
-        <div v-else class="margin-top-10">
+              <!-- this is the ending point of file attachment modal --> 
             <button @click="updateEntry(entry)" type="button" id="updateFinish" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
             
             <button @click="cancelUpdate()" type="button" id="updateCancel" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>

@@ -9,8 +9,10 @@
                     <h4 class="entry-timestamp">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
                 </div>
 
-                <div class="entry-photo">
-
+                <div v-if="entry.filelist" class="entry-photo">
+                    <div v-for="file in entry.filelist.slice()" :key="file.name" :id="file.name">
+                        <img src="file.url" />    
+                    </div>
                 </div>
 
                 <div class="entry-body light-orange-background" id="allJournalsBody">
