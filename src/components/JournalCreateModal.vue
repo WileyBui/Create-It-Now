@@ -32,7 +32,7 @@
             <br>
             <br>
             <div class="d-flex justify-content-around">
-              <div class="d-grid gap-2 col-5 mx-auto">
+              <!-- <div class="d-grid gap-2 col-5 mx-auto">
                 <button
                   type="button"
                   class="btn-warning"
@@ -40,8 +40,8 @@
                 >
                   Take a picture
                 </button>
-              </div>
-              <div class="d-grid gap-2 col-5 mx-auto">
+              </div> -->
+              <!-- <div class="d-grid gap-2 col-5 mx-auto">
                 <button
                   type="button"
                   class="btn-warning"
@@ -49,10 +49,10 @@
                 >
                   Camera roll
                 </button>
-              </div>
+              </div> -->
             </div>
             <br />
-            <div class="d-grid gap-2 col-11 mx-auto">
+            <!-- <div class="d-grid gap-2 col-11 mx-auto">
               <button
                 type="button"
                 class="btn-warning"
@@ -65,7 +65,7 @@
                 <br />
                 <br />
               </span>
-            </div>
+            </div> -->
           </div>
           <div class="modal-footer">
             <button

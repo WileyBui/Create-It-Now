@@ -158,9 +158,9 @@
                                           class="margin-top-10" />
 
                 <div class="margin-top-10">
-                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
-                    <span> -- </span>
-                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="finishButton">Finish</button>
+                    
+                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="cancelButton">Cancel</button>
                 </div>
             </div>
         </div>
@@ -330,6 +330,10 @@ strong.Incomplete {
 }
 
 #bottomButton, #bottomButton2, #bottomButton3 {
+  margin: 1em;
+}
+
+#cancelButton, #finishButton {
   margin: 1em;
 }
 </style>
