@@ -122,7 +122,7 @@
                          class="accordion-collapse show"
                          aria-labelledby="flush-headingOne"
                          data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
+                        <div class="accordion-body" id="todosTable">
                             <table class="todos-table">
                                 <tr>
                                     <th>
@@ -291,8 +291,6 @@ div.project-header {
 table.todos-table {
   margin-left: auto;
   margin-right: auto;
-  border-block-style: double;
-  border-color: lightseagreen;
 }
 
 tr {
@@ -335,5 +333,10 @@ strong.Incomplete {
 
 #cancelButton, #finishButton {
   margin: 1em;
+}
+
+#todosTable {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

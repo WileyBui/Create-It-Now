@@ -58,7 +58,7 @@ export default {
 </script>
 <style scoped>
 td {
-  padding: 1em;
+  padding: 0.5em;
   color: black;
 }
 
@@ -70,5 +70,10 @@ a {
 a:hover {
     color: gray;
     font-size: 125%
+}
+
+tr {
+  padding-left: auto;
+  padding-right: auto;
 }
 </style>
