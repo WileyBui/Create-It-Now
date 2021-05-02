@@ -18,7 +18,7 @@
         aria-labelledby="flush-headingOne"
         data-bs-parent="#accordionFlushExample"
       >
-          <div class="accordion-body">
+          <div class="accordion-body horizontal-scroll">
               <div v-if="!editable">
                   <strong id="thisTaskName">{{task.name}}</strong>
               </div>

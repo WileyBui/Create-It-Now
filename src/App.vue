@@ -24,7 +24,7 @@
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-start">
             <li class="nav-item" id="dashNotif">
-              <PushNotification />
+              <PushNotification :owner_id="user.uid" />
             </li>
             <li class="nav-item" id="dashLink">
               <router-link
@@ -252,5 +252,11 @@ body {
 
 #dashLink, #dashNotif {
   margin: 1em;
+}
+
+.horizontal-scroll {
+  /* display: block; */
+  overflow-x: auto;
+  white-space: nowrap;
 }
 </style>

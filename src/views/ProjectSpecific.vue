@@ -29,7 +29,7 @@
                          class="accordion-collapse show"
                          aria-labelledby="flush-headingOne"
                          data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
+                        <div class="accordion-body horizontal-scroll">
                             <table class="todos-table">
                                 <tr>
                                     <th>

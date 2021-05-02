@@ -132,6 +132,7 @@ export default {
           deadline: this.todo_deadline,
           isComplete: false,
           project_id: "",
+          twoDaysDismissConfirmation: false,
         };
 
         // If add a new project, then add it to the projects db first, then add the new to do to the to-do-items db
