@@ -78,14 +78,6 @@
           <WebCamera />
           <div class="modal-footer">
             <!-- Toogle to first dialog, `data-bs-dismiss` attribute can be omitted - clicking on link will close dialog anyway -->
-            <a
-              class="btn btn-primary"
-              href="#modal"
-              data-bs-toggle="modal"
-              role="button"
-            >
-              Open #modal
-            </a>
           </div>
         </div>
       </div>

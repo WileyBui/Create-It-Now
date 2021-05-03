@@ -68,8 +68,8 @@
                     <button @click="editProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="bottomButton">Edit Project</button>
                     
                     <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteProject" id="bottomButton2">Delete Project</button>
-                    
-                    <button @click="backToDash()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="bottomButton3">Back to Dashboard</button>
+                    <br />
+                    <button @click="backToDash()" type="button" class="btn btn-primary" id="bottomButton3">Back to Dashboard</button>
                 </div>
 
                 <div class="modal fade" id="deleteProject" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteProjectLabel" aria-hidden="true">
@@ -158,9 +158,9 @@
                                           class="margin-top-10" />
 
                 <div class="margin-top-10">
-                    <button @click="updateProject()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="finishButton">Finish</button>
+                    <button @click="updateProject()" type="button" class="btn btn-primary" id="finishButton">Finish</button>
                     
-                    <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="cancelButton">Cancel</button>
+                    <button @click="cancelEdit()" type="button" class="btn btn-primary" id="cancelButton">Cancel</button>
                 </div>
             </div>
         </div>

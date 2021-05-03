@@ -28,9 +28,9 @@
             <button
               type="button"
               id="viewProjectDashboard"
-              class="btn blue-background color-white p-1 pt-0 pb-0"
+              class="btn btn-primary"
             >
-              View
+              View Project
             </button>
           </router-link>
         </button>

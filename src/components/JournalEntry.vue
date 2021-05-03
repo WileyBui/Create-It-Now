@@ -31,34 +31,7 @@
             <br>
             <br>
             <div class="d-flex justify-content-around">
-              <div class="d-grid gap-2 col-5 mx-auto">
-                <button
-                  type="button"
-                  class="btn-warning"
-                  aria-label="take a picture"
-                >
-                  Take a picture
-                </button>
-              </div>
-              <div class="d-grid gap-2 col-5 mx-auto">
-                <button
-                  type="button"
-                  class="btn-warning"
-                  aria-label="camera roll"
-                >
-                  Camera roll
-                </button>
-              </div>
-            </div>
-            <br />
-            <div class="d-grid gap-2 col-11 mx-auto">
-              <button
-                type="button"
-                class="btn-warning"
-                aria-label="upload image"
-              >
-                Upload image
-              </button>
+              
               <span id="error" class="small-error-font" hidden>
                 <strong>Error</strong>: You must enter in all form fields.
                 <br />

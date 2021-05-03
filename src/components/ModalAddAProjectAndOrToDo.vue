@@ -92,6 +92,7 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
+import firebase from 'firebase/app';
 import Datepicker from "vuejs-datepicker";
 //import moment from 'vue-moment';
 
@@ -124,6 +125,7 @@ export default {
         let newProject = {
           owner_id: this.owner_id,
           project_name: this.project_name,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         };
 
         let newToDo = {

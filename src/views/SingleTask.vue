@@ -18,7 +18,7 @@
         aria-labelledby="flush-headingOne"
         data-bs-parent="#accordionFlushExample"
       >
-          <div class="accordion-body horizontal-scroll">
+          <div class="accordion-body">
               <div v-if="!editable">
                   <strong id="thisTaskName">{{task.name}}</strong>
               </div>
@@ -31,9 +31,10 @@
                       <th><u><b>Deadline</b></u></th>
                       <th><u><b>Status</b></u></th>
                   </tr>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/freelaborproject2-3e4fa.appspot.com/o/photos%2Fhand.jpg?alt=media&token=084503bc-5d46-4c84-bc1d-6a20f781a88a">
                   <template v-if="!editable">
                       <tr>
-                          <td>{{task.description}}</td>
+                          <td class="horizontal-scroll">{{task.description}}</td>
                           <td>{{task.deadline ? task.deadline.toDate() : "" | formatDate }}</td>
                           <template v-if="task.isComplete">
                               <td>
@@ -105,48 +106,49 @@
                       </div>
                   </div>
 
-                  <button @click="backToProject(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask2">Back to Project</button>
+                  <button @click="backToProject(task)" type="button" class="btn btn-primary" id="editSingleTask2">Back to Project</button>
               </div>
               <div v-else>
-                  <button @click="updateTodo(task)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask3">Finish</button>
-                  
-                  <button @click="cancelEdit()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="editSingleTask4">Cancel</button>
+                  <!-- this is the starting point for file attachment modal information /> -->
+
+                  <div v-if="editable">
+                      <br />
+                      <webCamera :context="context" :user="this.user" :docId="this.id" />
+                      <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
+                          File Attachments
+                      </button>
+                      <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="fileModalLabel">Attach a file to this item</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <input type="file" id="avatar" name="avatar" accept="audio/*, video/*, image/*" @change="fileChange" />
+                                      <hr>
+                                      <ul>
+                                          <li v-for="file in task.filelist" :key="file.id"> <a v-bind:href="file.url">{{file.name}}</a></li>
+                                      </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit" id="attachFile2">Attach File</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- this is the ending point of file attachment modal -->
+
+                  <button @click="updateTodo(task)" type="button" class="btn btn-primary" id="editSingleTask3">Finish</button>
+
+                  <button @click="cancelEdit()" type="button" class="btn btn-primary" id="editSingleTask4">Cancel</button>
               </div>
               <div class="col-3 fw-bold small-text text-end">
                 <JournalCreateModal 
                 :entry="task"/>
               </div>
-              <!-- this is the starting point for file attachment modal information /> -->
-
-              <div v-if="editable">
-                <webCamera :context="context" :user="this.user" :docId="this.id"/>
-                <br>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
-                  File Attachments
-                </button>
-                <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="fileModalLabel">Attach a file to this item</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                    <div class="modal-body">
-                      <input type="file" id="avatar" name="avatar" accept="audio/*, video/*, image/*" @change="fileChange"/>
-                      <hr>
-                      <ul>
-                        <li v-for="file in task.filelist" :key="file.id"> <a v-bind:href="file.url">{{file.name}}</a></li>
-                      </ul>
-                    </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="submit" id="attachFile2">Attach File</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- this is the ending point of file attachment modal -->
             </div>
       </div>
     </div>

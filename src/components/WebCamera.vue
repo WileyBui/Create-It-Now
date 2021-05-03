@@ -1,42 +1,55 @@
 <template>
-<div id="webCamera" class="web-camera-container">
-  <div class="camera-button">
-      <button type="button" class="button is-rounded" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
-        <span v-if="!isCameraOpen">Open Camera</span>
-        <span v-else>Close Camera</span>
-    </button>
-  </div>
-  
-  <div v-show="isCameraOpen && isLoading" class="camera-loading">
-    <ul class="loader-circle">
-    </ul>
-  </div>
-  
-  <div v-if="isCameraOpen" v-show="!isLoading" class="camera-box" :class="{ 'flash' : isShotPhoto }">
-    
-    <div class="camera-shutter" :class="{'flash' : isShotPhoto}"></div>
-      
-    <video v-show="!isPhotoTaken" ref="camera" :width="450" :height="337.5" autoplay></video>
-    
-    <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="450" :height="337.5"></canvas>
-  </div>
-  
-  <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
-    <button type="button" class="button" @click="takePhoto">
-      <img src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png">
-    </button>
-  </div>
-  
-  <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-    <input v-model="photoName" placeholder="PleaseUseUniqueNames">
-    <a id="savePhoto" :download="photoName" class="button" role="button" @click="savePhoto">
-      Save Image &nbsp;&nbsp;
-    </a>
-    <a id="downloadPhoto" :download="photoName" class="button" role="button" @click="downloadImage">
-      Download
-    </a>
-  </div>
-</div>
+    <div id="webCamera" class="web-camera-container">
+        <div class="camera-button">
+            <button type="button " class="btn blue-background color-white p-1 pt-0 pb-0" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
+                <span v-if="!isCameraOpen">Open Camera</span>
+                <span v-else>Close Camera</span>
+            </button>
+        </div>
+
+        <br />
+
+        <div v-show="isCameraOpen && isLoading" class="camera-loading">
+            <ul class="loader-circle"></ul>
+        </div>
+
+        <div v-if="isCameraOpen" v-show="!isLoading" class="camera-box" :class="{ 'flash' : isShotPhoto }">
+
+            <div class="camera-shutter" :class="{'flash' : isShotPhoto}"></div>
+
+            <video v-show="!isPhotoTaken" ref="camera" :width="450" :height="337.5" autoplay></video>
+
+            <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="450" :height="337.5"></canvas>
+        </div>
+
+        <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
+            <button type="button" class="button" @click="takePhoto">
+                <img src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png">
+            </button>
+            <br />
+        </div>
+
+        <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
+            <br />
+            <input v-model="photoName" placeholder="fileName.jpg (must be unique)" size="25">
+            <br />
+            <button type="button"
+                    id="savePhoto"
+                    :download="photoName"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    @click="savePhoto">
+                Save Image &nbsp;&nbsp;
+            </button>
+
+            <button type="button"
+                    id="downloadPhoto"
+                    :download="photoName"
+                    class="btn blue-background color-white p-1 pt-0 pb-0"
+                    @click="downloadImage">
+                Download
+            </button>
+        </div>
+    </div>
 </template>
 <script>
 
@@ -55,7 +68,7 @@ export default {
         isShotPhoto: false,
         isLoading: false,
         link: '#',
-        photoName: "PleaseUseUniqueName.jpg",
+        photoName: "",
         //ourCollection: "",
         filelist: []
         }
@@ -132,7 +145,7 @@ export default {
     downloadImage() {
       var download = document.getElementById("downloadPhoto");
       var canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
-      .replace("image/jpeg", "image/octet-stream");
+    .replace("image/jpeg", "image/octet-stream");
       download.setAttribute("href", canvas);
       this.toggleCamera();
     },
@@ -188,3 +201,9 @@ export default {
   }
 }
 </script>
+
+<style>
+    #savePhoto, #downloadPhoto {
+        margin: 1em;
+    }
+</style>
