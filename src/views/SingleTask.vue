@@ -31,6 +31,7 @@
                       <th><u><b>Deadline</b></u></th>
                       <th><u><b>Status</b></u></th>
                   </tr>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/freelaborproject2-3e4fa.appspot.com/o/photos%2Fhand.jpg?alt=media&token=084503bc-5d46-4c84-bc1d-6a20f781a88a">
                   <template v-if="!editable">
                       <tr>
                           <td>{{task.description}}</td>
