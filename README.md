@@ -24,7 +24,7 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 * Users can either take a picture and upload an image from their device to a journal entry.
 
-* Push notification that notifies the users of their uncompleted to-do items and any to-do items
+* Push notification that notifies the users of their past uncompleted to-do items and any to-do items
 that are due in the next 2 days.
 
 * Project progress: When all to-do items from a project are completed, the project progress
