@@ -35,6 +35,7 @@ accordion header to collapse the whole accordion without impacting other ones.
 **Which (if any) device integration(s) does your app support?**
 
 * Camera
+* Resizable for mobile and tablet devices
 
 **Which (if any) progressive web app feature(s) does your app support?**
 
