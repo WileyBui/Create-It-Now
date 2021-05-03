@@ -5,8 +5,8 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 ## App Info:
 
 * Team Name: Free Labor
-* App Name: TODO
-* App Link: <https://TODO.firebaseapp.com/>
+* App Name: Create It Now!
+* App Link: <https://project-2---maker-s-journal.web.app>
 
 ### Students
 
@@ -32,13 +32,13 @@ accordion header to collapse the whole accordion without impacting other ones.
 - Accordion collapse bug when clicked --- Wiley will explain more about this later
 * ...
 
-Which (if any) device integration(s) does your app support?
+**Which (if any) device integration(s) does your app support?**
 
-* ...
+* Camera
 
-Which (if any) progressive web app feature(s) does your app support?
+**Which (if any) progressive web app feature(s) does your app support?**
 
-* ...
+* Push Notifications
 
 
 

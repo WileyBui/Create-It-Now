@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div
       class="modal fade"
       id="journalEntryModal"
@@ -17,20 +16,23 @@
             </h5>
           </div>
           <div class="modal-body container text-start">
-              <label class="control-label w-100">
-              Journal Title
-            </label>
-              
-              <textarea v-model="editableTitle" rows="1"></textarea>
+            <label class="control-label w-100"> Journal Title </label>
 
+            <textarea
+              class="form-control"
+              v-model="editableTitle"
+              rows="1"
+            ></textarea>
           </div>
           <div class="modal-body container text-start">
-            <label class="control-label w-100 margin-top-10">
+            <label class="control-label w-100">
               Description
             </label>
-            <textarea v-model="editableDescription" rows="4" cols = "44"></textarea>
-            <br>
-            <br>
+            <textarea
+              class="form-control"
+              v-model="editableDescription"
+              rows="4"
+            ></textarea>
             <div class="d-flex justify-content-around">
               <!-- <div class="d-grid gap-2 col-5 mx-auto">
                 <button
@@ -51,7 +53,6 @@
                 </button>
               </div> -->
             </div>
-            <br />
             <!-- <div class="d-grid gap-2 col-11 mx-auto">
               <button
                 type="button"
@@ -75,7 +76,8 @@
             >
               Close
             </button>
-            <button @click="updateJournal"
+            <button
+              @click="updateJournal"
               data-bs-dismiss="modal"
               type="button"
               class="btn btn-primary"
@@ -91,22 +93,34 @@
 
 
 <script>
-import {db} from "../firebaseConfig.js"
-import firebase from 'firebase/app';
+import { db } from "../firebaseConfig.js";
+import firebase from "firebase/app";
 
 export default {
   name: "JournalEntry",
   props: ["entry"],
   data: function () {
-      return {
-          editableTitle: "",
-          editableDescription: ""
-      }
+    return {
+      editableTitle: "",
+      editableDescription: "",
+    };
   },
   methods: {
-        updateJournal: function() {
-            db.collection("journalEntries").doc(this.entry.id).set({ project_id: this.entry.project_id, todo_id: this.entry.id, title: this.editableTitle, description: this.editableDescription, created_at: firebase.firestore.FieldValue.serverTimestamp(), last_modified: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
-        }
-    }
+    updateJournal: function () {
+      db.collection("journalEntries")
+        .doc(this.entry.id)
+        .set(
+          {
+            project_id: this.entry.project_id,
+            todo_id: this.entry.id,
+            title: this.editableTitle,
+            description: this.editableDescription,
+            created_at: firebase.firestore.FieldValue.serverTimestamp(),
+            last_modified: firebase.firestore.FieldValue.serverTimestamp(),
+          },
+          { merge: true }
+        );
+    },
+  },
 };
 </script>

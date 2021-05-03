@@ -25,7 +25,7 @@
             <button
               id="viewingJournal"
               type="button"
-              class="btn blue-background color-white p-1 pt-0 pb-0"
+              class="btn btn-primary"
             >
               View Journal
             </button>
@@ -41,7 +41,7 @@
                                           :key="entry.id"
                                           :entry="entry" />
           </div>
-          <button @click="toAllEntries()" type="button" id="seeAllEntries" class="btn blue-background color-white p-1 pt-0 pb-0">See All Entries</button>
+          <button @click="toAllEntries()" type="button" id="seeAllEntries" class="btn btn-primary">See All Entries</button>
       </div>
     </div>
   </div>

@@ -7,13 +7,21 @@
                 <h4 class="entry-timestamp" id="modif">Last modified: {{entry.last_modified ? entry.last_modified.toDate() : "" | formatDate }}</h4>
             </div>
 
-            <div class="entry-photo">
+            <div class="light-orange-background margin-top-20 padding-bottom-20" style="overflow:auto;">
+                <div v-if="entry.filelist" class="entry-photo light">
+                    <div v-for="file in entry.filelist.slice()" :key="file.id">
+                        <img v-bind:src="file.url" alt="Issues loading image" class="entry-image" />
+                        <div class="overlay">
+                            <div class="text"><a v-bind:href="file.url">{{file.name}}</a></div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="entry-body" style="word-wrap: break-word">
+                    <p class="journal-body" id="description">{{entry.description}}</p>
+                </div>
             </div>
 
-            <div class="entry-body light-orange-background" id="descriptionJournalBody">
-                <p class="journal-body" id="description">{{entry.description}}</p>
-            </div>
         </div>
 
         <div v-else class="journal-entry light-orange-background">
@@ -30,30 +38,31 @@
 
         <div v-if="!editable">
             <button @click="editEntry()" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal">Edit Entry</button>
-            
+
             <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#deleteEntry" id="specificJournal2">Delete Entry</button>
-            
-            <button @click="toJournalEntries(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal3">View Entry Listing</button>
-            
-            <button @click="toJournal(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal4">View Journal</button>
-            
-            <button @click="backToProject(entry)" type="button" class="btn blue-background color-white p-1 pt-0 pb-0" id="specificJournal5">View Project</button>
+            <br />
+
+            <button @click="toJournal(entry)" type="button" class="btn btn-primary" id="specificJournal4">View Journal</button>
+
+            <button @click="toJournalEntries(entry)" type="button" class="btn btn-primary" id="specificJournal3">View Entry Listings</button>
+
+            <button @click="backToProject(entry)" type="button" class="btn btn-primary" id="specificJournal5">View Project</button>
 
             <div class="modal fade" id="deleteEntry" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteEntryLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-start" id="deleteEntryLabel">Are you sure you want to delete this entry?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        <strong class="text-danger">Warning:</strong>
-                        You can't undo this action!
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="deleteEntry(entry)">Understood</button>
-                    </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title text-start" id="deleteEntryLabel">Are you sure you want to delete this entry?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            <strong class="text-danger">Warning:</strong>
+                            You can't undo this action!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" @click="deleteEntry(entry)">Understood</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,7 +72,7 @@
               <div v-if="editable">
                 <webCamera :context="context" :user="this.user" :docId="entry_idLocal"/>
                 <br>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
+                <button type="button" class="btn blue-background color-white p-1 pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#fileModal" id="fileAttach">
                   File Attachments
                 </button>
                 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
@@ -87,11 +96,11 @@
                     </div>
                   </div>
                 </div>
-
+                <br /><br />
               <!-- this is the ending point of file attachment modal --> 
-            <button @click="updateEntry(entry)" type="button" id="updateFinish" class="btn blue-background color-white p-1 pt-0 pb-0">Finish</button>
+            <button @click="updateEntry(entry)" type="button" id="updateFinish" class="btn btn-primary">Finish</button>
             
-            <button @click="cancelUpdate()" type="button" id="updateCancel" class="btn blue-background color-white p-1 pt-0 pb-0">Cancel</button>
+            <button @click="cancelUpdate()" type="button" id="updateCancel" class="btn btn-primary">Cancel</button>
         </div>
     </div>
 </template>
@@ -271,7 +280,7 @@ div.entry-heading{
 div.entry-body{
    text-align: left;
    margin-left: 5%;
-   margin-right: 5%;
+   /* margin-right: 5%; */
    font-size: 120%;
 }
 
@@ -331,6 +340,59 @@ p.journal-body{
 }
 
 #descriptionJournalBody {
-    height: 5em;
+    min-height: 5em;
 }
+
+    img.entry-image {
+        object-fit: cover;
+        display: block;
+        border-radius: 1em;
+        border: 1px solid #ddd;
+        max-width: 100%;
+        height: auto;
+    }
+
+    img:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+
+    div.entry-photo {
+        float: right;
+        clear: right;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+        width: 50%;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        background-color: #008CBA;
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+    }
+
+    .entry-photo:hover .overlay {
+        bottom: 0;
+        height: 100%;
+    }
+
+    .text {
+        white-space: nowrap;
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
 </style>
