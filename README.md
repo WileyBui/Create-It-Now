@@ -1,14 +1,16 @@
-# Module 2 Group Assignment
+# Create It Now!
 
-CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/217951/pages/project-2)
 
 ## App Info:
 
 * Team Name: Free Labor
 * App Name: Create It Now!
-* App Link: <https://project-2---maker-s-journal.web.app>
+* App Link: <https://project-2---maker-s-journal.web.app> (Database service expired)
 
-### Students
+### Description
+Use Create It Now to develop to-do lists for projects you are working on. After the completion of each to-do list item, you may write a journal entry (complete with a photo) to track your progress throughout the project to meet their goals. Created with Vue, Firebase, and Bootstrap5.
+
+### Authors
 
 * Wiley Bui, buixx206@umn.edu
 * Ally Goins, goin0004@umn.edu
@@ -19,33 +21,14 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 ## Key Features
 
-**Describe the most challenging features you implemented
-(one sentence per bullet, maximum 4 bullets):**
+* Users can either take a picture or upload an image from their device to a journal entry.
+* Push notifications that notify the users of their past uncompleted to-do items and any upcoming to-do items that are due in the next 2 days.
+* Responsiveness: Mobile and tablet friendly
+* Project progress updates: When all of the to-do items from a project are completed, the entire project progress status changes to "Completed" from "In Progress".
+* Tools: Usage of Bootstrap 5.0 to display multiple different accordions
 
-* Users can either take a picture and upload an image from their device to a journal entry.
-
-* Push notification that notifies the users of their past uncompleted to-do items and any to-do items
-that are due in the next 2 days.
-
-* Project progress: When all to-do items from a project are completed, the project progress
-status changes to "Completed" from "In Progress" by asking the database if there are
-no 'isComplete == false' left from the project's to-do items.
-
-* Bootstrap accordions: we didn't know how to make each accordion ID unique because clicking
-an accordion can also collapse other accordions; our solution was to concatenate the HTML ID along
-with an index, all of which gets binded to the data-bs-target, ie: 
-`:data-bs-target="'#' + type + '-flush-collapse-' + index"`.
-
-
-**Which (if any) device integration(s) does your app support?**
-
-* Camera
-* Resizable for mobile and tablet devices
-
-**Which (if any) progressive web app feature(s) does your app support?**
-
-* Push Notifications
-
+## Video Demo of Site
+[![YouTube - Create It Now](images/results/YouTubeDemo.png)](https://youtu.be/aPCzPmQX5l4 "Create It Now - Click to Watch!")
 
 ## Screenshots of Site
 
@@ -54,7 +37,7 @@ with an index, all of which gets binded to the data-bs-target, ie:
 The "Welcome" Page introduces our site's visitors to the web site they have entered. Users must either login
 or sign up to create their accounts in order to use the site. Users will be able to create projects with to-do
 lists, and upon completion of a to-do item will be prompted to enter a journal entry/reflection about that portion
-of the project (with a progress picture (and potentially other media like voice memos)). The reflections will be
+of the project (with a progress picture (and potentially other media like voice memos). The reflections will be
 compiled into an entire journal-type documentation upon the completion of all to-do items.
 
 ### Dashboard Page
@@ -74,7 +57,7 @@ or view/edit existing journal entries.
 
 
 ### Add a Project & To-do Modals
-![Add a Project Modal](images/results/AddAProjectModal.png "Add a Project Modal") ![Add a To-do Modal](images/results/AddAToDoModal.png "Add a To-do Modal")
+![Add a Project Modal](images/results/AddAProjectModal.png "Add a Project Modal")
 
 This page gets displayed when the user clicks the **+** icon from the dashboard or the menu page.
 For adding a new list/to-do, the user can label the list name (title) and add a description of the task. Once the user is finished with 
@@ -177,40 +160,21 @@ After the user completes a to-do list for a project, they can review the steps t
 shows the completion (or progress thus far) of the project, showing the milestones of the project. The journal will be a nice accompaniment
 to the completed project and may serve as a reminder of the work that was achieved.
 
-## Testing Notes
-
-**Is there anything special we need to know in order to effectively test your app? (optional):**
-
-* ...
-
-
-## External Dependencies
-
-**Document integrations with 3rd Party code or services here.
-Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
-
-* npm install firebase-functions@latest firebase-admin@latest --save
-* ...
-
-**If there's anything else you would like to disclose about how your project
-relied on external code, expertise, or anything else, please disclose that
-here:**
-
 ...
 
-# firebase_setup_starting_point
+# Firebase Setup Starting Point
 
-This repo is intended to be a "starting point" for projects that use firebase and vue, so you can get the "boring" setup work out of the way before lecture.
+This repo is intended to be a "starting point" for projects that use Firebase and Vue.
 
-How I generated this project:
+How we generated this project:
 
-1. RUN THIS COMMAND IN THE PARENT DIRECTORY OF THE ACTUAL REPO DIRECTORY `vue create csci-5117-project-2-template-free-labor-1` (create basic project template) 
+1. RUN THIS COMMAND IN THE PARENT DIRECTORY OF THE ACTUAL REPO DIRECTORY `vue create create-it-now` (create basic project template) 
 2. `vue add router` (update template with vue router)
 3. `npm install firebase` (add the firebase web API to this project)
 4. added the `firebaseConfig.js` file and also the .env files
 5. `npm install vuefire` (add the vue + firestore bindings to make firestore data easy to work with.)
 6. updated the `main.js` file to use the vuefire plugin
-7. when setting up the auth test I further updated main.js to make sure the authenticaiton info is loaded before rendering starts, and I updated the router configuration to check if a route wants authentication before routing.
+7. when setting up the auth test we further updated main.js to make sure the authenticaiton info is loaded before rendering starts, and we updated the router configuration to check if a route wants authentication before routing.
 
 I've included these instructions with the specific intent of helping you know what you need to do to get setup with firebase on your own project.
 
@@ -220,24 +184,23 @@ I've included these instructions with the specific intent of helping you know wh
 * <https://firebase.google.com/docs/firestore/quickstart>
 * <https://vuefire.vuejs.org/vuefire/#why>
 * <https://medium.com/@anas.mammeri/vue-2-firebase-how-to-build-a-vue-app-with-firebase-authentication-system-in-15-minutes-fdce6f289c3c>
-* 
 
-## Project setup (do once after downloading)
-1. locally install dependencies with `npm install`
-2. On [google firebase console](https://console.firebase.google.com/), create a firebase project for this project
-3. configure the firebase API.
-    * click the gear on the side-bar and go to project settings
-    * at the bottom of this page is a "Your apps" page -- click the `</>` icon to setup the web-api
+### Project setup (do once after downloading)
+1. Locally install dependencies with `npm install`
+2. On [Google Firebase Console](https://console.firebase.google.com/), create a firebase project for this project
+3. Configure the Firebase API.
+    * Click the gear on the side-bar and go to project settings
+    * At the bottom of this page is a "Your apps" page -- click the `</>` icon to setup the web-api
     * No need to setup firebase hosting right now, we saw that we can do this from the terminal easily enough already. Just register a nickname.
     * It's going to tell you to copy the configuration script into your code. Don't actually do that. Instead we will be using .env and .env.local files to configure this, just copy this data into a temporary file so you don't lose it immediately.
         * .env files are automatically loaded when serving or compiling your project and added to an environment variable.
         * .env.local is also loaded, but it is marked by .gitignore as a file to ignore -- its safe to put api keys and such in this file. (You api key should never go online)
-    * update the .env file based on the provided keys
-    * copy .env.local.example to .env.local and fill in the api key and appId.
-4. (For testing the firestore) in the firebase console go to firestore database, and create a database.
-    * use test mode. This will work for 30 days. You can update it later whenever you want.
-    * create a "words" collection, with an initial document based on: `{word: "cat", likes: 0}` (use an autogen ID)
-5. (For testing authentication): go to the firebase console and click "authentication. then click on google in the list of sign-in methods and enable it. You will need to list a support email for the log in (just yourself). 
+    * Update the .env file based on the provided keys
+    * Copy .env.local.example to .env.local and fill in the api key and appId.
+4. (For testing the Firestore) in the Firebase Console go to Firestore Database, and create a database.
+    * Use test mode. This will work for 30 days. You can update it later whenever you want.
+    * Create a "words" collection, with an initial document based on: `{word: "cat", likes: 0}` (use an autogen ID)
+5. (For testing authentication): go to the Firebase Console and click "Authentication." Then click on Google in the list of sign-in methods and enable it. You will need to list a support email for the log in (just yourself). 
 
 ### Further notes:
 File storage requires being logged in. You can check out how that's setup in the code if you want.
